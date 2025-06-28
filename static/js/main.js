@@ -8,66 +8,83 @@
                 mirror: false,
                 offset: 50
             });
+            
+   
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-            // Register GSAP Plugins
-            gsap.registerPlugin(ScrollTrigger, TextPlugin);
+// Enhanced Device Detection and Performance Optimization
+const isMobile = window.innerWidth <= 768;
+const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+const isDesktop = window.innerWidth > 1024;
 
-            // Global variables
-            let mouseX = 0;
-            let mouseY = 0;
-            let lastScroll = 0;
 
-            // Get DOM elements with null checks
-            const cursor = document.querySelector('.cursor');
-            const cursorFollower = document.querySelector('.cursor-follower');
-            const navbar = document.querySelector('.navbar');
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const heroTitle = document.querySelector('.hero-title');
-            const titleWords = gsap.utils.toArray('.title-word');
-            const cube = document.querySelector('.cube');
 
-            // Custom Cursor (only for desktop)
-            if (window.innerWidth > 768 && cursor && cursorFollower) {
-                document.addEventListener('mousemove', (e) => {
-                    mouseX = e.clientX;
-                    mouseY = e.clientY;
-                    
-                    gsap.to(cursor, {
-                        x: mouseX,
-                        y: mouseY,
-                        duration: 0
-                    });
-                    
-                    gsap.to(cursorFollower, {
-                        x: mouseX,
-                        y: mouseY,
-                        duration: 0.15,
-                        ease: "power2.out"
-                    });
-                });
-// Cursor hover effects
-        const hoverElements = document.querySelectorAll(
-            'button, .feature-item, .media-stack, .nav-arrow, .play-button, ' +
-            '.excellence-insignia, .highlight-badge, .excellence-manifesto, ' +
-            '.showcase-subtitle, .media-frame, .carousel-navigation, ' +
-            '.training-features, .media-info-panel, .credential-medallion, ' +
-            '.visual-card, .magnetic-button, .magnetic-link, .hero-title, ' +
-            '.hero-cta, .hero-description, .media-content, .media-video, ' +
-            '.sparkle, .geo-shape, .floating-orb, .light-beam'
-        );
+// Global variables
+let mouseX = 0;
+let mouseY = 0;
+let lastScroll = 0;
+
+// Get DOM elements with null checks
+const cursor = document.querySelector('.cursor');
+const cursorFollower = document.querySelector('.cursor-follower');
+const navbar = document.querySelector('.navbar');
+const navToggle = document.getElementById('navToggle');
+const navMenu = document.getElementById('navMenu');
+const heroTitle = document.querySelector('.hero-title');
+const titleWords = gsap.utils.toArray('.title-word');
+const cube = document.querySelector('.cube');
+
+// Enhanced Custom Cursor (Desktop only, with hover detection)
+if (!isMobile  && cursor && cursorFollower && !prefersReducedMotion) {
+    // Mouse movement tracking
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         
-        hoverElements.forEach(element => {
+        gsap.to(cursor, {
+            x: mouseX,
+            y: mouseY,
+            duration: 0,
+            ease: "none"
+        });
+        
+        gsap.to(cursorFollower, {
+            x: mouseX,
+            y: mouseY,
+            duration: 0.15,
+            ease: "power2.out"
+        });
+    });
+
+ const hoverElements = document.querySelectorAll(
+        'button, .feature-item, .media-stack, .nav-arrow, .play-button, ' +
+        '.excellence-insignia, .highlight-badge, .excellence-manifesto, ' +
+        '.showcase-subtitle, .media-frame, .carousel-navigation, ' +
+        '.training-features, .media-info-panel, .credential-medallion, ' +
+        '.visual-card, .magnetic-button, .magnetic-link, .hero-title, ' +
+        '.hero-cta, .hero-description, .media-content, .media-video, ' +
+        '.sparkle, .geo-shape, .floating-orb, .light-beam, ' +
+        '.service-constellation, .category-tab, .services-insignia, ' +
+        '.service-emblem, .service-action, .cta-button-primary, .cta-button-secondary, ' +
+        '.services-manifesto, .service-title, .feature-bullet, .services-cta-nexus, ' +
+        '.nav-link, .cta-button, .primary-button, .secondary-button, ' +
+        '.portrait-frame, .visual-3d-object, .scroll-indicator, a'
+    );
+    
+    hoverElements.forEach(element => {
+        if (element) {
             element.addEventListener('mouseenter', () => {
                 gsap.to(cursor, {
                     scale: 2,
                     backgroundColor: 'var(--primary-peach)',
                     mixBlendMode: 'normal',
-                    duration: 0.3
+                    duration: 0.3,
+                    ease: "power2.out"
                 });
                 gsap.to(cursorFollower, {
                     scale: 1.5,
-                    duration: 0.3
+                    duration: 0.3,
+                    ease: "power2.out"
                 });
             });
             
@@ -76,15 +93,17 @@
                     scale: 1,
                     backgroundColor: 'transparent',
                     mixBlendMode: 'difference',
-                    duration: 0.3
+                    duration: 0.3,
+                    ease: "power2.out"
                 });
                 gsap.to(cursorFollower, {
                     scale: 1,
-                    duration: 0.3
+                    duration: 0.3,
+                    ease: "power2.out"
                 });
             });
-        });
-
+        }
+    });
             }
 
             // Magnetic Buttons with GSAP
@@ -227,37 +246,36 @@
                     }
                 });
             }
-
-            // Visual Cards 3D Tilt with GSAP
-            const visualCards = document.querySelectorAll('.visual-card');
-            visualCards.forEach(card => {
-                if (card && window.innerWidth > 768) {
-                    card.addEventListener('mousemove', (e) => {
-                        const rect = card.getBoundingClientRect();
-                        const x = (e.clientX - rect.left) / rect.width;
-                        const y = (e.clientY - rect.top) / rect.height;
-                        
-                        gsap.to(card, {
-                            rotationX: (y - 0.5) * 20,
-                            rotationY: (x - 0.5) * -20,
-                            scale: 1.05,
-                            duration: 0.3,
-                            ease: "power2.out",
-                            transformPerspective: 1000
-                        });
-                    });
-                    
-                    card.addEventListener('mouseleave', () => {
-                        gsap.to(card, {
-                            rotationX: card.classList.contains('card-1') ? 5 : -5,
-                            rotationY: card.classList.contains('card-1') ? -10 : 10,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: "elastic.out(1, 0.3)"
-                        });
-                    });
-                }
+// Enhanced Visual Cards 3D Tilt with GSAP (Desktop Only)
+const visualCards = document.querySelectorAll('.visual-card');
+if (visualCards.length > 0 && !isMobile && !prefersReducedMotion) {
+    visualCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            gsap.to(card, {
+                rotationX: (y - 0.5) * 20,
+                rotationY: (x - 0.5) * -20,
+                scale: 1.05,
+                duration: 0.3,
+                ease: "power2.out",
+                transformPerspective: 1000
             });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                rotationX: card.classList.contains('card-1') ? 5 : -5,
+                rotationY: card.classList.contains('card-1') ? -10 : 10,
+                scale: 1,
+                duration: 0.5,
+                ease: "elastic.out(1, 0.3)"
+            });
+        });
+    });
+}
 
             // Animated Counter with GSAP - Fixed to count UP from 0
             const counters = document.querySelectorAll('.stat-number');
@@ -1527,3 +1545,343 @@
 
         // Refresh ScrollTrigger
         ScrollTrigger.refresh();
+
+
+const isMobile = window.innerWidth <= 768;
+const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+const isDesktop = window.innerWidth > 1024;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+         // Services Manifesto Words Animation
+        const servicesWords = document.querySelectorAll('.services-word');
+        
+        if (!prefersReducedMotion) {
+            gsap.set(servicesWords, {
+                y: 100,
+                rotation: isMobile ? 0 : 8,
+                opacity: 0
+            });
+
+            gsap.to(servicesWords, {
+                y: 0,
+                rotation: 0,
+                opacity: 1,
+                duration: isMobile ? 0.8 : 1.2,
+                stagger: isMobile ? 0.05 : 0.15,
+                ease: "back.out(1.4)",
+                scrollTrigger: {
+                    trigger: ".services-manifesto",
+                    start: "top 80%",
+                    end: "bottom 20%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        } else {
+            gsap.set(servicesWords, { opacity: 1 });
+        }
+
+        // Optimized Scroll Reveal Animations
+        if (!prefersReducedMotion) {
+            gsap.utils.toArray('.scroll-reveal').forEach((element, index) => {
+                gsap.fromTo(element, 
+                    {
+                        opacity: 0,
+                        y: isMobile ? 30 : 60,
+                        scale: 0.98
+                    },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: isMobile ? 0.6 : 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            end: "bottom 15%",
+                            toggleActions: "play none none reverse"
+                        },
+                        delay: isMobile ? 0 : index * 0.1
+                    }
+                );
+            });
+
+            gsap.utils.toArray('.scroll-reveal-left, .scroll-reveal-right').forEach((element, index) => {
+                const direction = element.classList.contains('scroll-reveal-left') ? -1 : 1;
+                gsap.fromTo(element,
+                    {
+                        opacity: 0,
+                        x: direction * (isMobile ? 30 : 60),
+                        rotation: isMobile ? 0 : direction * -1
+                    },
+                    {
+                        opacity: 1,
+                        x: 0,
+                        rotation: 0,
+                        duration: isMobile ? 0.8 : 1.2,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 80%",
+                            end: "bottom 20%",
+                            toggleActions: "play none none reverse"
+                        },
+                        delay: isMobile ? 0 : index * 0.2
+                    }
+                );
+            });
+
+            gsap.utils.toArray('.scroll-reveal-scale').forEach((element, index) => {
+                gsap.fromTo(element,
+                    {
+                        opacity: 0,
+                        scale: isMobile ? 0.95 : 0.9,
+                        y: isMobile ? 20 : 40
+                    },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                        duration: isMobile ? 0.6 : 0.8,
+                        ease: "back.out(1.4)",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%",
+                            end: "bottom 15%",
+                            toggleActions: "play none none reverse"
+                        },
+                        delay: isMobile ? index * 0.05 : index * 0.1
+                    }
+                );
+            });
+        } else {
+            gsap.set('.scroll-reveal, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale', { opacity: 1 });
+        }
+
+        // Service Category Tabs Functionality
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        const serviceConstellations = document.querySelectorAll('.service-constellation');
+
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const category = tab.getAttribute('data-category');
+                
+                // Update active tab
+                categoryTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Filter services with animation
+                serviceConstellations.forEach(service => {
+                    const serviceCategory = service.getAttribute('data-category');
+                    
+                    if (category === 'all' || serviceCategory === category) {
+                        gsap.to(service, {
+                            opacity: 1,
+                            scale: 1,
+                            y: 0,
+                            duration: 0.5,
+                            ease: "power3.out",
+                            display: 'block'
+                        });
+                    } else {
+                        gsap.to(service, {
+                            opacity: 0,
+                            scale: 0.9,
+                            y: 20,
+                            duration: 0.3,
+                            ease: "power3.out",
+                            onComplete: () => {
+                                service.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        // Service Constellation Hover Effects - Desktop Only
+        if (!isMobile && !prefersReducedMotion) {
+            serviceConstellations.forEach(service => {
+                service.addEventListener('mouseenter', () => {
+                    gsap.to(service, {
+                        y: -15,
+                        scale: 1.02,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(service.querySelector('.service-emblem'), {
+                        rotation: 10,
+                        scale: 1.1,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                });
+
+                service.addEventListener('mouseleave', () => {
+                    gsap.to(service, {
+                        y: 0,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                    
+                    gsap.to(service.querySelector('.service-emblem'), {
+                        rotation: 0,
+                        scale: 1,
+                        duration: 0.4,
+                        ease: "power2.out"
+                    });
+                });
+            });
+        }
+
+        // Optimized Background Effects
+        if (!isMobile && !prefersReducedMotion) {
+            // Atmospheric canvas parallax
+            gsap.to('.atmospheric-canvas', {
+                y: -50,
+                scale: 1.05,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".services-excellence-universe",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+
+            // Service orbiters parallax
+            gsap.utils.toArray('.service-orbiter').forEach((orbiter, index) => {
+                gsap.to(orbiter, {
+                    y: (index + 1) * -80,
+                    x: Math.sin(index) * 40,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".services-excellence-universe",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: 1 + index * 0.3
+                    }
+                });
+            });
+
+            // Connector lines animation
+            gsap.utils.toArray('.connector-line').forEach((line, index) => {
+                gsap.fromTo(line,
+                    {
+                        scaleX: 0,
+                        opacity: 0
+                    },
+                    {
+                        scaleX: 1,
+                        opacity: 1,
+                        duration: 2,
+                        ease: "power2.inOut",
+                        scrollTrigger: {
+                            trigger: line,
+                            start: "top 85%",
+                            end: "bottom 15%",
+                            toggleActions: "play none none reverse"
+                        },
+                        delay: index * 0.5
+                    }
+                );
+            });
+        }
+
+        // Precision matrix mobile optimization
+        if (isMobile) {
+            gsap.to('.precision-matrix', {
+                x: 15,
+                y: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".services-excellence-universe",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 3
+                }
+            });
+        } else {
+            gsap.to('.precision-matrix', {
+                x: 30,
+                y: 30,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: ".services-excellence-universe",
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 2
+                }
+            });
+        }
+
+        // Services Icon Animation
+        if (!prefersReducedMotion) {
+            gsap.to('.services-icon', {
+                scale: isMobile ? 1.1 : 1.3,
+                opacity: 0.7,
+                duration: isMobile ? 2 : 3,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
+        }
+
+        // CTA Section Border Animation
+        // if (!prefersReducedMotion) {
+        //     gsap.to('.services-cta-nexus::before', {
+        //         rotation: 360,
+        //         duration: 8,
+        //         repeat: -1,
+        //         ease: "none"
+        //     });
+        // }
+// CTA Section Animation (FIXED)
+const ctaNexus = document.querySelector('.services-cta-nexus');
+if (ctaNexus && !prefersReducedMotion) {
+    // Subtle glow effect instead of border rotation
+    gsap.to(ctaNexus, {
+        filter: "drop-shadow(0 0 30px rgba(208, 150, 131, 0.4))",
+        duration: 4,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+}
+        // Touch/Click Events for Mobile
+        if (isMobile) {
+            serviceConstellations.forEach(service => {
+                service.addEventListener('touchstart', () => {
+                    gsap.to(service, {
+                        scale: 0.98,
+                        duration: 0.1
+                    });
+                }, { passive: true });
+                
+                service.addEventListener('touchend', () => {
+                    gsap.to(service, {
+                        scale: 1,
+                        duration: 0.2
+                    });
+                }, { passive: true });
+            });
+        }
+
+        // Refresh ScrollTrigger with Debounce
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+
+        // Initial ScrollTrigger refresh
+        ScrollTrigger.refresh();
+
+
+
+
