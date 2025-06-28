@@ -1839,6 +1839,14 @@
             .credential-medallion {
                 padding: 30px 20px;
             }
+
+            .metric-value{
+                font-size: 24px;
+            }
+
+            .metric-label{
+                font-size: 9px;
+            }
         }
 
         /* Scroll-triggered elements initial state */
