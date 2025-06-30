@@ -999,7 +999,7 @@
    /* About Section */
         .about-genesis {
             position: relative;
-      background: rgba(255, 255, 255, 0.7);
+            background: linear-gradient(180deg, var(--primary-dark) 0%, var(--warm-cream) 50%, var(--pristine-white) 100%);
             overflow: hidden;
             min-height: 200vh;
             z-index: 10;
