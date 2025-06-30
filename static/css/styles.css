@@ -310,7 +310,7 @@
             overflow: hidden;
             padding: var(--section-padding) 0;
             padding-top: clamp(100px, 15vh, 140px);
-            background: var(--gradient-hero);
+             background: linear-gradient(180deg, var(--primary-dark) 0%, var(--warm-cream) 50%, var(--pristine-white) 100%);
         }
 
         /* Hero Background */
