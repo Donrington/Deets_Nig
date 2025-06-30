@@ -1,32 +1,31 @@
 :root {
-    --primary-dark: #000000;
-    --primary-taupe: #2a2a2a;
-    --primary-peach: #f5f5f5;
-    --white: #FFFFFF;
-    --black: #000000;
-    --glass-white: rgba(255, 255, 255, 0.08);
-    --glass-dark: rgba(0, 0, 0, 0.4);
-    --pristine-white: #FEFEFE;
-    --soft-gray: #1a1a1a;
-    --warm-cream: #f8f8f8;
-    --shadow-elegant: rgba(0, 0, 0, 0.15);
-    --gradient-primary: linear-gradient(135deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
-    --gradient-secondary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-taupe) 100%);
-    --gradient-hero: linear-gradient(180deg, var(--warm-cream) 0%, var(--primary-taupe) 50%, var(--primary-dark) 100%);
-    
-    /* Typography */
-    --font-primary: 'Syne', sans-serif;
-    --font-secondary: 'Epilogue', sans-serif;
-    --font-accent: 'Libre Baskerville', serif;
-    --font-body: 'Rosario', sans-serif;
-    
-    /* Spacing */
-    --section-padding: clamp(80px, 12vw, 160px);
-    --container-padding: clamp(20px, 5vw, 80px);
-    --mobile-breakpoint: 768px;
-    --tablet-breakpoint: 1024px;
-}
+            --primary-dark: #330000;
+            --primary-taupe:#73605B;
+            --primary-peach: #D09683;
+            --white: #FFFFFF;
+            --black: #000000;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(51, 0, 0, 0.2);
+            --pristine-white: #FEFEFE;
+            --soft-gray: #F8F9FA;
+            --warm-cream: #FBF8F6;
+            --shadow-elegant: rgba(208, 150, 131, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-taupe) 100%);
+            --gradient-hero: linear-gradient(180deg, var(--warm-cream) 0%, var(--primary-taupe) 50%, var(--primary-dark) 100%);
 
+            /* Typography */
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Epilogue', sans-serif;
+            --font-accent: 'Libre Baskerville', serif;
+            --font-body: 'Rosario', sans-serif;
+
+            /* Spacing */
+            --section-padding: clamp(80px, 12vw, 160px);
+            --container-padding: clamp(20px, 5vw, 80px);
+            --mobile-breakpoint: 768px;
+            --tablet-breakpoint: 1024px;
+        }
         /* Reset & Base */
         * {
             margin: 0;
