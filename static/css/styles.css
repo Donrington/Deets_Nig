@@ -130,7 +130,7 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            background: rgba(251, 248, 246, 0.9);
+            background: rgba(51, 0, 0, 0.1);
         }
 
         .navbar.scrolled {
