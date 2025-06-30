@@ -1012,7 +1012,7 @@
             left: 0;
             right: 0;
             height: 100px;
-            background: linear-gradient(180deg, var(--primary-dark) 0%, transparent 100%);
+            background: linear-gradient(180deg, var( --warm-cream: #FBF8F6;) 0%, transparent 100%);
             z-index: 1;
         }
 
