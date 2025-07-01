@@ -13,6 +13,7 @@
     <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     
     <style>
         :root {
@@ -57,10 +58,70 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            cursor: none;
+        }
+        
+        /* Custom Cursor */
+        @media (hover: hover) and (pointer: fine) {
+            .cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid var(--primary-peach);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transition: all 0.1s ease;
+                transform: translate(-50%, -50%);
+                mix-blend-mode: difference;
+                will-change: transform;
+            }
+            
+            .cursor-follower {
+                width: 40px;
+                height: 40px;
+                background: var(--primary-peach);
+                opacity: 0.3;
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9998;
+                transition: all 0.3s ease;
+                transform: translate(-50%, -50%);
+                will-change: transform;
+            }
+            
+            .cursor.active {
+                transform: translate(-50%, -50%) scale(0.8);
+                background: var(--primary-peach);
+            }
+            
+            .cursor-follower.active {
+                transform: translate(-50%, -50%) scale(1.5);
+            }
+            
+            body:has(.td-btn:hover) .cursor {
+                width: 80px;
+                height: 80px;
+                border-color: transparent;
+                background: rgba(208, 150, 131, 0.2);
+                backdrop-filter: blur(5px);
+            }
+        }
+        
+        @media (hover: none) and (pointer: coarse) {
+            body {
+                cursor: auto;
+            }
+            
+            .cursor,
+            .cursor-follower {
+                display: none;
+            }
         }
         
         /* Hero Section */
-        .hero-section {
+        .td-hero {
             position: relative;
             min-height: 100vh;
             display: flex;
@@ -70,8 +131,23 @@
             overflow: hidden;
         }
         
+        /* Background Pattern */
+        .td-bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--primary-peach) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--primary-taupe) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--primary-dark) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
         /* Floating Elements */
-        .floating-elements {
+        .td-float-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -81,59 +157,75 @@
             z-index: 1;
         }
         
-        .floating-shape {
+        .td-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
-            opacity: 0.3;
+            filter: blur(80px);
+            opacity: 0.4;
             will-change: transform;
+            background: radial-gradient(circle, var(--primary-peach) 0%, transparent 70%);
         }
         
-        .shape-1 {
+        .td-orb-1 {
+            width: 400px;
+            height: 400px;
+            top: -10%;
+            left: -10%;
+        }
+        
+        .td-orb-2 {
+            width: 350px;
+            height: 350px;
+            top: 50%;
+            right: -15%;
+            background: radial-gradient(circle, var(--primary-taupe) 0%, transparent 70%);
+        }
+        
+        .td-orb-3 {
             width: 300px;
             height: 300px;
-            background: var(--gradient-primary);
-            top: 10%;
-            left: -5%;
+            top: 20%;
+            right: 30%;
+            background: radial-gradient(circle, var(--primary-dark) 0%, transparent 70%);
         }
         
-        .shape-2 {
-            width: 250px;
-            height: 250px;
-            background: var(--primary-peach);
-            top: 60%;
-            right: -10%;
-        }
-        
-        .shape-3 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary-taupe);
-            top: 30%;
-            right: 20%;
-        }
-        
-        .shape-4 {
-            width: 150px;
-            height: 150px;
-            background: var(--gradient-secondary);
-            bottom: 20%;
-            left: 10%;
-        }
-        
-        /* Floating Particles */
-        .particle {
+        /* Floating Geometric Shapes */
+        .td-geo {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-peach);
-            border-radius: 50%;
-            opacity: 0.6;
+            opacity: 0.1;
             will-change: transform;
+        }
+        
+        .td-geo-1 {
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            left: 10%;
+            background: var(--gradient-primary);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+        
+        .td-geo-2 {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            right: 15%;
+            background: var(--primary-peach);
+            transform: rotate(45deg);
+        }
+        
+        .td-geo-3 {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            left: 5%;
+            background: transparent;
+            border: 2px solid var(--primary-taupe);
+            border-radius: 50%;
         }
         
         /* Hero Content */
-        .hero-content {
+        .td-hero-content {
             position: relative;
             z-index: 2;
             max-width: 1400px;
@@ -141,42 +233,50 @@
             width: 100%;
         }
         
-        .hero-grid {
+        .td-hero-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
         }
         
-        .hero-text {
+        .td-hero-text {
             opacity: 0;
         }
         
-        .hero-label {
+        .td-label {
             font-family: var(--font-secondary);
             font-size: clamp(14px, 1.2vw, 18px);
             font-weight: 500;
             color: var(--primary-peach);
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: inline-block;
             position: relative;
-            padding-left: 40px;
+            padding-left: 50px;
+            overflow: hidden;
         }
         
-        .hero-label::before {
+        .td-label::before {
             content: '';
             position: absolute;
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 30px;
+            width: 40px;
             height: 2px;
             background: var(--gradient-primary);
+            animation: labelLine 2s ease-out infinite;
         }
         
-        .hero-title {
+        @keyframes labelLine {
+            0% { transform: translateY(-50%) scaleX(0); transform-origin: left; }
+            50% { transform: translateY(-50%) scaleX(1); transform-origin: left; }
+            100% { transform: translateY(-50%) scaleX(0); transform-origin: right; }
+        }
+        
+        .td-title {
             font-family: var(--font-primary);
             font-size: clamp(40px, 6vw, 80px);
             font-weight: 800;
@@ -185,17 +285,33 @@
             text-transform: uppercase;
             margin-bottom: 30px;
             letter-spacing: -2px;
+            position: relative;
         }
         
-        .hero-title .accent {
+        .td-title .td-accent {
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: inline-block;
+            position: relative;
         }
         
-        .hero-description {
+        .td-title .td-accent::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: blur(20px);
+            opacity: 0.5;
+        }
+        
+        .td-desc {
             font-family: var(--font-body);
             font-size: clamp(18px, 1.4vw, 22px);
             line-height: 1.6;
@@ -204,19 +320,36 @@
             max-width: 600px;
         }
         
-        .hero-stats {
+        .td-stats {
             display: flex;
             gap: 60px;
             margin-bottom: 50px;
             flex-wrap: wrap;
         }
         
-        .stat-item {
+        .td-stat {
             opacity: 0;
             transform: translateY(30px);
+            position: relative;
         }
         
-        .stat-number {
+        .td-stat::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .td-stat:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .td-stat-num {
             font-family: var(--font-primary);
             font-size: clamp(36px, 4vw, 56px);
             font-weight: 700;
@@ -226,7 +359,7 @@
             margin-bottom: 8px;
         }
         
-        .stat-label {
+        .td-stat-label {
             font-family: var(--font-secondary);
             font-size: clamp(14px, 1vw, 16px);
             color: var(--primary-taupe);
@@ -234,20 +367,20 @@
             letter-spacing: 1px;
         }
         
-        .hero-cta {
+        .td-cta-group {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
         }
         
-        .btn {
+        .td-btn {
             font-family: var(--font-secondary);
             font-size: 16px;
             font-weight: 600;
             padding: 18px 40px;
             border: none;
             border-radius: 60px;
-            cursor: pointer;
+            cursor: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             display: inline-flex;
@@ -257,282 +390,404 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 1px;
+            z-index: 1;
         }
         
-        .btn-primary {
+        .td-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .td-btn-primary {
             background: var(--gradient-primary);
             color: var(--white);
             box-shadow: 0 10px 30px var(--shadow-elegant);
         }
         
-        .btn-primary:hover {
+        .td-btn-primary::before {
+            background: var(--primary-dark);
+        }
+        
+        .td-btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 40px var(--shadow-elegant);
         }
         
-        .btn-secondary {
+        .td-btn-primary:hover::before {
+            width: 120%;
+            height: 120%;
+        }
+        
+        .td-btn-secondary {
             background: transparent;
             color: var(--primary-dark);
             border: 2px solid var(--primary-dark);
         }
         
-        .btn-secondary:hover {
+        .td-btn-secondary::before {
             background: var(--primary-dark);
-            color: var(--white);
         }
         
-        /* Hero Visual */
-        .hero-visual {
+        .td-btn-secondary:hover {
+            color: var(--white);
+            border-color: var(--primary-dark);
+        }
+        
+        .td-btn-secondary:hover::before {
+            width: 120%;
+            height: 120%;
+        }
+        
+        /* 3D Visual Section */
+        .td-visual {
             position: relative;
             opacity: 0;
             transform: translateX(50px);
+            perspective: 1500px;
         }
         
-        .visual-container {
+        .td-3d-container {
             position: relative;
             width: 100%;
-            aspect-ratio: 1;
-            max-width: 600px;
-            margin: 0 auto;
+            height: 600px;
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.6s ease;
         }
         
-        .visual-bg {
+        .td-3d-container:hover {
+            transform: rotateY(-25deg) rotateX(10deg);
+        }
+        
+        /* 3D Cards */
+        .td-3d-card {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            filter: blur(100px);
-            opacity: 0.3;
-            transform: scale(1.2);
+            width: 320px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border: 1px solid rgba(208, 150, 131, 0.3);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                0 1px 2px rgba(0, 0, 0, 0.06),
+                inset 0 0 20px rgba(208, 150, 131, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: none;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
         }
         
-        .visual-cards {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .training-card {
+        .td-3d-card::before {
+            content: '';
             position: absolute;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(208, 150, 131, 0.2);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(208, 150, 131, 0.1) 100%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
         }
         
-        .training-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        .td-3d-card:hover {
+            transform: translateZ(40px) scale(1.05);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.15),
+                0 5px 10px rgba(0, 0, 0, 0.08),
+                inset 0 0 30px rgba(208, 150, 131, 0.1);
         }
         
-        .card-1 {
-            width: 280px;
+        .td-3d-card:hover::before {
+            opacity: 1;
+        }
+        
+        .td-card-1 {
             top: 10%;
-            left: 10%;
-            transform: rotate(-5deg);
+            left: -10%;
+            transform: translateZ(100px) rotateY(15deg);
+            z-index: 3;
         }
         
-        .card-2 {
-            width: 260px;
-            top: 40%;
-            right: 5%;
-            transform: rotate(3deg);
+        .td-card-2 {
+            top: 30%;
+            right: -20%;
+            transform: translateZ(50px) rotateY(-10deg);
+            z-index: 2;
         }
         
-        .card-3 {
-            width: 240px;
-            bottom: 15%;
-            left: 20%;
-            transform: rotate(-3deg);
+        .td-card-3 {
+            bottom: 10%;
+            left: 15%;
+            transform: translateZ(150px) rotateY(5deg);
+            z-index: 4;
         }
         
-        .card-icon {
-            width: 50px;
-            height: 50px;
+        .td-card-icon {
+            width: 60px;
+            height: 60px;
             background: var(--gradient-primary);
-            border-radius: 15px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            transform: translateZ(20px);
+            box-shadow: 0 10px 20px rgba(208, 150, 131, 0.3);
         }
         
-        .card-title {
+        .td-card-title {
             font-family: var(--font-primary);
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 700;
             color: var(--primary-dark);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            transform: translateZ(15px);
         }
         
-        .card-description {
+        .td-card-text {
             font-family: var(--font-body);
-            font-size: 14px;
+            font-size: 16px;
             color: var(--primary-taupe);
-            line-height: 1.5;
+            line-height: 1.6;
+            transform: translateZ(10px);
+        }
+        
+        .td-card-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transform: translateZ(30px);
+            box-shadow: 0 5px 15px rgba(208, 150, 131, 0.4);
+        }
+        
+        /* Parallax Layers */
+        .td-parallax-layer {
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        .td-layer-1 {
+            top: 20%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--primary-peach) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.2;
+            filter: blur(40px);
+            transform: translateZ(-100px);
+        }
+        
+        .td-layer-2 {
+            bottom: 30%;
+            left: 20%;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-taupe);
+            opacity: 0.1;
+            transform: translateZ(-50px) rotate(45deg);
         }
         
         /* Mobile Responsive */
         @media (max-width: 1024px) {
-            .hero-grid {
+            .td-hero-grid {
                 grid-template-columns: 1fr;
                 gap: 60px;
             }
             
-            .hero-visual {
+            .td-visual {
                 order: -1;
+                margin-bottom: 40px;
             }
             
-            .visual-container {
-                max-width: 500px;
+            .td-3d-container {
+                height: 500px;
+                transform: rotateY(-10deg) rotateX(5deg);
+            }
+            
+            .td-3d-card {
+                width: 280px;
             }
         }
         
         @media (max-width: 768px) {
-            .hero-section {
+            .td-hero {
                 min-height: 100svh;
                 padding: 60px 20px;
             }
             
-            .hero-stats {
+            .td-stats {
                 gap: 40px;
             }
             
-            .hero-cta {
+            .td-cta-group {
                 flex-direction: column;
             }
             
-            .btn {
+            .td-btn {
                 width: 100%;
                 justify-content: center;
             }
             
-            .training-card {
-                padding: 20px;
+            .td-3d-container {
+                height: 400px;
+                transform: rotateY(0) rotateX(0);
             }
             
-            .card-1 {
-                width: 220px;
+            .td-3d-container:hover {
+                transform: rotateY(-5deg) rotateX(2deg);
+            }
+            
+            .td-3d-card {
+                width: 240px;
+                padding: 30px;
+            }
+            
+            .td-card-1 {
                 top: 5%;
-                left: 5%;
+                left: -5%;
+                transform: translateZ(50px);
             }
             
-            .card-2 {
-                width: 200px;
-                top: 35%;
-                right: 0;
+            .td-card-2 {
+                top: 25%;
+                right: -10%;
+                transform: translateZ(30px);
             }
             
-            .card-3 {
-                width: 180px;
-                bottom: 10%;
+            .td-card-3 {
+                bottom: 5%;
                 left: 10%;
+                transform: translateZ(70px);
             }
             
-            .floating-shape {
-                filter: blur(60px);
+            .td-orb {
+                filter: blur(100px);
             }
         }
     </style>
 </head>
 <body>
-    <section class="hero-section">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <section class="td-hero">
+        <!-- Background Pattern -->
+        <div class="td-bg-pattern"></div>
+        
         <!-- Floating Elements -->
-        <div class="floating-elements">
-            <div class="floating-shape shape-1"></div>
-            <div class="floating-shape shape-2"></div>
-            <div class="floating-shape shape-3"></div>
-            <div class="floating-shape shape-4"></div>
+        <div class="td-float-container">
+            <div class="td-orb td-orb-1"></div>
+            <div class="td-orb td-orb-2"></div>
+            <div class="td-orb td-orb-3"></div>
             
-            <!-- Particles will be generated via JS -->
+            <div class="td-geo td-geo-1"></div>
+            <div class="td-geo td-geo-2"></div>
+            <div class="td-geo td-geo-3"></div>
         </div>
         
         <!-- Hero Content -->
-        <div class="hero-content">
-            <div class="hero-grid">
+        <div class="td-hero-content">
+            <div class="td-hero-grid">
                 <!-- Text Content -->
-                <div class="hero-text">
-                    <span class="hero-label">Corporate Excellence Through Learning</span>
-                    <h1 class="hero-title">
+                <div class="td-hero-text">
+                    <span class="td-label">Corporate Excellence Through Learning</span>
+                    <h1 class="td-title">
                         TRANSFORM YOUR
-                        <span class="accent">WORKFORCE</span>
+                        <span class="td-accent" data-text="WORKFORCE">WORKFORCE</span>
                         WITH EXPERT TRAINING
                     </h1>
-                    <p class="hero-description">
+                    <p class="td-desc">
                         Empowering professionals with cutting-edge skills in contract management, 
-                        project leadership, and business excellence through immersive training experiences.
+                        project leadership, and business excellence through immersive training experiences 
+                        designed by industry veterans.
                     </p>
                     
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">25+</span>
-                            <span class="stat-label">Years Experience</span>
+                    <div class="td-stats">
+                        <div class="td-stat">
+                            <span class="td-stat-num" data-value="25">0</span>
+                            <span class="td-stat-label">Years Experience</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">500+</span>
-                            <span class="stat-label">Workshops Delivered</span>
+                        <div class="td-stat">
+                            <span class="td-stat-num" data-value="500">0</span>
+                            <span class="td-stat-label">Workshops Delivered</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">10K+</span>
-                            <span class="stat-label">Professionals Trained</span>
+                        <div class="td-stat">
+                            <span class="td-stat-num" data-value="10000">0</span>
+                            <span class="td-stat-label">Professionals Trained</span>
                         </div>
                     </div>
                     
-                    <div class="hero-cta">
-                        <a href="#programs" class="btn btn-primary">
+                    <div class="td-cta-group">
+                        <a href="#programs" class="td-btn td-btn-primary">
                             Explore Programs
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </a>
-                        <a href="#contact" class="btn btn-secondary">
+                        <a href="#contact" class="td-btn td-btn-secondary">
                             Schedule Consultation
                         </a>
                     </div>
                 </div>
                 
-                <!-- Visual Content -->
-                <div class="hero-visual">
-                    <div class="visual-container">
-                        <div class="visual-bg"></div>
-                        <div class="visual-cards">
-                            <div class="training-card card-1">
-                                <div class="card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <h3 class="card-title">Contract Management</h3>
-                                <p class="card-description">Master procurement strategies and negotiation tactics</p>
+                <!-- 3D Visual Content -->
+                <div class="td-visual">
+                    <div class="td-3d-container">
+                        <!-- Parallax Layers -->
+                        <div class="td-parallax-layer td-layer-1"></div>
+                        <div class="td-parallax-layer td-layer-2"></div>
+                        
+                        <!-- 3D Cards -->
+                        <div class="td-3d-card td-card-1">
+                            <span class="td-card-badge">Popular</span>
+                            <div class="td-card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
-                            
-                            <div class="training-card card-2">
-                                <div class="card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="white"/>
-                                    </svg>
-                                </div>
-                                <h3 class="card-title">Leadership Skills</h3>
-                                <p class="card-description">Build dynamic, self-motivated teams</p>
+                            <h3 class="td-card-title">Contract Management</h3>
+                            <p class="td-card-text">Master procurement strategies, negotiation tactics, and post-award management</p>
+                        </div>
+                        
+                        <div class="td-3d-card td-card-2">
+                            <div class="td-card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                    <path d="M13 10V3L4 14H11V21L20 10H13Z" fill="white"/>
+                                </svg>
                             </div>
-                            
-                            <div class="training-card card-3">
-                                <div class="card-icon">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 3V21M3 12H21M21 3V21M12 3V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <h3 class="card-title">Project Excellence</h3>
-                                <p class="card-description">Deliver strategic projects on time</p>
+                            <h3 class="td-card-title">Leadership Excellence</h3>
+                            <p class="td-card-text">Build dynamic teams and drive organizational transformation</p>
+                        </div>
+                        
+                        <div class="td-3d-card td-card-3">
+                            <span class="td-card-badge">Advanced</span>
+                            <div class="td-card-icon">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                                    <path d="M3 3V21M3 12H21M21 3V21M12 3V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </div>
+                            <h3 class="td-card-title">Project Mastery</h3>
+                            <p class="td-card-text">Deliver strategic projects on time and within budget consistently</p>
                         </div>
                     </div>
                 </div>
@@ -541,137 +796,282 @@
     </section>
     
     <script>
-        // Create floating particles
-        function createParticles() {
-            const container = document.querySelector('.floating-elements');
-            const particleCount = window.innerWidth < 768 ? 15 : 30;
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        let followerX = 0;
+        let followerY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+        
+        const animateCursor = () => {
+            // Cursor with immediate response
+            cursorX += (mouseX - cursorX) * 0.5;
+            cursorY += (mouseY - cursorY) * 0.5;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                container.appendChild(particle);
-            }
-        }
+            // Follower with delayed response
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            
+            requestAnimationFrame(animateCursor);
+        };
         
-        createParticles();
+        animateCursor();
         
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Set initial states
-        gsap.set('.hero-text', { opacity: 0, y: 50 });
-        gsap.set('.hero-visual', { opacity: 0, x: 50 });
-        gsap.set('.stat-item', { opacity: 0, y: 30 });
-        gsap.set('.training-card', { opacity: 0, scale: 0.8 });
-        
-        // Hero entrance animation
-        const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-        
-        tl.to('.hero-text', {
-            opacity: 1,
-            y: 0,
-            duration: 1.2,
-            delay: 0.3
-        })
-        .to('.hero-visual', {
-            opacity: 1,
-            x: 0,
-            duration: 1.2
-        }, '-=0.8')
-        .to('.stat-item', {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            stagger: 0.1
-        }, '-=0.6')
-        .to('.training-card', {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.15
-        }, '-=0.4');
-        
-        // Floating shapes animation
-        gsap.to('.shape-1', {
-            x: 100,
-            y: -50,
-            duration: 20,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        gsap.to('.shape-2', {
-            x: -80,
-            y: 60,
-            duration: 25,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        gsap.to('.shape-3', {
-            x: -60,
-            y: -80,
-            duration: 22,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        gsap.to('.shape-4', {
-            x: 70,
-            y: 50,
-            duration: 18,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        // Particle animation
-        gsap.to('.particle', {
-            y: '-=100',
-            x: 'random(-50, 50)',
-            duration: 'random(10, 20)',
-            repeat: -1,
-            yoyo: true,
-            ease: 'none',
-            stagger: {
-                each: 0.5,
-                from: 'random'
-            }
-        });
-        
-        // Training cards hover parallax
-        document.querySelectorAll('.training-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                gsap.to(card, {
-                    rotateX: rotateX,
-                    rotateY: rotateY,
-                    duration: 0.3,
-                    ease: 'power2.out',
-                    transformPerspective: 1000
-                });
+        // Cursor hover effects
+        document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+                cursorFollower.classList.add('active');
             });
             
-            card.addEventListener('mouseleave', () => {
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                cursorFollower.classList.remove('active');
+            });
+        });
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set initial states
+        gsap.set('.td-hero-text', { opacity: 0, y: 60 });
+        gsap.set('.td-visual', { opacity: 0, x: 60 });
+        gsap.set('.td-stat', { opacity: 0, y: 40 });
+        gsap.set('.td-3d-card', { opacity: 0, scale: 0.8, rotateY: -30 });
+        gsap.set('.td-geo', { opacity: 0, scale: 0 });
+        
+        // Hero entrance timeline
+        const heroTl = gsap.timeline({ 
+            defaults: { ease: 'power3.out' },
+            onComplete: () => startContinuousAnimations()
+        });
+        
+        heroTl
+            .to('.td-hero-text', {
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                delay: 0.3
+            })
+            .to('.td-visual', {
+                opacity: 1,
+                x: 0,
+                duration: 1.2
+            }, '-=0.8')
+            .to('.td-3d-card', {
+                opacity: 1,
+                scale: 1,
+                rotateY: 0,
+                duration: 1,
+                stagger: {
+                    each: 0.2,
+                    from: 'random'
+                }
+            }, '-=0.6')
+            .to('.td-stat', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                onUpdate: function() {
+                    // Animate numbers counting up
+                    document.querySelectorAll('.td-stat-num').forEach(stat => {
+                        const endValue = parseInt(stat.getAttribute('data-value'));
+                        const progress = this.progress();
+                        const currentValue = Math.floor(endValue * progress);
+                        stat.textContent = currentValue.toLocaleString();
+                    });
+                }
+            }, '-=0.8')
+            .to('.td-geo', {
+                opacity: 0.1,
+                scale: 1,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'elastic.out(1, 0.5)'
+            }, '-=0.5');
+        
+        // Continuous animations
+        function startContinuousAnimations() {
+            // Floating orbs
+            gsap.to('.td-orb-1', {
+                x: 150,
+                y: -100,
+                duration: 25,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            gsap.to('.td-orb-2', {
+                x: -120,
+                y: 80,
+                duration: 30,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            gsap.to('.td-orb-3', {
+                x: -80,
+                y: -120,
+                duration: 28,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            // Geometric shapes rotation
+            gsap.to('.td-geo-1', {
+                rotation: 360,
+                duration: 20,
+                repeat: -1,
+                ease: 'none'
+            });
+            
+            gsap.to('.td-geo-2', {
+                rotation: -360,
+                duration: 25,
+                repeat: -1,
+                ease: 'none'
+            });
+            
+            // 3D container subtle movement
+            gsap.to('.td-3d-container', {
+                rotateY: -20,
+                rotateX: 8,
+                duration: 4,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            // Parallax layers
+            gsap.to('.td-layer-1', {
+                x: -30,
+                y: 20,
+                duration: 6,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            gsap.to('.td-layer-2', {
+                x: 20,
+                y: -30,
+                rotation: 90,
+                duration: 8,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+        }
+        
+        // Scroll-triggered animations
+        ScrollTrigger.create({
+            trigger: '.td-hero',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1,
+            onUpdate: (self) => {
+                const progress = self.progress;
+                
+                // Parallax effect for orbs
+                gsap.to('.td-orb-1', {
+                    y: -200 * progress,
+                    duration: 0
+                });
+                
+                gsap.to('.td-orb-2', {
+                    y: -150 * progress,
+                    duration: 0
+                });
+                
+                gsap.to('.td-orb-3', {
+                    y: -100 * progress,
+                    duration: 0
+                });
+                
+                // 3D cards depth effect
+                gsap.to('.td-card-1', {
+                    z: 100 + (50 * progress),
+                    duration: 0
+                });
+                
+                gsap.to('.td-card-2', {
+                    z: 50 + (30 * progress),
+                    duration: 0
+                });
+                
+                gsap.to('.td-card-3', {
+                    z: 150 + (70 * progress),
+                    duration: 0
+                });
+            }
+        });
+        
+        // 3D Mouse tracking for cards
+        const container3D = document.querySelector('.td-3d-container');
+        const cards3D = document.querySelectorAll('.td-3d-card');
+        
+        container3D.addEventListener('mousemove', (e) => {
+            const rect = container3D.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+            
+            const rotateX = (mouseY / rect.height) * 20;
+            const rotateY = (mouseX / rect.width) * -20;
+            
+            cards3D.forEach((card, index) => {
+                const depth = (index + 1) * 0.5;
+                gsap.to(card, {
+                    rotateX: rotateX * depth,
+                    rotateY: rotateY * depth,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            });
+        });
+        
+        container3D.addEventListener('mouseleave', () => {
+            cards3D.forEach(card => {
                 gsap.to(card, {
                     rotateX: 0,
                     rotateY: 0,
                     duration: 0.5,
                     ease: 'power2.out'
+                });
+            });
+        });
+        
+        // Text scramble effect on hover
+        document.querySelectorAll('.td-card-title').forEach(title => {
+            const originalText = title.textContent;
+            
+            title.addEventListener('mouseenter', () => {
+                gsap.to(title, {
+                    scrambleText: {
+                        text: originalText,
+                        chars: "!@#$%^&*",
+                        speed: 0.3
+                    },
+                    duration: 0.8
                 });
             });
         });
@@ -682,20 +1082,31 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    gsap.to(window, {
+                        scrollTo: {
+                            y: target,
+                            offsetY: 50
+                        },
+                        duration: 1.5,
+                        ease: 'power3.inOut'
+                    });
                 }
             });
         });
         
-        // Performance optimization: Reduce particle count on scroll
-        let isScrolling;
-        window.addEventListener('scroll', () => {
-            document.body.style.pointerEvents = 'none';
-            clearTimeout(isScrolling);
-            isScrolling = setTimeout(() => {
-                document.body.style.pointerEvents = 'auto';
-            }, 100);
-        });
+        // Performance optimization
+        let ticking = false;
+        function optimizeScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Update animations
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', optimizeScroll, { passive: true });
     </script>
 </body>
 </html>
