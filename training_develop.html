@@ -49,6 +49,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         
         body {
@@ -116,7 +117,21 @@
             
             .cursor,
             .cursor-follower {
-                display: none;
+                display: none !important;
+            }
+            
+            /* Ensure touch interactions work properly */
+            .td-btn,
+            .td-3d-card {
+                cursor: pointer !important;
+            }
+            
+            .td-btn:active {
+                transform: scale(0.95);
+            }
+            
+            .td-3d-card:active {
+                transform: translateZ(30px) scale(0.98);
             }
         }
         
@@ -640,11 +655,14 @@
             
             .td-cta-group {
                 flex-direction: column;
+                gap: 15px;
             }
             
             .td-btn {
                 width: 100%;
                 justify-content: center;
+                padding: 16px 30px;
+                font-size: 15px;
             }
             
             .td-3d-container {
@@ -681,6 +699,273 @@
             
             .td-orb {
                 filter: blur(100px);
+            }
+        }
+        
+        /* Small Mobile Screens */
+        @media (max-width: 480px) {
+            .td-hero {
+                min-height: 100svh;
+                min-height: -webkit-fill-available; /* iOS Safari */
+                padding: 40px 15px;
+                padding-left: max(15px, env(safe-area-inset-left));
+                padding-right: max(15px, env(safe-area-inset-right));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+            
+            .td-hero-grid {
+                gap: 40px;
+            }
+            
+            .td-label {
+                font-size: 12px;
+                letter-spacing: 2px;
+                margin-bottom: 20px;
+                padding-left: 35px;
+            }
+            
+            .td-label::before {
+                width: 25px;
+            }
+            
+            .td-title {
+                font-size: clamp(28px, 8vw, 36px);
+                line-height: 1.15;
+                margin-bottom: 20px;
+                letter-spacing: -1px;
+                padding-right: 10px;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            
+            .td-desc {
+                font-size: 16px;
+                line-height: 1.5;
+                margin-bottom: 30px;
+                padding-right: 10px;
+            }
+            
+            .td-stats {
+                gap: 20px;
+                margin-bottom: 35px;
+                justify-content: space-between;
+                width: 100%;
+            }
+            
+            .td-stat {
+                flex: 1;
+                text-align: center;
+                min-width: 0; /* Allow flex items to shrink */
+            }
+            
+            .td-stat-num {
+                font-size: clamp(28px, 6vw, 32px);
+                margin-bottom: 5px;
+            }
+            
+            .td-stat-label {
+                font-size: 11px;
+                letter-spacing: 0.5px;
+            }
+            
+            .td-cta-group {
+                gap: 12px;
+            }
+            
+            .td-btn {
+                padding: 16px 28px;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+                border-radius: 50px;
+                min-height: 48px; /* Ensure proper touch target */
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .td-btn svg {
+                width: 16px;
+                height: 16px;
+            }
+            
+            /* Visual Section for Small Mobile */
+            .td-visual {
+                margin-bottom: 20px;
+            }
+            
+            .td-3d-container {
+                height: 350px;
+                transform: rotateY(0) rotateX(0);
+                will-change: auto; /* Disable will-change on mobile */
+            }
+            
+            .td-3d-card {
+                width: 200px;
+                padding: 24px;
+                border-radius: 20px;
+                will-change: auto; /* Better performance on mobile */
+            }
+            
+            .td-card-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .td-card-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            
+            .td-card-title {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+            
+            .td-card-text {
+                font-size: 14px;
+                line-height: 1.4;
+            }
+            
+            .td-card-badge {
+                padding: 6px 16px;
+                font-size: 10px;
+                top: -10px;
+                right: 15px;
+            }
+            
+            .td-card-1 {
+                top: 0;
+                left: -10px;
+                transform: translateZ(40px);
+            }
+            
+            .td-card-2 {
+                top: 20%;
+                right: -15px;
+                transform: translateZ(20px);
+            }
+            
+            .td-card-3 {
+                bottom: 0;
+                left: 5%;
+                transform: translateZ(60px);
+            }
+            
+            /* Reduce floating elements on small screens */
+            .td-orb {
+                opacity: 0.3;
+            }
+            
+            .td-orb-1 {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .td-orb-2 {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .td-orb-3 {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .td-geo {
+                display: none;
+            }
+            
+            .td-parallax-layer {
+                display: none;
+            }
+        }
+        
+        /* Extra Small Mobile */
+        @media (max-width: 375px) {
+            .td-hero {
+                padding: 30px 12px;
+            }
+            
+            .td-title {
+                font-size: 26px;
+            }
+            
+            .td-desc {
+                font-size: 15px;
+            }
+            
+            .td-3d-container {
+                height: 320px;
+            }
+            
+            .td-3d-card {
+                width: 180px;
+                padding: 20px;
+            }
+            
+            .td-card-title {
+                font-size: 16px;
+            }
+            
+            .td-card-text {
+                font-size: 13px;
+            }
+        }
+        
+        /* Landscape Mode for Small Devices */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .td-hero {
+                min-height: auto;
+                padding: 40px 20px;
+            }
+            
+            .td-hero-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+            
+            .td-visual {
+                order: 0;
+                margin-bottom: 0;
+            }
+            
+            .td-3d-container {
+                height: 300px;
+            }
+            
+            .td-3d-card {
+                width: 180px;
+                padding: 20px;
+            }
+            
+            .td-title {
+                font-size: clamp(24px, 5vw, 32px);
+            }
+            
+            .td-desc {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+            
+            .td-stats {
+                margin-bottom: 25px;
+            }
+            
+            .td-stat-num {
+                font-size: 24px;
+            }
+            
+            .td-cta-group {
+                flex-direction: row;
+            }
+            
+            .td-btn {
+                width: auto;
+                padding: 12px 20px;
+                font-size: 13px;
             }
         }
     </style>
@@ -796,52 +1081,54 @@
     </section>
     
     <script>
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let cursorX = 0;
-        let cursorY = 0;
-        let followerX = 0;
-        let followerY = 0;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        const animateCursor = () => {
-            // Cursor with immediate response
-            cursorX += (mouseX - cursorX) * 0.5;
-            cursorY += (mouseY - cursorY) * 0.5;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
+        // Custom Cursor (Desktop only)
+        if (hasHover && !isMobile) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
             
-            // Follower with delayed response
-            followerX += (mouseX - followerX) * 0.1;
-            followerY += (mouseY - followerY) * 0.1;
-            cursorFollower.style.left = followerX + 'px';
-            cursorFollower.style.top = followerY + 'px';
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+            let followerX = 0;
+            let followerY = 0;
             
-            requestAnimationFrame(animateCursor);
-        };
-        
-        animateCursor();
-        
-        // Cursor hover effects
-        document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('active');
-                cursorFollower.classList.add('active');
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
             });
             
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-                cursorFollower.classList.remove('active');
+            const animateCursor = () => {
+                // Cursor with immediate response
+                cursorX += (mouseX - cursorX) * 0.5;
+                cursorY += (mouseY - cursorY) * 0.5;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                
+                // Follower with delayed response
+                followerX += (mouseX - followerX) * 0.1;
+                followerY += (mouseY - followerY) * 0.1;
+                cursorFollower.style.left = followerX + 'px';
+                cursorFollower.style.top = followerY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            };
+            
+            animateCursor();
+            
+            // Cursor hover effects
+            document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                    cursorFollower.classList.add('active');
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                    cursorFollower.classList.remove('active');
+                });
             });
-        });
+        }
         
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -859,57 +1146,98 @@
             onComplete: () => startContinuousAnimations()
         });
         
-        heroTl
-            .to('.td-hero-text', {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                delay: 0.3
-            })
-            .to('.td-visual', {
-                opacity: 1,
-                x: 0,
-                duration: 1.2
-            }, '-=0.8')
-            .to('.td-3d-card', {
-                opacity: 1,
-                scale: 1,
-                rotateY: 0,
-                duration: 1,
-                stagger: {
-                    each: 0.2,
-                    from: 'random'
-                }
-            }, '-=0.6')
-            .to('.td-stat', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                onUpdate: function() {
-                    // Animate numbers counting up
-                    document.querySelectorAll('.td-stat-num').forEach(stat => {
-                        const endValue = parseInt(stat.getAttribute('data-value'));
-                        const progress = this.progress();
-                        const currentValue = Math.floor(endValue * progress);
-                        stat.textContent = currentValue.toLocaleString();
-                    });
-                }
-            }, '-=0.8')
-            .to('.td-geo', {
-                opacity: 0.1,
-                scale: 1,
-                duration: 1,
-                stagger: 0.15,
-                ease: 'elastic.out(1, 0.5)'
-            }, '-=0.5');
+        // Simplified animations for mobile
+        if (isMobile) {
+            heroTl
+                .to('.td-hero-text', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: 0.2
+                })
+                .to('.td-visual', {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8
+                }, '-=0.4')
+                .to('.td-3d-card', {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    duration: 0.6,
+                    stagger: 0.15
+                }, '-=0.4')
+                .to('.td-stat', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    onUpdate: function() {
+                        // Faster counting for mobile
+                        document.querySelectorAll('.td-stat-num').forEach(stat => {
+                            const endValue = parseInt(stat.getAttribute('data-value'));
+                            const progress = this.progress();
+                            const currentValue = Math.floor(endValue * progress);
+                            stat.textContent = currentValue.toLocaleString();
+                        });
+                    }
+                }, '-=0.4');
+        } else {
+            // Full animations for desktop
+            heroTl
+                .to('.td-hero-text', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    delay: 0.3
+                })
+                .to('.td-visual', {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2
+                }, '-=0.8')
+                .to('.td-3d-card', {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    duration: 1,
+                    stagger: {
+                        each: 0.2,
+                        from: 'random'
+                    }
+                }, '-=0.6')
+                .to('.td-stat', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    onUpdate: function() {
+                        // Animate numbers counting up
+                        document.querySelectorAll('.td-stat-num').forEach(stat => {
+                            const endValue = parseInt(stat.getAttribute('data-value'));
+                            const progress = this.progress();
+                            const currentValue = Math.floor(endValue * progress);
+                            stat.textContent = currentValue.toLocaleString();
+                        });
+                    }
+                }, '-=0.8')
+                .to('.td-geo', {
+                    opacity: 0.1,
+                    scale: 1,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'elastic.out(1, 0.5)'
+                }, '-=0.5');
+        }
         
         // Continuous animations
         function startContinuousAnimations() {
-            // Floating orbs
+            const isMobile = window.innerWidth <= 480;
+            
+            // Floating orbs with reduced movement on mobile
             gsap.to('.td-orb-1', {
-                x: 150,
-                y: -100,
+                x: isMobile ? 50 : 150,
+                y: isMobile ? -50 : -100,
                 duration: 25,
                 repeat: -1,
                 yoyo: true,
@@ -917,8 +1245,8 @@
             });
             
             gsap.to('.td-orb-2', {
-                x: -120,
-                y: 80,
+                x: isMobile ? -60 : -120,
+                y: isMobile ? 40 : 80,
                 duration: 30,
                 repeat: -1,
                 yoyo: true,
@@ -926,155 +1254,182 @@
             });
             
             gsap.to('.td-orb-3', {
-                x: -80,
-                y: -120,
+                x: isMobile ? -40 : -80,
+                y: isMobile ? -60 : -120,
                 duration: 28,
                 repeat: -1,
                 yoyo: true,
                 ease: 'sine.inOut'
             });
             
-            // Geometric shapes rotation
-            gsap.to('.td-geo-1', {
-                rotation: 360,
-                duration: 20,
-                repeat: -1,
-                ease: 'none'
-            });
-            
-            gsap.to('.td-geo-2', {
-                rotation: -360,
-                duration: 25,
-                repeat: -1,
-                ease: 'none'
-            });
-            
-            // 3D container subtle movement
-            gsap.to('.td-3d-container', {
-                rotateY: -20,
-                rotateX: 8,
-                duration: 4,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-            
-            // Parallax layers
-            gsap.to('.td-layer-1', {
-                x: -30,
-                y: 20,
-                duration: 6,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
-            
-            gsap.to('.td-layer-2', {
-                x: 20,
-                y: -30,
-                rotation: 90,
-                duration: 8,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
-            });
+            // Skip geometric shapes on mobile
+            if (!isMobile) {
+                // Geometric shapes rotation
+                gsap.to('.td-geo-1', {
+                    rotation: 360,
+                    duration: 20,
+                    repeat: -1,
+                    ease: 'none'
+                });
+                
+                gsap.to('.td-geo-2', {
+                    rotation: -360,
+                    duration: 25,
+                    repeat: -1,
+                    ease: 'none'
+                });
+                
+                // 3D container subtle movement
+                gsap.to('.td-3d-container', {
+                    rotateY: -20,
+                    rotateX: 8,
+                    duration: 4,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+                
+                // Parallax layers
+                gsap.to('.td-layer-1', {
+                    x: -30,
+                    y: 20,
+                    duration: 6,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+                
+                gsap.to('.td-layer-2', {
+                    x: 20,
+                    y: -30,
+                    rotation: 90,
+                    duration: 8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            }
         }
         
         // Scroll-triggered animations
-        ScrollTrigger.create({
-            trigger: '.td-hero',
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-            onUpdate: (self) => {
-                const progress = self.progress;
-                
-                // Parallax effect for orbs
-                gsap.to('.td-orb-1', {
-                    y: -200 * progress,
-                    duration: 0
-                });
-                
-                gsap.to('.td-orb-2', {
-                    y: -150 * progress,
-                    duration: 0
-                });
-                
-                gsap.to('.td-orb-3', {
-                    y: -100 * progress,
-                    duration: 0
-                });
-                
-                // 3D cards depth effect
-                gsap.to('.td-card-1', {
-                    z: 100 + (50 * progress),
-                    duration: 0
-                });
-                
-                gsap.to('.td-card-2', {
-                    z: 50 + (30 * progress),
-                    duration: 0
-                });
-                
-                gsap.to('.td-card-3', {
-                    z: 150 + (70 * progress),
-                    duration: 0
-                });
-            }
-        });
+        if (!isMobile) {
+            ScrollTrigger.create({
+                trigger: '.td-hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    
+                    // Parallax effect for orbs
+                    gsap.to('.td-orb-1', {
+                        y: -200 * progress,
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-orb-2', {
+                        y: -150 * progress,
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-orb-3', {
+                        y: -100 * progress,
+                        duration: 0
+                    });
+                    
+                    // 3D cards depth effect
+                    gsap.to('.td-card-1', {
+                        z: 100 + (50 * progress),
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-card-2', {
+                        z: 50 + (30 * progress),
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-card-3', {
+                        z: 150 + (70 * progress),
+                        duration: 0
+                    });
+                }
+            });
+        }
         
         // 3D Mouse tracking for cards
         const container3D = document.querySelector('.td-3d-container');
         const cards3D = document.querySelectorAll('.td-3d-card');
         
-        container3D.addEventListener('mousemove', (e) => {
-            const rect = container3D.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            
-            const mouseX = e.clientX - centerX;
-            const mouseY = e.clientY - centerY;
-            
-            const rotateX = (mouseY / rect.height) * 20;
-            const rotateY = (mouseX / rect.width) * -20;
-            
-            cards3D.forEach((card, index) => {
-                const depth = (index + 1) * 0.5;
-                gsap.to(card, {
-                    rotateX: rotateX * depth,
-                    rotateY: rotateY * depth,
-                    duration: 0.5,
-                    ease: 'power2.out'
-                });
-            });
-        });
+        // Check if device supports hover (not touch device)
+        const hasHover = window.matchMedia('(hover: hover)').matches;
         
-        container3D.addEventListener('mouseleave', () => {
-            cards3D.forEach(card => {
-                gsap.to(card, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    duration: 0.5,
-                    ease: 'power2.out'
+        if (hasHover) {
+            container3D.addEventListener('mousemove', (e) => {
+                const rect = container3D.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+                
+                const rotateX = (mouseY / rect.height) * 20;
+                const rotateY = (mouseX / rect.width) * -20;
+                
+                cards3D.forEach((card, index) => {
+                    const depth = (index + 1) * 0.5;
+                    gsap.to(card, {
+                        rotateX: rotateX * depth,
+                        rotateY: rotateY * depth,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
                 });
             });
-        });
-        
-        // Text scramble effect on hover
-        document.querySelectorAll('.td-card-title').forEach(title => {
-            const originalText = title.textContent;
             
-            title.addEventListener('mouseenter', () => {
-                gsap.to(title, {
-                    scrambleText: {
-                        text: originalText,
-                        chars: "!@#$%^&*",
-                        speed: 0.3
-                    },
-                    duration: 0.8
+            container3D.addEventListener('mouseleave', () => {
+                cards3D.forEach(card => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
                 });
             });
-        });
+        }
+        
+        // Adjust animations for mobile
+        const isMobile = window.innerWidth <= 480;
+        
+        if (isMobile) {
+            // Simpler animations for mobile
+            gsap.to('.td-3d-card', {
+                y: -10,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                stagger: 0.5
+            });
+        }
+        
+        // Text scramble effect on hover (desktop only)
+        if (!isMobile && hasHover) {
+            document.querySelectorAll('.td-card-title').forEach(title => {
+                const originalText = title.textContent;
+                
+                title.addEventListener('mouseenter', () => {
+                    gsap.to(title, {
+                        scrambleText: {
+                            text: originalText,
+                            chars: "!@#$%^&*",
+                            speed: 0.3
+                        },
+                        duration: 0.8
+                    });
+                });
+            });
+        }
         
         // Smooth scroll for CTA buttons
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1107,6 +1462,16 @@
         }
         
         window.addEventListener('scroll', optimizeScroll, { passive: true });
+        
+        // Handle orientation changes
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Refresh ScrollTrigger on orientation change
+                ScrollTrigger.refresh();
+            }, 250);
+        });
     </script>
 </body>
 </html>
