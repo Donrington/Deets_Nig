@@ -4610,7 +4610,7 @@
             background: 
                 radial-gradient(circle at 20% 20%, rgba(208, 150, 131, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(115, 96, 91, 0.12) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(51, 0, 0, 0.1) 0%, transparent 70%);
+                radial-gradient(circle at 50% 50%, rgba(51, 0, 0, 0.1) 0%, transparent 80%);
             animation: atmosphericPulse 20s ease-in-out infinite;
             will-change: transform, opacity;
         }
