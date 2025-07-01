@@ -2246,9 +2246,8 @@
                 });
             }
 
-        // Check device capabilities first
         const hasHover = window.matchMedia('(hover: hover)').matches;
-        const isMobile = window.innerWidth <= 480;
+        const isMobile = window.innerWidth <= 768;
         
         // Custom Cursor (Desktop only)
         if (hasHover && !isMobile) {
@@ -2265,6 +2264,42 @@
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
+            // Magnetic effect for buttons
+            document.querySelectorAll('.ts-btn').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(btn, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.3,
+                        ease: 'elastic.out(1, 0.3)'
+                    });
+                });
+            });
+            
+            // Hide cursor when leaving window
+            document.addEventListener('mouseout', (e) => {
+                if (!e.relatedTarget) {
+                    cursor.style.opacity = '0';
+                    cursorFollower.style.opacity = '0';
+                }
+            });
+            
+            document.addEventListener('mouseover', () => {
+                cursor.style.opacity = '1';
+                cursorFollower.style.opacity = '1';
             });
             
             const animateCursor = () => {
@@ -2285,8 +2320,8 @@
             
             animateCursor();
             
-            // Cursor hover effects
-            document.querySelectorAll('a, button, .td-3d-card, .ts-service-info, .ts-btn').forEach(el => {
+            // Cursor hover effects for all interactive elements
+            document.querySelectorAll('a, button, .ts-service, .ts-btn, .ts-service-icon, .ts-card, .ts-feature').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('active');
                     cursorFollower.classList.add('active');
@@ -2297,7 +2332,52 @@
                     cursorFollower.classList.remove('active');
                 });
             });
+            
+            // Special effect for service cards
+            document.querySelectorAll('.ts-service').forEach(service => {
+                service.addEventListener('mouseenter', () => {
+                    gsap.to(cursor, {
+                        scale: 3,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                service.addEventListener('mouseleave', () => {
+                    gsap.to(cursor, {
+                        scale: 1,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+            
+            // Magnetic effect for buttons
+            document.querySelectorAll('.ts-btn').forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    gsap.to(btn, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.3,
+                        ease: 'elastic.out(1, 0.3)'
+                    });
+                });
+            });
         }
+        
         
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
