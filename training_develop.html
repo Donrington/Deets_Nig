@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Rosario:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="static/css/styles.css">
     <!-- GSAP -->
 
@@ -1048,7 +1048,7 @@
         .ts-container {
             position: relative;
             z-index: 2;
-            max-width: 1400px;
+            max-width: 1500px;
             margin: 0 auto;
             padding: 0 var(--container-padding);
         }
@@ -1660,10 +1660,10 @@
             </div>
             
             <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link magnetic-link">
+                <a href="index.html" class="nav-link magnetic-link">
                     <span data-text="Home">Home</span>
                 </a>
-                <a href="#about" class="nav-link magnetic-link">
+                <a href="about.html" class="nav-link magnetic-link">
                     <span data-text="About">About</span>
                 </a>
                 <a href="#services" class="nav-link magnetic-link">
@@ -2286,7 +2286,7 @@
             animateCursor();
             
             // Cursor hover effects
-            document.querySelectorAll('a, button, .td-3d-card, .').forEach(el => {
+            document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('active');
                     cursorFollower.classList.add('active');
@@ -2638,9 +2638,8 @@
                 ScrollTrigger.refresh();
             }, 250);
         });
-
-         // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+          gsap.registerPlugin(ScrollTrigger, TextPlugin);
         
         // Set initial states
         gsap.set('.ts-header', { opacity: 0, y: 30 });
@@ -2848,7 +2847,7 @@
             });
         });
         
-
+       
         
         window.addEventListener('scroll', updateAnimations, { passive: true });
     </script>
