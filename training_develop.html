@@ -1081,6 +1081,10 @@
     </section>
     
     <script>
+        // Check device capabilities first
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+        const isMobile = window.innerWidth <= 480;
+        
         // Custom Cursor (Desktop only)
         if (hasHover && !isMobile) {
             const cursor = document.querySelector('.cursor');
@@ -1232,8 +1236,6 @@
         
         // Continuous animations
         function startContinuousAnimations() {
-            const isMobile = window.innerWidth <= 480;
-            
             // Floating orbs with reduced movement on mobile
             gsap.to('.td-orb-1', {
                 x: isMobile ? 50 : 150,
@@ -1360,9 +1362,6 @@
         const container3D = document.querySelector('.td-3d-container');
         const cards3D = document.querySelectorAll('.td-3d-card');
         
-        // Check if device supports hover (not touch device)
-        const hasHover = window.matchMedia('(hover: hover)').matches;
-        
         if (hasHover) {
             container3D.addEventListener('mousemove', (e) => {
                 const rect = container3D.getBoundingClientRect();
@@ -1399,8 +1398,6 @@
         }
         
         // Adjust animations for mobile
-        const isMobile = window.innerWidth <= 480;
-        
         if (isMobile) {
             // Simpler animations for mobile
             gsap.to('.td-3d-card', {
@@ -1468,6 +1465,10 @@
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
+                // Update device capability checks
+                const newHasHover = window.matchMedia('(hover: hover)').matches;
+                const newIsMobile = window.innerWidth <= 480;
+                
                 // Refresh ScrollTrigger on orientation change
                 ScrollTrigger.refresh();
             }, 250);
