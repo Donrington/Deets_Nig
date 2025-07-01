@@ -4588,7 +4588,7 @@
  /* Footer Universe */
         .footer-universe {
             position: relative;
-            background: var(--gradient-primary);
+            background: var(--gradient-secondary);
             min-height: 60vh;
             overflow: hidden;
             margin-top: 0;
