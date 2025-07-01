@@ -975,7 +975,674 @@
         }
 
 
-
+ /* Services Section */
+        .ts-services {
+            position: relative;
+            padding: var(--section-padding) 0;
+            background-color: var(--warm-cream);
+            overflow: hidden;
+        }
+        
+        /* Background Elements */
+        .ts-bg-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--primary-peach) 1px, transparent 1px),
+                linear-gradient(90deg, var(--primary-peach) 1px, transparent 1px);
+            background-size: 100px 100px;
+            opacity: 0.03;
+            z-index: 0;
+        }
+        
+        .ts-floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .ts-shape {
+            position: absolute;
+            opacity: 0.1;
+            will-change: transform;
+        }
+        
+        .ts-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            top: 10%;
+            left: -5%;
+            filter: blur(100px);
+        }
+        
+        .ts-shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--primary-taupe);
+            top: 50%;
+            right: -10%;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            filter: blur(80px);
+        }
+        
+        .ts-shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--primary-dark);
+            bottom: 20%;
+            left: 30%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            filter: blur(90px);
+        }
+        
+        /* Container */
+        .ts-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Section Header */
+        .ts-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ts-subtitle {
+            font-family: var(--font-secondary);
+            font-size: clamp(14px, 1.2vw, 18px);
+            font-weight: 500;
+            color: var(--primary-peach);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+            position: relative;
+            padding: 0 40px;
+        }
+        
+        .ts-subtitle::before,
+        .ts-subtitle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 2px;
+            background: var(--gradient-primary);
+        }
+        
+        .ts-subtitle::before {
+            left: 0;
+        }
+        
+        .ts-subtitle::after {
+            right: 0;
+        }
+        
+        .ts-title {
+            font-family: var(--font-primary);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        
+        .ts-title .ts-highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .ts-intro {
+            font-family: var(--font-body);
+            font-size: clamp(18px, 1.4vw, 22px);
+            line-height: 1.6;
+            color: var(--primary-taupe);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Services Grid */
+        .ts-grid {
+            display: grid;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        /* Service Card */
+        .ts-service {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+            border: 1px solid rgba(208, 150, 131, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .ts-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(208, 150, 131, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .ts-service:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.1),
+                0 10px 20px rgba(208, 150, 131, 0.2),
+                inset 0 0 30px rgba(208, 150, 131, 0.05);
+        }
+        
+        .ts-service:hover::before {
+            opacity: 1;
+        }
+        
+        /* Service Content */
+        .ts-service-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        /* Service Info */
+        .ts-service-info {
+            order: 1;
+        }
+        
+        .ts-service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(208, 150, 131, 0.3);
+            transform: translateZ(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .ts-service:hover .ts-service-icon {
+            transform: translateZ(40px) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(208, 150, 131, 0.4);
+        }
+        
+        .ts-service-icon i {
+            font-size: 36px;
+            color: var(--white);
+        }
+        
+        .ts-service-name {
+            font-family: var(--font-primary);
+            font-size: clamp(28px, 2.5vw, 36px);
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .ts-service-desc {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--primary-taupe);
+            margin-bottom: 30px;
+        }
+        
+        /* Features List */
+        .ts-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        
+        .ts-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .ts-feature-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .ts-feature-icon::after {
+            content: '✓';
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 700;
+        }
+        
+        .ts-feature-text {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--primary-dark);
+            line-height: 1.5;
+        }
+        
+        /* Service Visual */
+        .ts-service-visual {
+            order: 2;
+            position: relative;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 3D Card Stack */
+        .ts-card-stack {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(-15deg) rotateX(5deg);
+            transition: transform 0.6s ease;
+        }
+        
+        .ts-service:hover .ts-card-stack {
+            transform: rotateY(-25deg) rotateX(10deg);
+        }
+        
+        .ts-card {
+            position: absolute;
+            width: 280px;
+            height: 180px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--soft-gray) 100%);
+            border: 1px solid rgba(208, 150, 131, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.1),
+                inset 0 0 20px rgba(208, 150, 131, 0.05);
+            transition: all 0.4s ease;
+            backface-visibility: hidden;
+        }
+        
+        .ts-card-1 {
+            transform: translateZ(0px) translateX(-20px);
+            z-index: 1;
+        }
+        
+        .ts-card-2 {
+            transform: translateZ(40px) translateX(0px);
+            z-index: 2;
+            background: linear-gradient(135deg, rgba(208, 150, 131, 0.1) 0%, rgba(115, 96, 91, 0.05) 100%);
+        }
+        
+        .ts-card-3 {
+            transform: translateZ(80px) translateX(20px);
+            z-index: 3;
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+        
+        .ts-service:hover .ts-card-1 {
+            transform: translateZ(-20px) translateX(-40px) rotateY(5deg);
+        }
+        
+        .ts-service:hover .ts-card-2 {
+            transform: translateZ(60px) translateX(0px) rotateY(-5deg);
+        }
+        
+        .ts-service:hover .ts-card-3 {
+            transform: translateZ(120px) translateX(40px) rotateY(-10deg);
+        }
+        
+        .ts-card-title {
+            font-family: var(--font-primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .ts-card-value {
+            font-family: var(--font-primary);
+            font-size: 36px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        
+        .ts-card-label {
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+            opacity: 0.8;
+        }
+        
+        /* Service Stats */
+        .ts-stats {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .ts-stat {
+            text-align: center;
+        }
+        
+        .ts-stat-value {
+            font-family: var(--font-primary);
+            font-size: clamp(32px, 3vw, 42px);
+            font-weight: 700;
+            color: var(--primary-peach);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        
+        .ts-stat-label {
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            color: var(--primary-taupe);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* CTA Buttons */
+        .ts-cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .ts-btn {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            font-weight: 600;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1;
+        }
+        
+        .ts-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .ts-btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: 0 10px 30px var(--shadow-elegant);
+        }
+        
+        .ts-btn-primary::before {
+            background: var(--primary-dark);
+        }
+        
+        .ts-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px var(--shadow-elegant);
+        }
+        
+        .ts-btn-primary:hover::before {
+            width: 120%;
+            height: 120%;
+        }
+        
+        .ts-btn-outline {
+            background: transparent;
+            color: var(--primary-dark);
+            border: 2px solid var(--primary-dark);
+        }
+        
+        .ts-btn-outline::before {
+            background: var(--primary-dark);
+        }
+        
+        .ts-btn-outline:hover {
+            color: var(--white);
+        }
+        
+        .ts-btn-outline:hover::before {
+            width: 120%;
+            height: 120%;
+        }
+        
+        /* Service Badge */
+        .ts-service-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 3;
+            box-shadow: 0 5px 15px rgba(208, 150, 131, 0.4);
+        }
+        
+        /* Alternate Layout */
+        .ts-service:nth-child(even) .ts-service-info {
+            order: 2;
+        }
+        
+        .ts-service:nth-child(even) .ts-service-visual {
+            order: 1;
+        }
+        
+        .ts-service:nth-child(even) .ts-card-stack {
+            transform: rotateY(15deg) rotateX(5deg);
+        }
+        
+        .ts-service:nth-child(even):hover .ts-card-stack {
+            transform: rotateY(25deg) rotateX(10deg);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .ts-service {
+                padding: 40px;
+            }
+            
+            .ts-service-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .ts-service-visual {
+                height: 300px;
+            }
+            
+            .ts-service:nth-child(even) .ts-service-info,
+            .ts-service:nth-child(even) .ts-service-visual {
+                order: unset;
+            }
+            
+            .ts-card {
+                width: 240px;
+                height: 150px;
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ts-header {
+                margin-bottom: 60px;
+            }
+            
+            .ts-service {
+                padding: 30px;
+            }
+            
+            .ts-service-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 20px;
+            }
+            
+            .ts-service-icon i {
+                font-size: 28px;
+            }
+            
+            .ts-stats {
+                gap: 30px;
+            }
+            
+            .ts-cta-group {
+                flex-direction: column;
+            }
+            
+            .ts-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .ts-service-badge {
+                top: 20px;
+                right: 20px;
+                padding: 6px 18px;
+                font-size: 11px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ts-services {
+                padding: 60px 0;
+            }
+            
+            .ts-container {
+                padding: 0 15px;
+            }
+            
+            .ts-service {
+                padding: 24px;
+                border-radius: 20px;
+            }
+            
+            .ts-service-visual {
+                height: 250px;
+            }
+            
+            .ts-card-stack {
+                transform: rotateY(0) rotateX(0);
+            }
+            
+            .ts-service:hover .ts-card-stack,
+            .ts-service:nth-child(even):hover .ts-card-stack {
+                transform: rotateY(0) rotateX(0);
+            }
+            
+            .ts-card {
+                width: 200px;
+                height: 120px;
+                padding: 16px;
+            }
+            
+            .ts-card-1 {
+                transform: translateZ(0px) translateX(-10px);
+            }
+            
+            .ts-card-2 {
+                transform: translateZ(20px) translateX(0px);
+            }
+            
+            .ts-card-3 {
+                transform: translateZ(40px) translateX(10px);
+            }
+            
+            .ts-service:hover .ts-card-1,
+            .ts-service:hover .ts-card-2,
+            .ts-service:hover .ts-card-3 {
+                transform: translateZ(0px) translateX(0px);
+            }
+            
+            .ts-card-title {
+                font-size: 14px;
+            }
+            
+            .ts-card-value {
+                font-size: 28px;
+            }
+            
+            .ts-card-label {
+                font-size: 12px;
+            }
+            
+            .ts-feature {
+                margin-bottom: 12px;
+            }
+            
+            .ts-feature-text {
+                font-size: 14px;
+            }
+            
+            .ts-shape {
+                filter: blur(120px);
+            }
+        }
         
     </style>
 </head>
@@ -1126,6 +1793,378 @@
                             </div>
                             <h3 class="td-card-title">Project Mastery</h3>
                             <p class="td-card-text">Deliver strategic projects on time and within budget consistently</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="ts-services">
+        <!-- Background Elements -->
+        <div class="ts-bg-grid"></div>
+        <div class="ts-floating-shapes">
+            <div class="ts-shape ts-shape-1"></div>
+            <div class="ts-shape ts-shape-2"></div>
+            <div class="ts-shape ts-shape-3"></div>
+        </div>
+        
+        <div class="ts-container">
+            <!-- Section Header -->
+            <div class="ts-header">
+                <div class="ts-subtitle">Excellence in Corporate Training</div>
+                <h2 class="ts-title">
+                    Our <span class="ts-highlight">Premium</span> Training Programs
+                </h2>
+                <p class="ts-intro">
+                    Elevate your organization with world-class training programs designed by industry veterans. 
+                    Each course combines theoretical excellence with practical application, ensuring immediate impact 
+                    on your business operations.
+                </p>
+            </div>
+            
+            <!-- Services Grid -->
+            <div class="ts-grid">
+                <!-- Contract Management Workshop -->
+                <div class="ts-service">
+                    <span class="ts-service-badge">Most Popular</span>
+                    <div class="ts-service-content">
+                        <div class="ts-service-info">
+                            <div class="ts-service-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <h3 class="ts-service-name">Contract Management Workshop</h3>
+                            <p class="ts-service-desc">
+                                Master the art of contract negotiation and management with our comprehensive workshop 
+                                led by Dr. Samuel Odusina, COREN registered engineer with 25+ years in oil & gas contracting.
+                            </p>
+                            
+                            <div class="ts-stats">
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">500+</span>
+                                    <span class="ts-stat-label">Contracts Reviewed</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">98%</span>
+                                    <span class="ts-stat-label">Success Rate</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">3-Day</span>
+                                    <span class="ts-stat-label">Intensive Program</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="ts-features">
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Advanced negotiation strategies for multi-million dollar deals</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Risk assessment and mitigation frameworks</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Legal compliance and regulatory requirements</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Post-award contract management excellence</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Professional MCIPS certification preparation</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="ts-cta-group">
+                                <a href="#" class="ts-btn ts-btn-primary">
+                                    Enroll Now
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                <a href="#" class="ts-btn ts-btn-outline">
+                                    Download Syllabus
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ts-service-visual">
+                            <div class="ts-card-stack">
+                                <div class="ts-card ts-card-1">
+                                    <div class="ts-card-title">Contract Value</div>
+                                    <div class="ts-card-value">$2.5B+</div>
+                                    <div class="ts-card-label">Total Managed</div>
+                                </div>
+                                <div class="ts-card ts-card-2">
+                                    <div class="ts-card-title">Alumni Network</div>
+                                    <div class="ts-card-value">5,000+</div>
+                                    <div class="ts-card-label">Professionals</div>
+                                </div>
+                                <div class="ts-card ts-card-3">
+                                    <div class="ts-card-title">Industry Leaders</div>
+                                    <div class="ts-card-value">200+</div>
+                                    <div class="ts-card-label">Partner Companies</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Management Excellence -->
+                <div class="ts-service">
+                    <span class="ts-service-badge">Advanced Level</span>
+                    <div class="ts-service-content">
+                        <div class="ts-service-info">
+                            <div class="ts-service-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="ts-service-name">Project Management Excellence</h3>
+                            <p class="ts-service-desc">
+                                Transform your project delivery capabilities with comprehensive training covering 
+                                the entire project lifecycle. Learn from seasoned professionals who have delivered 
+                                strategic projects worth billions.
+                            </p>
+                            
+                            <div class="ts-stats">
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">150+</span>
+                                    <span class="ts-stat-label">Projects Delivered</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">95%</span>
+                                    <span class="ts-stat-label">On-Time Delivery</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">5-Day</span>
+                                    <span class="ts-stat-label">Comprehensive Course</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="ts-features">
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Project initiation and strategic planning methodologies</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Resource optimization and allocation strategies</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Stakeholder engagement and communication mastery</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Quality assurance and control frameworks</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Agile and traditional PM methodologies</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="ts-cta-group">
+                                <a href="#" class="ts-btn ts-btn-primary">
+                                    Register Interest
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                <a href="#" class="ts-btn ts-btn-outline">
+                                    View Schedule
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ts-service-visual">
+                            <div class="ts-card-stack">
+                                <div class="ts-card ts-card-1">
+                                    <div class="ts-card-title">Completion Rate</div>
+                                    <div class="ts-card-value">96%</div>
+                                    <div class="ts-card-label">Course Success</div>
+                                </div>
+                                <div class="ts-card ts-card-2">
+                                    <div class="ts-card-title">ROI Increase</div>
+                                    <div class="ts-card-value">45%</div>
+                                    <div class="ts-card-label">Average Improvement</div>
+                                </div>
+                                <div class="ts-card ts-card-3">
+                                    <div class="ts-card-title">Global Reach</div>
+                                    <div class="ts-card-value">30+</div>
+                                    <div class="ts-card-label">Countries Served</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced Negotiation Skills -->
+                <div class="ts-service">
+                    <div class="ts-service-content">
+                        <div class="ts-service-info">
+                            <div class="ts-service-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h3 class="ts-service-name">Advanced Negotiation Skills</h3>
+                            <p class="ts-service-desc">
+                                Master both basic and advanced negotiation techniques to achieve win-win outcomes. 
+                                Learn psychological tactics, cross-cultural communication, and strategies for 
+                                high-stakes negotiations.
+                            </p>
+                            
+                            <div class="ts-stats">
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">$500M+</span>
+                                    <span class="ts-stat-label">Deals Negotiated</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">92%</span>
+                                    <span class="ts-stat-label">Win Rate</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">2-Day</span>
+                                    <span class="ts-stat-label">Intensive Workshop</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="ts-features">
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Strategic negotiation planning and preparation</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Psychology of persuasion and influence</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Cross-cultural negotiation strategies</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Conflict resolution and deadlock breaking</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Body language and non-verbal communication</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="ts-cta-group">
+                                <a href="#" class="ts-btn ts-btn-primary">
+                                    Book Your Seat
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                <a href="#" class="ts-btn ts-btn-outline">
+                                    Request Info
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ts-service-visual">
+                            <div class="ts-card-stack">
+                                <div class="ts-card ts-card-1">
+                                    <div class="ts-card-title">Success Stories</div>
+                                    <div class="ts-card-value">300+</div>
+                                    <div class="ts-card-label">Case Studies</div>
+                                </div>
+                                <div class="ts-card ts-card-2">
+                                    <div class="ts-card-title">Expert Faculty</div>
+                                    <div class="ts-card-value">15+</div>
+                                    <div class="ts-card-label">Industry Leaders</div>
+                                </div>
+                                <div class="ts-card ts-card-3">
+                                    <div class="ts-card-title">Satisfaction</div>
+                                    <div class="ts-card-value">4.9/5</div>
+                                    <div class="ts-card-label">Average Rating</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Supply Chain Management -->
+                <div class="ts-service">
+                    <span class="ts-service-badge">New Program</span>
+                    <div class="ts-service-content">
+                        <div class="ts-service-info">
+                            <div class="ts-service-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h3 class="ts-service-name">Supply Chain Management</h3>
+                            <p class="ts-service-desc">
+                                Optimize your supply chain operations with comprehensive training covering procurement, 
+                                logistics, and vendor management. Learn best practices from industry experts who have 
+                                transformed supply chains globally.
+                            </p>
+                            
+                            <div class="ts-stats">
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">40%</span>
+                                    <span class="ts-stat-label">Cost Reduction</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">60%</span>
+                                    <span class="ts-stat-label">Efficiency Gain</span>
+                                </div>
+                                <div class="ts-stat">
+                                    <span class="ts-stat-value">4-Day</span>
+                                    <span class="ts-stat-label">Complete Program</span>
+                                </div>
+                            </div>
+                            
+                            <ul class="ts-features">
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">End-to-end procurement optimization strategies</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Vendor relationship management excellence</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Logistics coordination and optimization</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Digital transformation in supply chain</span>
+                                </li>
+                                <li class="ts-feature">
+                                    <div class="ts-feature-icon"></div>
+                                    <span class="ts-feature-text">Sustainable supply chain practices</span>
+                                </li>
+                            </ul>
+                            
+                            <div class="ts-cta-group">
+                                <a href="#" class="ts-btn ts-btn-primary">
+                                    Join Waitlist
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                                <a href="#" class="ts-btn ts-btn-outline">
+                                    Corporate Training
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="ts-service-visual">
+                            <div class="ts-card-stack">
+                                <div class="ts-card ts-card-1">
+                                    <div class="ts-card-title">Supply Chains</div>
+                                    <div class="ts-card-value">100+</div>
+                                    <div class="ts-card-label">Optimized</div>
+                                </div>
+                                <div class="ts-card ts-card-2">
+                                    <div class="ts-card-title">Cost Savings</div>
+                                    <div class="ts-card-value">$50M+</div>
+                                    <div class="ts-card-label">Generated</div>
+                                </div>
+                                <div class="ts-card ts-card-3">
+                                    <div class="ts-card-title">Global Partners</div>
+                                    <div class="ts-card-value">500+</div>
+                                    <div class="ts-card-label">Network Access</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
