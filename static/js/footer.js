@@ -1,9 +1,5 @@
 
 const isMobile = window.innerWidth <= 768;
-const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
-const isDesktop = window.innerWidth > 1024;
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
          // Services Manifesto Words Animation
         const servicesWords = document.querySelectorAll('.services-word');
