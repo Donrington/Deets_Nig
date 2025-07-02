@@ -274,7 +274,9 @@
             color: inherit;
             
         }
-        .butto
+        .button-text a{
+            text-decoration: none;
+        }
         /* Mobile Menu Toggle */
         .nav-toggle {
             display: none;
