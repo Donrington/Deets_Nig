@@ -2432,7 +2432,8 @@
                 });
             }
 
- const hasHover = window.matchMedia('(hover: hover)').matches;
+        // Check device capabilities first
+        const hasHover = window.matchMedia('(hover: hover)').matches;
         const isMobile = window.innerWidth <= 480;
         
         // Custom Cursor (Desktop only)
@@ -2450,19 +2451,6 @@
             document.addEventListener('mousemove', (e) => {
                 mouseX = e.clientX;
                 mouseY = e.clientY;
-            });
-            
-            // Hide cursor when leaving window
-            document.addEventListener('mouseout', (e) => {
-                if (!e.relatedTarget) {
-                    cursor.style.opacity = '0';
-                    cursorFollower.style.opacity = '0';
-                }
-            });
-            
-            document.addEventListener('mouseover', () => {
-                cursor.style.opacity = '1';
-                cursorFollower.style.opacity = '1';
             });
             
             const animateCursor = () => {
@@ -2483,8 +2471,8 @@
             
             animateCursor();
             
-            // Cursor hover effects for all interactive elements
-            document.querySelectorAll('a, button, .ms-service, .ms-btn, .ms-service-icon, .ms-product, .ms-feature, .ms-cta-btn').forEach(el => {
+            // Cursor hover effects
+            document.querySelectorAll('a, button, .td-3d-card, .ms-cta-btn').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('active');
                     cursorFollower.classList.add('active');
@@ -2495,52 +2483,7 @@
                     cursorFollower.classList.remove('active');
                 });
             });
-            
-            // Special effect for service cards
-            document.querySelectorAll('.ms-service').forEach(service => {
-                service.addEventListener('mouseenter', () => {
-                    gsap.to(cursor, {
-                        scale: 3,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-                
-                service.addEventListener('mouseleave', () => {
-                    gsap.to(cursor, {
-                        scale: 1,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-            
-            // Magnetic effect for buttons
-            document.querySelectorAll('.ms-btn, .ms-cta-btn').forEach(btn => {
-                btn.addEventListener('mousemove', (e) => {
-                    const rect = btn.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    
-                    gsap.to(btn, {
-                        x: x * 0.3,
-                        y: y * 0.3,
-                        duration: 0.3,
-                        ease: 'power2.out'
-                    });
-                });
-                
-                btn.addEventListener('mouseleave', () => {
-                    gsap.to(btn, {
-                        x: 0,
-                        y: 0,
-                        duration: 0.3,
-                        ease: 'elastic.out(1, 0.3)'
-                    });
-                });
-            });
         }
-        
         
         // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -2901,6 +2844,202 @@
                 once: true
             }
         });
+        
+        // Service cards animation
+        gsap.utils.toArray('.ts-service').forEach((service, index) => {
+            gsap.to(service, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: index * 0.2,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: service,
+                    start: 'top 80%',
+                    once: true
+                }
+            });
+            
+            // Features animation
+            const features = service.querySelectorAll('.ts-feature');
+            gsap.to(features, {
+                opacity: 1,
+                x: 0,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: service,
+                    start: 'top 70%',
+                    once: true
+                }
+            });
+        });
+        
+        // Floating shapes animation
+        gsap.to('.ts-shape-1', {
+            x: 100,
+            y: -50,
+            duration: 20,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        
+        gsap.to('.ts-shape-2', {
+            x: -80,
+            y: 60,
+            rotation: 360,
+            duration: 25,
+            repeat: -1,
+            ease: 'none'
+        });
+        
+        gsap.to('.ts-shape-3', {
+            x: -60,
+            y: -40,
+            scale: 1.2,
+            duration: 18,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        
+        // Stats counter animation
+        const stats = document.querySelectorAll('.ts-stat-value');
+        stats.forEach(stat => {
+            const endValue = stat.textContent;
+            const isPercentage = endValue.includes('%');
+            const isDollar = endValue.includes('$');
+            const isPlus = endValue.includes('+');
+            const isDays = endValue.includes('-');
+            const isRating = endValue.includes('/');
+            
+            let numericValue = parseFloat(endValue.replace(/[^0-9.]/g, ''));
+            
+            ScrollTrigger.create({
+                trigger: stat,
+                start: 'top 80%',
+                once: true,
+                onEnter: () => {
+                    if (!isNaN(numericValue) && !isDays && !isRating) {
+                        gsap.fromTo(stat, 
+                            { textContent: 0 },
+                            {
+                                textContent: numericValue,
+                                duration: 2,
+                                ease: 'power1.out',
+                                snap: { textContent: 1 },
+                                onUpdate: function() {
+                                    let current = Math.floor(this.targets()[0].textContent);
+                                    if (isDollar) {
+                                        if (endValue.includes('M')) {
+                                            stat.textContent = '$' + current + 'M' + (isPlus ? '+' : '');
+                                        } else if (endValue.includes('B')) {
+                                            stat.textContent = '$' + (current / 10).toFixed(1) + 'B' + (isPlus ? '+' : '');
+                                        } else {
+                                            stat.textContent = '$' + current + (isPlus ? '+' : '');
+                                        }
+                                    } else if (isPercentage) {
+                                        stat.textContent = current + '%';
+                                    } else {
+                                        stat.textContent = current + (isPlus ? '+' : '');
+                                    }
+                                },
+                                onComplete: () => {
+                                    stat.textContent = endValue;
+                                }
+                            }
+                        );
+                    }
+                }
+            });
+        });
+        
+        // 3D card parallax on mouse move
+        const services = document.querySelectorAll('.ts-service');
+        
+        services.forEach(service => {
+            const cardStack = service.querySelector('.ts-card-stack');
+            const cards = service.querySelectorAll('.ts-card');
+            
+            service.addEventListener('mousemove', (e) => {
+                const rect = service.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                cards.forEach((card, index) => {
+                    const depth = (index + 1) * 2;
+                    gsap.to(card, {
+                        rotateX: rotateX * depth,
+                        rotateY: rotateY * depth,
+                        duration: 0.3,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+            
+            service.addEventListener('mouseleave', () => {
+                cards.forEach(card => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+        });
+        
+
+
+        
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: {
+                            y: target,
+                            offsetY: 50
+                        },
+                        duration: 1.5,
+                        ease: 'power3.inOut'
+                    });
+                }
+            });
+        });
+        
+        // Text scramble effect on hover
+        const serviceTitles = document.querySelectorAll('.ts-service-name');
+        
+        serviceTitles.forEach(title => {
+            const originalText = title.textContent;
+            
+            title.addEventListener('mouseenter', () => {
+                gsap.to(title, {
+                    scrambleText: {
+                        text: originalText,
+                        chars: "TRAINING",
+                        speed: 0.3
+                    },
+                    duration: 0.8
+                });
+            });
+        });
+        
+       
+        
+        window.addEventListener('scroll', updateAnimations, { passive: true });
+
          // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
         
@@ -3043,140 +3182,6 @@
         }
         
         createParticles();
-        
-        // Stats counter animation
-        const stats = document.querySelectorAll('.ms-stat-value');
-        stats.forEach(stat => {
-            const endValue = stat.textContent;
-            const isDollar = endValue.includes('$');
-            const isPlus = endValue.includes('+');
-            const isTime = endValue.includes('hr');
-            const isText = endValue === 'ISO';
-            
-            if (!isText) {
-                let numericValue = parseFloat(endValue.replace(/[^0-9.]/g, ''));
-                
-                ScrollTrigger.create({
-                    trigger: stat,
-                    start: 'top 80%',
-                    once: true,
-                    onEnter: () => {
-                        if (!isNaN(numericValue)) {
-                            gsap.fromTo(stat, 
-                                { textContent: 0 },
-                                {
-                                    textContent: numericValue,
-                                    duration: 2,
-                                    ease: 'power1.out',
-                                    snap: { textContent: 1 },
-                                    onUpdate: function() {
-                                        let current = Math.floor(this.targets()[0].textContent);
-                                        if (endValue.includes('K')) {
-                                            stat.textContent = current + 'K' + (isPlus ? '+' : '');
-                                        } else if (isTime) {
-                                            stat.textContent = current + 'hr';
-                                        } else {
-                                            stat.textContent = current + (isPlus ? '+' : '');
-                                        }
-                                    },
-                                    onComplete: () => {
-                                        stat.textContent = endValue;
-                                    }
-                                }
-                            );
-                        }
-                    }
-                });
-            }
-        });
-        
-        // 3D product showcase parallax
-        const services = document.querySelectorAll('.ms-service');
-        
-        services.forEach(service => {
-            const showcase = service.querySelector('.ms-product-showcase');
-            const products = service.querySelectorAll('.ms-product');
-            
-            if (hasHover && !isMobile) {
-                service.addEventListener('mousemove', (e) => {
-                    const rect = service.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-                    
-                    products.forEach((product, index) => {
-                        const depth = (index + 1) * 2;
-                        gsap.to(product, {
-                            rotateX: rotateX * depth,
-                            rotateY: rotateY * depth,
-                            duration: 0.3,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-                
-                service.addEventListener('mouseleave', () => {
-                    products.forEach(product => {
-                        gsap.to(product, {
-                            rotateX: 0,
-                            rotateY: 0,
-                            duration: 0.5,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-            }
-        });
-        
-        // Smooth scroll for CTA buttons
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                
-                if (target) {
-                    gsap.to(window, {
-                        scrollTo: {
-                            y: target,
-                            offsetY: 50
-                        },
-                        duration: 1.5,
-                        ease: 'power3.inOut'
-                    });
-                } else if (targetId === '#contact') {
-                    // If contact section doesn't exist on current page
-                    console.log('Navigate to contact form');
-                    alert('Please scroll down to the contact section or navigate to the contact page.');
-                }
-            });
-        });
-        
-        // Text scramble effect on hover
-        if (!isMobile && hasHover) {
-            const serviceTitles = document.querySelectorAll('.ms-service-name');
-            
-            serviceTitles.forEach(title => {
-                const originalText = title.textContent;
-                
-                title.addEventListener('mouseenter', () => {
-                    gsap.to(title, {
-                        scrambleText: {
-                            text: originalText,
-                            chars: "MANUFACTURE",
-                            speed: 0.3
-                        },
-                        duration: 0.8
-                    });
-                });
-            });
-        }
-        
 
         
     </script>
