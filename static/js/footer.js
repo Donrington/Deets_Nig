@@ -1,4 +1,9 @@
 
+const isMobile = window.innerWidth <= 768;
+const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+const isDesktop = window.innerWidth > 1024;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
          // Services Manifesto Words Animation
         const servicesWords = document.querySelectorAll('.services-word');
@@ -317,18 +322,7 @@ if (ctaNexus && !prefersReducedMotion) {
             });
         }
 
-        // Refresh ScrollTrigger with Debounce
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 250);
-        });
-
-        // Initial ScrollTrigger refresh
-        ScrollTrigger.refresh();
-
+ 
 
 
 
