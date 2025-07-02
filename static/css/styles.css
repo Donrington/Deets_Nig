@@ -244,6 +244,18 @@
             transition: all 0.3s ease;
           
         }
+    .cta-button a,
+        .primary-button a,
+        .secondary-button a {
+            position: relative;
+         
+            font-family: var(--font-secondary);
+            font-size: clamp(13px, 2vw, 15px);
+           
+            color: var(--white) ;
+         
+          
+        }
 
         .cta-button {
             background: var(--primary-peach);
@@ -315,7 +327,7 @@
             overflow: hidden;
             padding: var(--section-padding) 0;
             padding-top: clamp(100px, 15vh, 140px);
-             background: linear-gradient(180deg, var(--warm-cream) 50%, var(--pristine-white) 100%);
+             background: linear-gradient(180deg, var(--primary-dark) 0%, var(--warm-cream) 50%, var(--pristine-white) 100%);
         }
 
         /* Hero Background */
