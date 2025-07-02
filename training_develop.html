@@ -1644,6 +1644,287 @@
                 filter: blur(120px);
             }
         }
+
+
+
+        
+        /* CTA Section */
+        .ms-cta-section {
+            position: relative;
+            padding: var(--section-padding) 0;
+            background: var(--gradient-hero);
+            overflow: hidden;
+        }
+        
+        .ms-cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--white) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--white) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--white) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .ms-cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        .ms-cta-title {
+            font-family: var(--font-primary);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--white);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ms-cta-desc {
+            font-family: var(--font-body);
+            font-size: clamp(18px, 1.4vw, 24px);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ms-cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ms-cta-btn {
+            font-family: var(--font-secondary);
+            font-size: 18px;
+            font-weight: 600;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 60px;
+            cursor: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 1;
+        }
+        
+        .ms-cta-btn-primary {
+            background: var(--white);
+            color: var(--primary-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .ms-cta-btn-primary:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .ms-cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .ms-cta-btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Floating particles in CTA */
+        .ms-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .ms-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--white);
+            border-radius: 50%;
+            opacity: 0.3;
+            will-change: transform;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .ms-service {
+                padding: 40px;
+            }
+            
+            .ms-service-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .ms-service-visual {
+                height: 300px;
+            }
+            
+            .ms-service:nth-child(even) .ms-service-info,
+            .ms-service:nth-child(even) .ms-service-visual {
+                order: unset;
+            }
+            
+            .ms-product {
+                width: 160px;
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ms-header {
+                margin-bottom: 60px;
+            }
+            
+            .ms-service {
+                padding: 30px;
+            }
+            
+            .ms-service-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 20px;
+            }
+            
+            .ms-service-icon i {
+                font-size: 28px;
+            }
+            
+            .ms-stats {
+                gap: 30px;
+            }
+            
+            .ms-cta-group {
+                margin-top: 30px;
+            }
+            
+            .ms-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .ms-service-badge {
+                top: 20px;
+                right: 20px;
+                padding: 6px 18px;
+                font-size: 11px;
+            }
+            
+            .ms-cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .ms-cta-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ms-services {
+                padding: 60px 0;
+            }
+            
+            .ms-container {
+                padding: 0 15px;
+            }
+            
+            .ms-service {
+                padding: 24px;
+                border-radius: 20px;
+            }
+            
+            .ms-service-visual {
+                height: 250px;
+            }
+            
+            .ms-product-showcase {
+                transform: rotateY(0) rotateX(0);
+            }
+            
+            .ms-service:hover .ms-product-showcase,
+            .ms-service:nth-child(even):hover .ms-product-showcase {
+                transform: rotateY(0) rotateX(0);
+            }
+            
+            .ms-product {
+                width: 140px;
+                height: 180px;
+                padding: 16px;
+            }
+            
+            .ms-product-1 {
+                transform: translateZ(0px) translateX(-20px);
+            }
+            
+            .ms-product-2 {
+                transform: translateZ(30px) translateX(0px);
+            }
+            
+            .ms-product-3 {
+                transform: translateZ(60px) translateX(20px);
+            }
+            
+            .ms-service:hover .ms-product-1,
+            .ms-service:hover .ms-product-2,
+            .ms-service:hover .ms-product-3 {
+                transform: translateZ(0px) translateX(0px);
+            }
+            
+            .ms-feature {
+                margin-bottom: 12px;
+            }
+            
+            .ms-feature-text {
+                font-size: 14px;
+            }
+            
+            .ms-element {
+                filter: blur(120px);
+            }
+            
+            .ms-cta-section {
+                padding: 60px 0;
+            }
+            
+            .ms-cta-btn {
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+
         
     </style>
 </head>
