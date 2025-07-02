@@ -1150,4 +1150,480 @@
 
     <script>
 
-    </
+            // Mobile Menu Toggle with GSAP - Fixed to not affect desktop nav
+            if (navToggle && navMenu) {
+                const navTimeline = gsap.timeline({ paused: true });
+
+                // Only animate mobile menu, not individual nav links on desktop
+                navTimeline.to(navMenu, {
+                    right: 0,
+                    duration: 0.5,
+                    ease: "power3.inOut"
+                });
+
+                // Only animate nav links when in mobile menu mode
+                if (window.innerWidth <= 768) {
+                    navTimeline.from('.nav-link', {
+                        x: 50,
+                        opacity: 0,
+                        duration: 0.3,
+                        stagger: 0.05,
+                        ease: "power2.out"
+                    }, "-=0.3");
+                }
+
+                navToggle.addEventListener('click', () => {
+                    navToggle.classList.toggle('active');
+                    if (navToggle.classList.contains('active')) {
+                        navTimeline.play();
+                        document.body.style.overflow = 'hidden';
+                    } else {
+                        navTimeline.reverse();
+                        document.body.style.overflow = '';
+                    }
+                });
+
+                // Close mobile menu when clicking nav links
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navToggle.classList.contains('active')) {
+                            navToggle.classList.remove('active');
+                            navTimeline.reverse();
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+
+                // Ensure nav links are always visible on desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 768) {
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            gsap.set(link, {
+                                opacity: 1,
+                                x: 0,
+                                clearProps: "all"
+                            });
+                        });
+                        document.body.style.overflow = '';
+                        if (navToggle.classList.contains('active')) {
+                            navToggle.classList.remove('active');
+                            navTimeline.reverse();
+                        }
+                    }
+                });
+            }
+
+        // Check device capabilities first
+        const hasHover = window.matchMedia('(hover: hover)').matches;
+        const isMobile = window.innerWidth <= 480;
+        
+        // Custom Cursor (Desktop only)
+        if (hasHover && !isMobile) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
+            
+            let mouseX = 0;
+            let mouseY = 0;
+            let cursorX = 0;
+            let cursorY = 0;
+            let followerX = 0;
+            let followerY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            const animateCursor = () => {
+                // Cursor with immediate response
+                cursorX += (mouseX - cursorX) * 0.5;
+                cursorY += (mouseY - cursorY) * 0.5;
+                cursor.style.left = cursorX + 'px';
+                cursor.style.top = cursorY + 'px';
+                
+                // Follower with delayed response
+                followerX += (mouseX - followerX) * 0.1;
+                followerY += (mouseY - followerY) * 0.1;
+                cursorFollower.style.left = followerX + 'px';
+                cursorFollower.style.top = followerY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            };
+            
+            animateCursor();
+            
+            // Cursor hover effects
+            document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.classList.add('active');
+                    cursorFollower.classList.add('active');
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.classList.remove('active');
+                    cursorFollower.classList.remove('active');
+                });
+            });
+        }
+        
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set initial states
+        gsap.set('.td-hero-text', { opacity: 0, y: 60 });
+        gsap.set('.td-visual', { opacity: 0, x: 60 });
+        gsap.set('.td-stat', { opacity: 0, y: 40 });
+        gsap.set('.td-3d-card', { opacity: 0, scale: 0.8, rotateY: -30 });
+        gsap.set('.td-geo', { opacity: 0, scale: 0 });
+        
+        // Hero entrance timeline
+        const heroTl = gsap.timeline({ 
+            defaults: { ease: 'power3.out' },
+            onComplete: () => startContinuousAnimations()
+        });
+        
+        // Simplified animations for mobile
+        if (isMobile) {
+            heroTl
+                .to('.td-hero-text', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: 0.2
+                })
+                .to('.td-visual', {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8
+                }, '-=0.4')
+                .to('.td-3d-card', {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    duration: 0.6,
+                    stagger: 0.15
+                }, '-=0.4')
+                .to('.td-stat', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.1,
+                    onUpdate: function() {
+                        // Faster counting for mobile
+                        document.querySelectorAll('.td-stat-num').forEach(stat => {
+                            const endValue = parseInt(stat.getAttribute('data-value'));
+                            const progress = this.progress();
+                            const currentValue = Math.floor(endValue * progress);
+                            stat.textContent = currentValue.toLocaleString();
+                        });
+                    }
+                }, '-=0.4');
+        } else {
+            // Full animations for desktop
+            heroTl
+                .to('.td-hero-text', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    delay: 0.3
+                })
+                .to('.td-visual', {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1.2
+                }, '-=0.8')
+                .to('.td-3d-card', {
+                    opacity: 1,
+                    scale: 1,
+                    rotateY: 0,
+                    duration: 1,
+                    stagger: {
+                        each: 0.2,
+                        from: 'random'
+                    }
+                }, '-=0.6')
+                .to('.td-stat', {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    onUpdate: function() {
+                        // Animate numbers counting up
+                        document.querySelectorAll('.td-stat-num').forEach(stat => {
+                            const endValue = parseInt(stat.getAttribute('data-value'));
+                            const progress = this.progress();
+                            const currentValue = Math.floor(endValue * progress);
+                            stat.textContent = currentValue.toLocaleString();
+                        });
+                    }
+                }, '-=0.8')
+                .to('.td-geo', {
+                    opacity: 0.1,
+                    scale: 1,
+                    duration: 1,
+                    stagger: 0.15,
+                    ease: 'elastic.out(1, 0.5)'
+                }, '-=0.5');
+        }
+        
+        // Continuous animations
+        function startContinuousAnimations() {
+            // Floating orbs with reduced movement on mobile
+            gsap.to('.td-orb-1', {
+                x: isMobile ? 50 : 150,
+                y: isMobile ? -50 : -100,
+                duration: 25,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            gsap.to('.td-orb-2', {
+                x: isMobile ? -60 : -120,
+                y: isMobile ? 40 : 80,
+                duration: 30,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            gsap.to('.td-orb-3', {
+                x: isMobile ? -40 : -80,
+                y: isMobile ? -60 : -120,
+                duration: 28,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut'
+            });
+            
+            // Skip geometric shapes on mobile
+            if (!isMobile) {
+                // Geometric shapes rotation
+                gsap.to('.td-geo-1', {
+                    rotation: 360,
+                    duration: 20,
+                    repeat: -1,
+                    ease: 'none'
+                });
+                
+                gsap.to('.td-geo-2', {
+                    rotation: -360,
+                    duration: 25,
+                    repeat: -1,
+                    ease: 'none'
+                });
+                
+                // 3D container subtle movement
+                gsap.to('.td-3d-container', {
+                    rotateY: -20,
+                    rotateX: 8,
+                    duration: 4,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+                
+                // Parallax layers
+                gsap.to('.td-layer-1', {
+                    x: -30,
+                    y: 20,
+                    duration: 6,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+                
+                gsap.to('.td-layer-2', {
+                    x: 20,
+                    y: -30,
+                    rotation: 90,
+                    duration: 8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            }
+        }
+        
+        // Scroll-triggered animations
+        if (!isMobile) {
+            ScrollTrigger.create({
+                trigger: '.td-hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1,
+                onUpdate: (self) => {
+                    const progress = self.progress;
+                    
+                    // Parallax effect for orbs
+                    gsap.to('.td-orb-1', {
+                        y: -200 * progress,
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-orb-2', {
+                        y: -150 * progress,
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-orb-3', {
+                        y: -100 * progress,
+                        duration: 0
+                    });
+                    
+                    // 3D cards depth effect
+                    gsap.to('.td-card-1', {
+                        z: 100 + (50 * progress),
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-card-2', {
+                        z: 50 + (30 * progress),
+                        duration: 0
+                    });
+                    
+                    gsap.to('.td-card-3', {
+                        z: 150 + (70 * progress),
+                        duration: 0
+                    });
+                }
+            });
+        }
+        
+        // 3D Mouse tracking for cards
+        const container3D = document.querySelector('.td-3d-container');
+        const cards3D = document.querySelectorAll('.td-3d-card');
+        
+        if (hasHover) {
+            container3D.addEventListener('mousemove', (e) => {
+                const rect = container3D.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+                
+                const rotateX = (mouseY / rect.height) * 20;
+                const rotateY = (mouseX / rect.width) * -20;
+                
+                cards3D.forEach((card, index) => {
+                    const depth = (index + 1) * 0.5;
+                    gsap.to(card, {
+                        rotateX: rotateX * depth,
+                        rotateY: rotateY * depth,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+            
+            container3D.addEventListener('mouseleave', () => {
+                cards3D.forEach(card => {
+                    gsap.to(card, {
+                        rotateX: 0,
+                        rotateY: 0,
+                        duration: 0.5,
+                        ease: 'power2.out'
+                    });
+                });
+            });
+        }
+        
+        // Adjust animations for mobile
+        if (isMobile) {
+            // Simpler animations for mobile
+            gsap.to('.td-3d-card', {
+                y: -10,
+                duration: 3,
+                repeat: -1,
+                yoyo: true,
+                ease: 'sine.inOut',
+                stagger: 0.5
+            });
+        }
+        
+        // Text scramble effect on hover (desktop only)
+        if (!isMobile && hasHover) {
+            document.querySelectorAll('.td-card-title').forEach(title => {
+                const originalText = title.textContent;
+                
+                title.addEventListener('mouseenter', () => {
+                    gsap.to(title, {
+                        scrambleText: {
+                            text: originalText,
+                            chars: "!@#$%^&*",
+                            speed: 0.3
+                        },
+                        duration: 0.8
+                    });
+                });
+            });
+        }
+        
+        // Smooth scroll for CTA buttons
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    gsap.to(window, {
+                        scrollTo: {
+                            y: target,
+                            offsetY: 50
+                        },
+                        duration: 1.5,
+                        ease: 'power3.inOut'
+                    });
+                }
+            });
+        });
+        
+        // Performance optimization
+        let ticking = false;
+        function optimizeScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Update animations
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', optimizeScroll, { passive: true });
+        
+        // Handle orientation changes
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Update device capability checks
+                const newHasHover = window.matchMedia('(hover: hover)').matches;
+                const newIsMobile = window.innerWidth <= 480;
+                
+                // Refresh ScrollTrigger on orientation change
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+        
+          gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set initial states
+        gsap.set('.ts-header', { opacity: 0, y: 30 });
+        gsap.set('.ts-service', { opacity: 0, y: 50 });
+        gsap.set('.ts-feature', { opacity: 0, x: -20 });
+        
+        // Header animation
+        gsap.to('.ts-header', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.ts-header',
+                start: 'top 80%',
+                once: true
+            }
+        });
+        
+    </script>
