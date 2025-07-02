@@ -5,6 +5,8 @@ const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
 const isDesktop = window.innerWidth > 1024;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+       
+        // Footer Link Animations
         const footerLinks = document.querySelectorAll('.footer-link a');
         footerLinks.forEach(link => {
             if (!isMobile) {
