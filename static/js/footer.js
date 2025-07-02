@@ -560,65 +560,7 @@ if (ctaNexus && !prefersReducedMotion) {
             });
         }
 
-        // Gallery Emblem Animation
-        if (!prefersReducedMotion) {
-            gsap.to('.gallery-emblem', {
-                scale: isMobile ? 1.1 : 1.3,
-                opacity: 0.7,
-                duration: isMobile ? 2 : 3,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
-            });
-        }
-
-        // Touch Events for Mobile
-        if (isMobile || isTouchDevice) {
-            galleryPrisms.forEach(prism => {
-                prism.addEventListener('touchstart', (e) => {
-                    gsap.to(prism, {
-                        scale: 0.98,
-                        duration: 0.1
-                    });
-                }, { passive: true });
-                
-                prism.addEventListener('touchend', (e) => {
-                    gsap.to(prism, {
-                        scale: 1,
-                        duration: 0.2,
-                        ease: "back.out(1.7)"
-                    });
-                }, { passive: true });
-            });
-
-            // Swipe functionality for lightbox
-            let startX, startY;
-            
-            lightboxModal.addEventListener('touchstart', (e) => {
-                startX = e.touches[0].clientX;
-                startY = e.touches[0].clientY;
-            }, { passive: true });
-            
-            lightboxModal.addEventListener('touchend', (e) => {
-                if (!startX || !startY) return;
-                
-                const endX = e.changedTouches[0].clientX;
-                const endY = e.changedTouches[0].clientY;
-                
-                const deltaX = startX - endX;
-                const deltaY = startY - endY;
-                
-                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
-                    if (deltaX > 0) {
-                        showNextImage();
-                    } else {
-                        showPrevImage();
-                    }
-                }
-                
-                startX = startY = null;
-            }, { passive: true });
-        }
+    
 
         // Lazy Loading for Images
         const imageObserver = new IntersectionObserver((entries) => {
