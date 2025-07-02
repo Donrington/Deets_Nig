@@ -2769,7 +2769,6 @@
         
 
 
-        
         // 3D Mouse tracking for cards
         const container3D = document.querySelector('.td-3d-container');
         const cards3D = document.querySelectorAll('.td-3d-card');
@@ -2884,6 +2883,26 @@
                 // Refresh ScrollTrigger on orientation change
                 ScrollTrigger.refresh();
             }, 250);
+        });
+        
+          gsap.registerPlugin(ScrollTrigger, TextPlugin);
+        
+        // Set initial states
+        gsap.set('.ts-header', { opacity: 0, y: 30 });
+        gsap.set('.ts-service', { opacity: 0, y: 50 });
+        gsap.set('.ts-feature', { opacity: 0, x: -20 });
+        
+        // Header animation
+        gsap.to('.ts-header', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.ts-header',
+                start: 'top 80%',
+                once: true
+            }
         });
         
           gsap.registerPlugin(ScrollTrigger, TextPlugin);
