@@ -1844,7 +1844,15 @@
                 padding: 40px 20px;
                 border-radius: 20px;
             }
-            
+            .services-manifesto{
+                    min-height: 100svh;
+                min-height: -webkit-fill-available; /* iOS Safari */
+                padding: 40px 15px;
+                
+                padding-left: max(15px, env(safe-area-inset-left));
+                padding-right: max(15px, env(safe-area-inset-right));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
             .credential-medallion {
                 padding: 30px 20px;
             }
