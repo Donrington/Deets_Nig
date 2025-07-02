@@ -2842,6 +2842,338 @@
             }
         }
 
+        /* Products Section */
+        .ws-products {
+            position: relative;
+            padding: var(--section-padding) 0;
+            background-color: var(--warm-cream);
+            overflow: hidden;
+        }
+        
+        .ws-products-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* Product Categories */
+        .ws-categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ws-category {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid rgba(208, 150, 131, 0.3);
+            border-radius: 50px;
+            color: var(--primary-taupe);
+            cursor: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .ws-category.active,
+        .ws-category:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px var(--shadow-elegant);
+        }
+        
+        /* Products Grid */
+        .ws-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .ws-product {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(208, 150, 131, 0.2);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+            cursor: none;
+        }
+        
+        .ws-product:hover {
+            transform: translateY(-10px) scale(1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ws-product-image {
+            position: relative;
+            height: 250px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .ws-product-image i {
+            font-size: 80px;
+            color: var(--white);
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .ws-product:hover .ws-product-image i {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        .ws-product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-family: var(--font-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .ws-product-info {
+            padding: 30px;
+        }
+        
+        .ws-product-title {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        .ws-product-desc {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--primary-taupe);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .ws-product-specs {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .ws-spec {
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ws-spec i {
+            color: var(--primary-peach);
+            font-size: 16px;
+        }
+        
+        /* Floating Elements */
+        .ws-float {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+            will-change: transform;
+        }
+        
+        .ws-float-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-peach);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            top: 20%;
+            right: 10%;
+            filter: blur(80px);
+        }
+        
+        .ws-float-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--primary-taupe);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            bottom: 10%;
+            left: 5%;
+            filter: blur(60px);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .ws-hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .ws-hero-visual {
+                order: -1;
+            }
+            
+            .ws-sack-showcase {
+                height: 500px;
+            }
+            
+            .ws-capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .ws-hero {
+                min-height: auto;
+                padding: 80px 20px;
+            }
+            
+            .ws-hero-stats {
+                gap: 30px;
+            }
+            
+            .ws-hero-cta {
+                flex-direction: column;
+            }
+            
+            .ws-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .ws-sack {
+                width: 200px;
+                height: 280px;
+            }
+            
+            .ws-capabilities-header,
+            .ws-products-header {
+                margin-bottom: 60px;
+            }
+            
+            .ws-capability {
+                padding: 40px 30px;
+            }
+            
+            .ws-products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .ws-hero {
+                padding: 60px 15px;
+            }
+            
+            .ws-hero-title {
+                font-size: clamp(32px, 8vw, 40px);
+            }
+            
+            .ws-hero-desc {
+                font-size: 16px;
+            }
+            
+            .ws-btn {
+                padding: 16px 30px;
+                font-size: 14px;
+            }
+            
+            .ws-sack-showcase {
+                height: 400px;
+                transform: perspective(1000px) rotateY(0);
+            }
+            
+            .ws-sack {
+                width: 180px;
+                height: 250px;
+            }
+            
+            .ws-sack-1 {
+                transform: translateZ(0px) translateX(-30px);
+            }
+            
+            .ws-sack-2 {
+                transform: translateZ(50px) translateX(0px);
+            }
+            
+            .ws-sack-3 {
+                transform: translateZ(100px) translateX(30px);
+            }
+            
+            .ws-capabilities,
+            .ws-products {
+                padding: 60px 0;
+            }
+            
+            .ws-container {
+                padding: 0 15px;
+            }
+            
+            .ws-section-title {
+                font-size: clamp(28px, 6vw, 36px);
+            }
+            
+            .ws-section-subtitle {
+                font-size: 16px;
+            }
+            
+            .ws-capability {
+                padding: 30px 20px;
+            }
+            
+            .ws-capability-icon {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 20px;
+            }
+            
+            .ws-capability-icon i {
+                font-size: 28px;
+            }
+            
+            .ws-capability-title {
+                font-size: 24px;
+            }
+            
+            .ws-categories {
+                gap: 10px;
+            }
+            
+            .ws-category {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            
+            .ws-product-info {
+                padding: 20px;
+            }
+            
+            .ws-product-title {
+                font-size: 20px;
+            }
+            
+            .ws-product-desc {
+                font-size: 14px;
+            }
+        }
     </style>
 
 
@@ -3216,6 +3548,175 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     <!-- Products Section -->
+    <section class="ws-products" id="products">
+        <div class="ws-container">
+            <div class="ws-products-header">
+                <h2 class="ws-section-title">Our Product Range</h2>
+                <p class="ws-section-subtitle">
+                    Comprehensive packaging solutions for diverse industries with superior 
+                    durability and competitive pricing
+                </p>
+            </div>
+            
+            <div class="ws-categories">
+                <button class="ws-category active">All Products</button>
+                <button class="ws-category">Agricultural</button>
+                <button class="ws-category">Industrial</button>
+                <button class="ws-category">Food Grade</button>
+            </div>
+            
+            <div class="ws-products-grid">
+                <!-- Fertilizer Bags -->
+                <div class="ws-product" data-category="agricultural">
+                    <div class="ws-product-image">
+                        <i class="fas fa-seedling"></i>
+                        <span class="ws-product-badge">Popular</span>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Fertilizer Bags</h3>
+                        <p class="ws-product-desc">
+                            Heavy-duty woven sacks designed for agricultural fertilizers with 
+                            moisture barrier protection and UV stabilization.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-weight"></i>
+                                25-50kg capacity
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-shield-alt"></i>
+                                Laminated
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cement Sacks -->
+                <div class="ws-product" data-category="industrial">
+                    <div class="ws-product-image">
+                        <i class="fas fa-hard-hat"></i>
+                        <span class="ws-product-badge">Heavy Duty</span>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Cement Sacks</h3>
+                        <p class="ws-product-desc">
+                            Extra-strong construction grade bags with reinforced stitching for 
+                            cement and building materials packaging.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-weight"></i>
+                                50kg standard
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-layer-group"></i>
+                                Multi-layer
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chemical Bags -->
+                <div class="ws-product" data-category="industrial">
+                    <div class="ws-product-image">
+                        <i class="fas fa-flask"></i>
+                        <span class="ws-product-badge">Safety Grade</span>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Chemical Bags</h3>
+                        <p class="ws-product-desc">
+                            Specialized bags with chemical-resistant linings for safe storage 
+                            and transportation of industrial chemicals.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Safety certified
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-tint-slash"></i>
+                                Leak-proof
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Food Grade Bags -->
+                <div class="ws-product" data-category="food-grade">
+                    <div class="ws-product-image">
+                        <i class="fas fa-wheat-awn"></i>
+                        <span class="ws-product-badge">FDA Approved</span>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Food Grade Bags</h3>
+                        <p class="ws-product-desc">
+                            Safe packaging solutions for grains, rice, flour, and other food 
+                            products with FDA-approved materials.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-certificate"></i>
+                                Food safe
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-recycle"></i>
+                                Eco-friendly
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Animal Feed Bags -->
+                <div class="ws-product" data-category="agricultural">
+                    <div class="ws-product-image">
+                        <i class="fas fa-cow"></i>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Animal Feed Bags</h3>
+                        <p class="ws-product-desc">
+                            Durable packaging for poultry feed, cattle feed, and other animal 
+                            nutrition products with breathable design.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-wind"></i>
+                                Breathable
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-print"></i>
+                                Custom print
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sugar/Salt Bags -->
+                <div class="ws-product" data-category="food-grade">
+                    <div class="ws-product-image">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="ws-product-info">
+                        <h3 class="ws-product-title">Sugar & Salt Bags</h3>
+                        <p class="ws-product-desc">
+                            Moisture-resistant bags specifically designed for sugar, salt, and 
+                            other hygroscopic materials.
+                        </p>
+                        <div class="ws-product-specs">
+                            <span class="ws-spec">
+                                <i class="fas fa-tint-slash"></i>
+                                Moisture barrier
+                            </span>
+                            <span class="ws-spec">
+                                <i class="fas fa-box"></i>
+                                10-50kg sizes
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -4203,6 +4704,105 @@
                     });
                 });
             }
+        });
+         // Products section animations
+        gsap.to('.ws-products-header', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.ws-products-header',
+                start: 'top 80%',
+                once: true
+            }
+        });
+        
+        gsap.to('.ws-categories', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.ws-categories',
+                start: 'top 85%',
+                once: true
+            }
+        });
+        
+        gsap.utils.toArray('.ws-product').forEach((product, index) => {
+            gsap.to(product, {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                delay: index * 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: product,
+                    start: 'top 90%',
+                    once: true
+                }
+            });
+        });
+        
+        // Floating elements animation
+        gsap.to('.ws-float-1', {
+            x: 80,
+            y: -60,
+            rotation: 45,
+            duration: 20,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+        
+        gsap.to('.ws-float-2', {
+            x: -60,
+            y: 40,
+            rotation: -90,
+            duration: 25,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
+
+        
+        // Category filter functionality
+        const categories = document.querySelectorAll('.ws-category');
+        const products = document.querySelectorAll('.ws-product');
+        
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                // Update active state
+                categories.forEach(cat => cat.classList.remove('active'));
+                category.classList.add('active');
+                
+                // Filter products
+                const filter = category.textContent.toLowerCase().replace(' ', '-');
+                
+                products.forEach(product => {
+                    if (filter === 'all-products' || product.dataset.category === filter) {
+                        gsap.to(product, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.5,
+                            ease: 'power2.out'
+                        });
+                        product.style.display = 'block';
+                    } else {
+                        gsap.to(product, {
+                            opacity: 0,
+                            scale: 0.9,
+                            duration: 0.5,
+                            ease: 'power2.out',
+                            onComplete: () => {
+                                product.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
         });
         
         // Smooth scroll for CTA buttons
