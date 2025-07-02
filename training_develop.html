@@ -2472,7 +2472,7 @@
             animateCursor();
             
             // Cursor hover effects
-            document.querySelectorAll('a, button, .td-3d-card').forEach(el => {
+            document.querySelectorAll('a, button, .td-3d-card, ').forEach(el => {
                 el.addEventListener('mouseenter', () => {
                     cursor.classList.add('active');
                     cursorFollower.classList.add('active');
