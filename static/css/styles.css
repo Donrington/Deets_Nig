@@ -253,7 +253,9 @@
          
           
         }
-        .se
+        .secondary-button a{
+            color: var(--primary-dark)
+        }
         .cta-button {
             background: var(--primary-peach);
             color: var(--white);
