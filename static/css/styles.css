@@ -57,13 +57,13 @@
         }
 
         h1 {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(32px, 6vw, 100px);
             font-weight: 800;
         }
 
         h2 {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(28px, 5vw, 80px);
             font-weight: 700;
         }
@@ -166,7 +166,7 @@
             font-size: clamp(24px, 4vw, 32px);
             font-weight: 800;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-peach) 100%);
+            background: linear-gradient(135deg, var(--primary-dark) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -519,7 +519,7 @@
         }
 
         .hero-title {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(32px, 6vw, 100px);
             font-weight: 800;
             text-transform: uppercase;
@@ -1356,7 +1356,7 @@
 
         /* Revolutionary Title */
         .legacy-manifesto {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(32px, 6vw, 100px);
             font-weight: 800;
             line-height: 1.1;
@@ -1665,7 +1665,7 @@
         }
 
         .credentials-epic {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(40px, 6vw, 72px);
             font-weight: 700;
             color: var(--primary-dark);
@@ -1844,9 +1844,7 @@
                 padding: 40px 20px;
                 border-radius: 20px;
             }
-            .services-manifesto{
-                
-            }
+         
             .credential-medallion {
                 padding: 30px 20px;
             }
@@ -2515,7 +2513,7 @@
 
         /* Excellence Title */
         .excellence-manifesto {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
             font-size: clamp(32px, 6vw, 100px);
             font-weight: 800;
             text-transform: uppercase;
@@ -3274,7 +3272,7 @@
 
         /* Services Title */
         .services-manifesto {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
              font-size: clamp(32px, 6vw, 100px);
              text-transform: uppercase;
             font-weight: 800;
@@ -4035,7 +4033,7 @@
 
         /* Gallery Title */
         .gallery-manifesto {
-            font-family: var(--font-primary);
+            font-family: var(--font-secondary);
              font-size: clamp(32px, 6vw, 100px);
             font-weight: 800;
             line-height: 0.9;
@@ -4842,18 +4840,7 @@
             cursor: pointer;
         }
 
-        .logo-text {
-            font-family: var(--font-primary);
-            font-size: 48px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, var(--white) 0%, var(--primary-peach) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            transition: all 0.3s ease;
-        }
+       
 
         .logo-constellation:hover .logo-text {
             transform: scale(1.05);
