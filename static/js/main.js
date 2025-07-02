@@ -533,24 +533,7 @@ if (visualCards.length > 0 && !isMobile && !prefersReducedMotion) {
                 }
             });
 
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        gsap.to(window, {
-                            duration: 1,
-                            scrollTo: {
-                                y: target,
-                                offsetY: 80
-                            },
-                            ease: "power2.inOut"
-                        });
-                    }
-                });
-            });
-
+   
             // Refresh ScrollTrigger on resize
             window.addEventListener('resize', () => {
                 ScrollTrigger.refresh();
