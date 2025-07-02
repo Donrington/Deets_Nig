@@ -1,5 +1,4 @@
 
-
         // Footer Link Animations
         const footerLinks = document.querySelectorAll('.footer-link a');
         footerLinks.forEach(link => {
