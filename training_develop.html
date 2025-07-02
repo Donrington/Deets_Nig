@@ -2998,6 +2998,8 @@
         });
         
 
+
+        
         // Smooth scroll for CTA buttons
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -3016,53 +3018,28 @@
             });
         });
         
-        // Performance optimization
-        let ticking = false;
-        function optimizeScroll() {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    // Update animations
-                    ticking = false;
+        // Text scramble effect on hover
+        const serviceTitles = document.querySelectorAll('.ts-service-name');
+        
+        serviceTitles.forEach(title => {
+            const originalText = title.textContent;
+            
+            title.addEventListener('mouseenter', () => {
+                gsap.to(title, {
+                    scrambleText: {
+                        text: originalText,
+                        chars: "TRAINING",
+                        speed: 0.3
+                    },
+                    duration: 0.8
                 });
-                ticking = true;
-            }
-        }
-        
-        window.addEventListener('scroll', optimizeScroll, { passive: true });
-        
-        // Handle orientation changes
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                // Update device capability checks
-                const newHasHover = window.matchMedia('(hover: hover)').matches;
-                const newIsMobile = window.innerWidth <= 480;
-                
-                // Refresh ScrollTrigger on orientation change
-                ScrollTrigger.refresh();
-            }, 250);
+            });
         });
         
-          gsap.registerPlugin(ScrollTrigger, TextPlugin);
+       
         
-        // Set initial states
-        gsap.set('.ts-header', { opacity: 0, y: 30 });
-        gsap.set('.ts-service', { opacity: 0, y: 50 });
-        gsap.set('.ts-feature', { opacity: 0, x: -20 });
-        
-        // Header animation
-        gsap.to('.ts-header', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.ts-header',
-                start: 'top 80%',
-                once: true
-            }
-        });
+        window.addEventListener('scroll', updateAnimations, { passive: true });
+
          // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
         
@@ -3205,8 +3182,6 @@
         }
         
         createParticles();
-        
-
     </script>
 </body>
 </html>
