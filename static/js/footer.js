@@ -1,7 +1,6 @@
 
         // Footer Link Animations
-        const isMobile = window.innerWidth <= 768;
-
+        
         const footerLinks = document.querySelectorAll('.footer-link a');
         footerLinks.forEach(link => {
             if (!isMobile) {
