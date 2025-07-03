@@ -2953,57 +2953,7 @@
         
 
 
-        // 3D Mouse tracking for cards
-        const container3D = document.querySelector('.td-3d-container');
-        const cards3D = document.querySelectorAll('.td-3d-card');
-        
-        if (hasHover) {
-            container3D.addEventListener('mousemove', (e) => {
-                const rect = container3D.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const mouseX = e.clientX - centerX;
-                const mouseY = e.clientY - centerY;
-                
-                const rotateX = (mouseY / rect.height) * 20;
-                const rotateY = (mouseX / rect.width) * -20;
-                
-                cards3D.forEach((card, index) => {
-                    const depth = (index + 1) * 0.5;
-                    gsap.to(card, {
-                        rotateX: rotateX * depth,
-                        rotateY: rotateY * depth,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-            
-            container3D.addEventListener('mouseleave', () => {
-                cards3D.forEach(card => {
-                    gsap.to(card, {
-                        rotateX: 0,
-                        rotateY: 0,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-        }
-        
-        // Adjust animations for mobile
-        if (isMobile) {
-            // Simpler animations for mobile
-            gsap.to('.td-3d-card', {
-                y: -10,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                stagger: 0.5
-            });
-        }
+   
         
         // Text scramble effect on hover (desktop only)
         if (!isMobile && hasHover) {
