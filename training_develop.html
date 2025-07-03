@@ -1308,20 +1308,20 @@
         }
         
         .ts-card-1 {
-            transform: translateZ(0px) translateX(-20px);
+           
             z-index: 1;
                top: 20%;
             right: -8%;
         }
         
         .ts-card-2 {
-            transform: translateZ(40px) translateX(0px);
+            
             z-index: 2;
             background: linear-gradient(135deg, rgba(208, 150, 131, 0.1) 0%, rgba(115, 96, 91, 0.05) 100%);
         }
         
         .ts-card-3 {
-            transform: translateZ(80px) translateX(20px);
+            
             z-index: 3;
             background: var(--gradient-primary);
             color: var(--white);
@@ -1478,21 +1478,7 @@
         }
         
         /* Alternate Layout */
-        .ts-service:nth-child(even) .ts-service-info {
-            order: 2;
-        }
-        
-        .ts-service:nth-child(even) .ts-service-visual {
-            order: 1;
-        }
-        
-        .ts-service:nth-child(even) .ts-card-stack {
-            transform: rotateY(15deg) rotateX(5deg);
-        }
-        
-        .ts-service:nth-child(even):hover .ts-card-stack {
-            transform: rotateY(25deg) rotateX(10deg);
-        }
+    
         
         /* Mobile Responsive */
         @media (max-width: 1024px) {
