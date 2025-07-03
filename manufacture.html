@@ -474,15 +474,12 @@
             position: relative;
             width: 100%;
             height: 600px;
-            transform-style: preserve-3d;
-            transform: rotateY(-15deg) rotateX(5deg);
+    
+          
             transition: transform 0.6s ease;
         }
         
-        .td-3d-container:hover {
-            transform: rotateY(-25deg) rotateX(10deg);
-        }
-        
+     
         /* 3D Cards */
         .td-3d-card {
             position: absolute;
@@ -527,24 +524,24 @@
             opacity: 1;
         }
         
-        .td-card-1 {
-            top: 10%;
+          .td-card-1 {
+            top: 5%;
             left: -10%;
-            transform: translateZ(100px) rotateY(15deg);
+            
             z-index: 3;
         }
         
         .td-card-2 {
-            top: 30%;
+            top: 20%;
             right: -20%;
-            transform: translateZ(50px) rotateY(-10deg);
+            
             z-index: 2;
         }
         
         .td-card-3 {
             bottom: 10%;
-            left: 15%;
-            transform: translateZ(150px) rotateY(5deg);
+            left: 30%;
+            
             z-index: 4;
         }
         
@@ -4286,15 +4283,7 @@
                     ease: 'none'
                 });
                 
-                // 3D container subtle movement
-                gsap.to('.td-3d-container', {
-                    rotateY: -20,
-                    rotateX: 8,
-                    duration: 4,
-                    repeat: -1,
-                    yoyo: true,
-                    ease: 'sine.inOut'
-                });
+            
                 
                 // Parallax layers
                 gsap.to('.td-layer-1', {
@@ -4344,77 +4333,13 @@
                         duration: 0
                     });
                     
-                    // 3D cards depth effect
-                    gsap.to('.td-card-1', {
-                        z: 100 + (50 * progress),
-                        duration: 0
-                    });
-                    
-                    gsap.to('.td-card-2', {
-                        z: 50 + (30 * progress),
-                        duration: 0
-                    });
-                    
-                    gsap.to('.td-card-3', {
-                        z: 150 + (70 * progress),
-                        duration: 0
-                    });
+       
                 }
             });
         }
         
-        // 3D Mouse tracking for cards
-        const container3D = document.querySelector('.td-3d-container');
-        const cards3D = document.querySelectorAll('.td-3d-card');
-        
-        if (hasHover) {
-            container3D.addEventListener('mousemove', (e) => {
-                const rect = container3D.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                const mouseX = e.clientX - centerX;
-                const mouseY = e.clientY - centerY;
-                
-                const rotateX = (mouseY / rect.height) * 20;
-                const rotateY = (mouseX / rect.width) * -20;
-                
-                cards3D.forEach((card, index) => {
-                    const depth = (index + 1) * 0.5;
-                    gsap.to(card, {
-                        rotateX: rotateX * depth,
-                        rotateY: rotateY * depth,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-            
-            container3D.addEventListener('mouseleave', () => {
-                cards3D.forEach(card => {
-                    gsap.to(card, {
-                        rotateX: 0,
-                        rotateY: 0,
-                        duration: 0.5,
-                        ease: 'power2.out'
-                    });
-                });
-            });
-        }
-        
-        // Adjust animations for mobile
-        if (isMobile) {
-            // Simpler animations for mobile
-            gsap.to('.td-3d-card', {
-                y: -10,
-                duration: 3,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut',
-                stagger: 0.5
-            });
-        }
-        
+   
+ 
         // Text scramble effect on hover (desktop only)
         if (!isMobile && hasHover) {
             document.querySelectorAll('.td-card-title').forEach(title => {
