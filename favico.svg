@@ -1,0 +1,31 @@
+       <div class="logo-display">
+                    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="abstractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(20, 20)" class="interactive-elements">
+                            <!-- Main hexagon structure -->
+                            <polygon points="40,10 55,20 55,35 40,45 25,35 25,20" fill="url(#abstractGrad)" stroke="none"/>
+                            <polygon points="20,30 30,37 30,47 20,54 10,47 10,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="60,30 70,37 70,47 60,54 50,47 50,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="40,50 50,57 50,67 40,74 30,67 30,57" fill="url(#abstractGrad)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="25" y1="35" x2="30" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="55" y1="35" x2="50" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="40" y1="45" x2="40" y2="50" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="40" cy="27" r="4" fill="#330000" opacity="0.9"/>
+                            <circle cx="20" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="60" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="40" cy="62" r="3" fill="#330000" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
