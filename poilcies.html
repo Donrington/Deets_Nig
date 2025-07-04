@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Policies - DEETS Consultancy Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Rosario:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #330000;
+            --primary-taupe: #73605B;
+            --primary-peach: #D09683;
+            --white: #FFFFFF;
+            --black: #000000;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(51, 0, 0, 0.2);
+            --pristine-white: #FEFEFE;
+            --soft-gray: #F8F9FA;
+            --warm-cream: #FBF8F6;
+            --shadow-elegant: rgba(208, 150, 131, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-taupe) 100%);
+            --gradient-hero: linear-gradient(180deg, var(--warm-cream) 0%, var(--primary-taupe) 50%, var(--primary-dark) 100%);
+            
+            /* Typography */
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Epilogue', sans-serif;
+            --font-accent: 'Libre Baskerville', serif;
+            --font-body: 'Rosario', sans-serif;
+            
+            /* Spacing */
+            --section-padding: clamp(80px, 12vw, 160px);
+            --container-padding: clamp(20px, 5vw, 80px);
+            --mobile-breakpoint: 768px;
+            --tablet-breakpoint: 1024px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--warm-cream);
+            min-height: 100vh;
+            color: var(--primary-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, var(--primary-peach) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--primary-taupe) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, var(--primary-dark) 0%, transparent 50%);
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .policies-container {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 0 40px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-title {
+            font-family: var(--font-primary);
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-subtitle {
+            font-family: var(--font-secondary);
+            font-size: 14px;
+            color: var(--primary-taupe);
+            opacity: 0.8;
+        }
+
+        .sidebar-nav {
+            padding: 40px 0;
+        }
+
+        .nav-item {
+            display: block;
+            padding: 20px 40px;
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--primary-dark);
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 0;
+            background: var(--gradient-primary);
+            transition: height 0.3s ease;
+        }
+
+        .nav-item:hover {
+            background: rgba(208, 150, 131, 0.1);
+            padding-left: 50px;
+        }
+
+        .nav-item.active {
+            background: rgba(208, 150, 131, 0.15);
+            color: var(--primary-peach);
+            font-weight: 600;
+        }
+
+        .nav-item.active::before {
+            height: 40px;
+        }
+
+        .nav-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            vertical-align: middle;
+            opacity: 0.7;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 60px;
+            overflow-y: auto;
+        }
+
+        .policy-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .policy-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .policy-header {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .policy-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .policy-title {
+            font-family: var(--font-primary);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: var(--gradient-secondary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .policy-date {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            color: var(--primary-taupe);
+            opacity: 0.8;
+        }
+
+        .policy-content {
+            max-width: 800px;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px var(--shadow-elegant);
+        }
+
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-primary);
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 16px;
+        }
+
+        .section-content {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--primary-dark);
+            opacity: 0.9;
+        }
+
+        .section-content p {
+            margin-bottom: 16px;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 20px 0;
+        }
+
+        .section-content li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+
+        .section-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-peach);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: rgba(208, 150, 131, 0.1);
+            border-left: 4px solid var(--primary-peach);
+            padding: 20px 30px;
+            margin: 30px 0;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .contact-info {
+            background: var(--gradient-primary);
+            color: var(--white);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            font-family: var(--font-secondary);
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            border-bottom-color: var(--white);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px var(--shadow-elegant);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--white);
+            margin: 5px auto;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .mobile-toggle {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                z-index: 999;
+                box-shadow: 10px 0 30px var(--shadow-elegant);
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content {
+                padding: 80px 40px 40px;
+            }
+
+            .policies-container {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 80px 20px 20px;
+            }
+
+            .content-section {
+                padding: 25px;
+            }
+
+            .policy-title {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .section-content {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-toggle" id="mobileToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="policies-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">Legal Center</h2>
+                <p class="sidebar-subtitle">DEETS NIG Ltd.</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a class="nav-item active" data-policy="privacy">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                    Privacy Policy
+                </a>
+                <a class="nav-item" data-policy="terms">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                    </svg>
+                    Terms of Service
+                </a>
+                <a class="nav-item" data-policy="cookie">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21.95 10.99c-1.79-.03-3.7-1.95-2.68-4.22-2.98 1.08-5.77-1.03-5.19-4.11-3.27-.1-4.14-3.08-1.76-4.63C9.91.99 8.38 3.05 8.15 5.18c-.21 1.97 1.32 3.75 3.3 3.75h.01c2.17 0 4.47 1.85 4.5 4.58.03 2.57-1.68 4.5-4.48 4.5-2.76 0-5-2.24-5-5 0-.66.13-1.29.36-1.87-3.09 1.42-5.2 4.51-5.2 8.09 0 4.95 4.01 8.96 8.96 8.96s8.96-4.01 8.96-8.96c0-1.67-.46-3.24-1.26-4.58.44.04.88.06 1.32.06.45 0 .88-.02 1.33-.06z"/>
+                    </svg>
+                    Cookie Policy
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Privacy Policy -->
+            <section class="policy-section active" id="privacy">
+                <div class="policy-header">
+                    <h1 class="policy-title">Privacy Policy</h1>
+                    <p class="policy-date">Last updated: July 2025</p>
+                </div>
+                
+                <div class="policy-content">
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">1</span>
+                            Introduction
+                        </h2>
+                        <div class="section-content">
+                            <p>Welcome to DEETS Consultancy Services Ltd. We are committed to protecting your personal information and your right to privacy. As a leading provider of corporate management training and manufacturing solutions in Nigeria, we understand the importance of safeguarding the data you entrust to us.</p>
+                            <p>This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you engage with our services, visit our facilities at Block A Plot 1 Gateway Industrial Estate, or interact with our digital platforms.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">2</span>
+                            Information We Collect
+                        </h2>
+                        <div class="section-content">
+                            <p>We collect information you provide directly to us, including:</p>
+                            <ul>
+                                <li>Personal identification information (name, email address, phone number)</li>
+                                <li>Professional information (company name, job title, industry)</li>
+                                <li>Training preferences and course enrollment data</li>
+                                <li>Business inquiries for our PP Woven Sack manufacturing services</li>
+                                <li>Payment and billing information for our services</li>
+                                <li>Communication preferences and feedback</li>
+                            </ul>
+                            <div class="highlight-box">
+                                We collect only the information necessary to provide our training services and manufacturing solutions effectively.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">3</span>
+                            How We Use Your Information
+                        </h2>
+                        <div class="section-content">
+                            <p>DEETS Consultancy Services uses the collected information for various purposes:</p>
+                            <ul>
+                                <li>To deliver corporate management training programs</li>
+                                <li>To process orders for PP Woven Sack products</li>
+                                <li>To communicate about upcoming training sessions and workshops</li>
+                                <li>To improve our contract management and negotiation skill courses</li>
+                                <li>To respond to your inquiries and provide customer support</li>
+                                <li>To send updates about our services and industry insights</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">4</span>
+                            Data Protection
+                        </h2>
+                        <div class="section-content">
+                            <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized or unlawful processing, accidental loss, destruction, or damage. Our data protection measures include:</p>
+                            <ul>
+                                <li>Secure storage of physical training records at our Ibafo facility</li>
+                                <li>Encrypted digital communications</li>
+                                <li>Limited access to personal information by authorized personnel only</li>
+                                <li>Regular security assessments and updates</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">5</span>
+                            Your Rights
+                        </h2>
+                        <div class="section-content">
+                            <p>Under Nigerian data protection regulations, you have the right to:</p>
+                            <ul>
+                                <li>Access your personal data</li>
+                                <li>Correct inaccurate or incomplete data</li>
+                                <li>Request deletion of your data</li>
+                                <li>Object to processing of your data</li>
+                                <li>Withdraw consent at any time</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Terms of Service -->
+            <section class="policy-section" id="terms">
+                <div class="policy-header">
+                    <h1 class="policy-title">Terms of Service</h1>
+                    <p class="policy-date">Last updated: July 2025</p>
+                </div>
+                
+                <div class="policy-content">
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">1</span>
+                            Agreement to Terms
+                        </h2>
+                        <div class="section-content">
+                            <p>By accessing or using services provided by DEETS Consultancy Services Ltd., including our corporate management training programs and PP Woven Sack manufacturing, you agree to be bound by these Terms of Service.</p>
+                            <p>These terms apply to all visitors, users, and others who access or use our services, whether at our facility in Ogun State or through any digital platforms we may operate.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">2</span>
+                            Our Services
+                        </h2>
+                        <div class="section-content">
+                            <p>DEETS Consultancy Services Ltd. provides:</p>
+                            <ul>
+                                <li>Corporate Management Training including contract management workshops, negotiation skills courses, and supply chain management</li>
+                                <li>Manufacturing of PP/HDPE Woven Sacks for various industries</li>
+                                <li>Business consulting services led by Dr. Samuel Odusina</li>
+                                <li>Customized training solutions for organizations</li>
+                            </ul>
+                            <div class="highlight-box">
+                                All services are delivered with our commitment to quality and professional excellence, backed by over 25 years of experience in the Oil and Gas sector.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">3</span>
+                            Training Programs Terms
+                        </h2>
+                        <div class="section-content">
+                            <p>For our corporate training services:</p>
+                            <ul>
+                                <li>Registration must be completed before the training commencement date</li>
+                                <li>Participants must attend sessions as scheduled</li>
+                                <li>Training materials are proprietary and may not be reproduced without permission</li>
+                                <li>Certificates are issued upon successful completion of courses</li>
+                                <li>Cancellations must be made at least 48 hours before the training date</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">4</span>
+                            Manufacturing Services Terms
+                        </h2>
+                        <div class="section-content">
+                            <p>For PP Woven Sack orders:</p>
+                            <ul>
+                                <li>Minimum order quantities apply as specified in quotations</li>
+                                <li>Delivery times are subject to production schedules</li>
+                                <li>Custom specifications must be approved before production</li>
+                                <li>Payment terms are as agreed in the purchase order</li>
+                                <li>Quality inspections are conducted before dispatch</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">5</span>
+                            Intellectual Property
+                        </h2>
+                        <div class="section-content">
+                            <p>All content, training materials, methodologies, and manufacturing processes are the intellectual property of DEETS Consultancy Services Ltd. Users may not:</p>
+                            <ul>
+                                <li>Copy or distribute training materials without authorization</li>
+                                <li>Use our methodologies for commercial purposes without license</li>
+                                <li>Reverse engineer our manufacturing processes</li>
+                                <li>Misrepresent association with DEETS Consultancy Services</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">6</span>
+                            Limitation of Liability
+                        </h2>
+                        <div class="section-content">
+                            <p>DEETS Consultancy Services Ltd. shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services. Our total liability shall not exceed the amount paid for the specific service in question.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cookie Policy -->
+            <section class="policy-section" id="cookie">
+                <div class="policy-header">
+                    <h1 class="policy-title">Cookie Policy</h1>
+                    <p class="policy-date">Last updated: July 2025</p>
+                </div>
+                
+                <div class="policy-content">
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">1</span>
+                            What Are Cookies
+                        </h2>
+                        <div class="section-content">
+                            <p>Cookies are small text files that are placed on your computer or mobile device when you visit our website or digital platforms. They help us provide you with a better experience by remembering your preferences and understanding how you use our services.</p>
+                            <p>At DEETS Consultancy Services Ltd., we use cookies responsibly to enhance your interaction with our training programs and manufacturing services.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">2</span>
+                            How We Use Cookies
+                        </h2>
+                        <div class="section-content">
+                            <p>We use cookies for the following purposes:</p>
+                            <ul>
+                                <li>To remember your training course preferences and registrations</li>
+                                <li>To analyze how visitors use our digital platforms</li>
+                                <li>To improve our service delivery and user experience</li>
+                                <li>To personalize content based on your industry and interests</li>
+                                <li>To facilitate secure access to client portals</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">3</span>
+                            Types of Cookies We Use
+                        </h2>
+                        <div class="section-content">
+                            <p><strong>Essential Cookies:</strong> Required for basic site functionality and secure access to our services.</p>
+                            <p><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our platforms, allowing us to improve our training delivery.</p>
+                            <p><strong>Preference Cookies:</strong> Remember your settings and preferences for future visits.</p>
+                            <p><strong>Marketing Cookies:</strong> Used to deliver relevant information about our training programs and manufacturing services.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">4</span>
+                            Managing Cookies
+                        </h2>
+                        <div class="section-content">
+                            <p>You have the right to choose whether to accept or reject cookies. You can:</p>
+                            <ul>
+                                <li>Set your browser to refuse all or some browser cookies</li>
+                                <li>Alert you when websites set or access cookies</li>
+                                <li>Delete cookies that have already been set</li>
+                            </ul>
+                            <div class="highlight-box">
+                                Please note that disabling cookies may affect your ability to access certain features of our digital services, including training portals and order tracking systems.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2 class="section-title">
+                            <span class="section-number">5</span>
+                            Third-Party Cookies
+                        </h2>
+                        <div class="section-content">
+                            <p>We may use third-party services that place cookies on your device, including:</p>
+                            <ul>
+                                <li>Analytics providers to help us improve our services</li>
+                                <li>Training platform providers for course delivery</li>
+                                <li>Payment processors for secure transactions</li>
+                            </ul>
+                            <p>These third parties have their own privacy policies addressing how they use such information.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Information Box -->
+            <div class="contact-info">
+                <h3>Questions About Our Policies?</h3>
+                <p>Contact Dr. Samuel Odusina and our team:</p>
+                <p>📍 Block A Plot 1 Gateway Industrial Estate, Ibafo, Ogun State</p>
+                <p>📞 <a href="tel:+2348060780707">+234 806 078 0707</a></p>
+                <p>✉️ Email: info@deetsconsultancy.com</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        });
+
+        // Navigation functionality
+        const navItems = document.querySelectorAll('.nav-item');
+        const policySections = document.querySelectorAll('.policy-section');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all items and sections
+                navItems.forEach(nav => nav.classList.remove('active'));
+                policySections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked item
+                item.classList.add('active');
+                
+                // Show corresponding section
+                const policyType = item.getAttribute('data-policy');
+                const targetSection = document.getElementById(policyType);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                
+                // Close mobile menu if open
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('active');
+                    mobileToggle.classList.remove('active');
+                }
+                
+                // Scroll to top of content
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Smooth scroll animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
