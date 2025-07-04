@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEETS NIG. Creative Logo System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #330000;
+            --primary-taupe: #73605B;
+            --primary-peach: #D09683;
+            --white: #FFFFFF;
+            --black: #000000;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(51, 0, 0, 0.2);
+            --pristine-white: #FEFEFE;
+            --soft-gray: #F8F9FA;
+            --warm-cream: #FBF8F6;
+            --shadow-elegant: rgba(208, 150, 131, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-taupe) 100%);
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Epilogue', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            color: var(--primary-dark);
+            min-height: 100vh;
+        }
+
+        .logo-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .showcase-header h1 {
+            font-family: var(--font-primary);
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .showcase-header p {
+            font-size: 1.2rem;
+            color: var(--primary-taupe);
+            font-weight: 500;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(208, 150, 131, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .logo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-card.dark {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .logo-card.dark::before {
+            background: var(--gradient-primary);
+        }
+
+        .logo-card.light-bg {
+            background: var(--warm-cream);
+        }
+
+        .logo-card.gradient-bg {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .logo-card h3 {
+            font-family: var(--font-primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .logo-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px;
+            margin-bottom: 1.5rem;
+        }
+
+        .download-info {
+            font-size: 0.95rem;
+            color: var(--primary-taupe);
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(208, 150, 131, 0.1);
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .dark .download-info {
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .gradient-bg .download-info {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .concept-explanation {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .concept-explanation h2 {
+            font-family: var(--font-primary);
+            color: var(--primary-dark);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .concept-item {
+            padding: 2rem;
+            background: var(--warm-cream);
+            border-radius: 15px;
+            border-left: 4px solid var(--primary-peach);
+        }
+
+        .concept-item h4 {
+            font-family: var(--font-primary);
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .concept-item p {
+            color: var(--primary-taupe);
+            line-height: 1.6;
+        }
+
+        .animated-logo {
+            animation: logoFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .interactive-elements {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .color-swatch {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-radius: 15px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-swatch.primary-dark { background: var(--primary-dark); }
+        .color-swatch.primary-taupe { background: var(--primary-taupe); }
+        .color-swatch.primary-peach { background: var(--primary-peach); }
+        .color-swatch.white { background: var(--white); color: var(--primary-dark); border: 2px solid #ddd; }
+        .color-swatch.gradient { background: var(--gradient-primary); }
+    </style>
+</head>
+<body>
+    <div class="logo-showcase">
+        <div class="showcase-header">
+            <h1>DEETS NIG. Creative Logo System</h1>
+            <p>Modern, Abstract & Innovative Design Approach</p>
+        </div>
+
+        <div class="concept-explanation">
+            <h2>Creative Design Concept</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: var(--primary-taupe); margin-bottom: 2rem;">
+                This logo represents the intersection of strategic thinking and precision manufacturing through interconnected hexagonal modules that form a dynamic, flowing network.
+            </p>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h4>🔗 Interconnected Hexagons</h4>
+                    <p>Represents both the precision of manufacturing processes and the strategic connections in consulting networks.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>🌊 Flowing Design</h4>
+                    <p>Suggests transformation, growth, and the dynamic nature of both consulting solutions and manufacturing innovation.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>🎯 Modular System</h4>
+                    <p>Can be broken down into components, representing both manufacturing assembly and strategic building blocks.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>✨ Gradient Depth</h4>
+                    <p>Creates visual depth and sophistication, suggesting layers of expertise and multi-dimensional solutions.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="logo-grid">
+            <!-- Primary Creative Logo - Light Background -->
+            <div class="logo-card light-bg">
+                <h3>Primary Creative Logo - Light</h3>
+                <div class="logo-display">
+                    <svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" class="animated-logo">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#73605B;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#330000;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(15, 15)">
+                            <!-- Main hexagon structure -->
+                            <polygon points="35,10 50,20 50,35 35,45 20,35 20,20" fill="url(#grad1)" stroke="none"/>
+                            <polygon points="15,30 25,37 25,47 15,54 5,47 5,37" fill="url(#grad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="55,30 65,37 65,47 55,54 45,47 45,37" fill="url(#grad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="35,50 45,57 45,67 35,74 25,67 25,57" fill="url(#grad1)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="20" y1="35" x2="25" y2="37" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            <line x1="50" y1="35" x2="45" y2="37" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            <line x1="35" y1="45" x2="35" y2="50" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="35" cy="27" r="4" fill="#FFFFFF" opacity="0.9"/>
+                            <circle cx="15" cy="42" r="3" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="55" cy="42" r="3" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="35" cy="62" r="3" fill="#FFFFFF" opacity="0.5"/>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(95, 25)">
+                            <text x="0" y="0" font-family="Syne, sans-serif" font-size="32" font-weight="800" fill="#330000" letter-spacing="-1px">DEETS</text>
+                            <text x="0" y="25" font-family="Epilogue, sans-serif" font-size="16" font-weight="600" fill="#73605B" letter-spacing="2px">NIG.</text>
+                            <text x="0" y="42" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B" letter-spacing="1px">STRATEGIC CONSULTING • PRECISION MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Modern business applications, digital platforms, progressive brand materials</div>
+            </div>
+
+            <!-- Primary Creative Logo - Dark Background -->
+            <div class="logo-card dark">
+                <h3>Primary Creative Logo - Dark</h3>
+                <div class="logo-display">
+                    <svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" class="animated-logo">
+                        <defs>
+                            <linearGradient id="grad1-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="grad2-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(15, 15)">
+                            <!-- Main hexagon structure -->
+                            <polygon points="35,10 50,20 50,35 35,45 20,35 20,20" fill="url(#grad1-dark)" stroke="none"/>
+                            <polygon points="15,30 25,37 25,47 15,54 5,47 5,37" fill="url(#grad2-dark)" stroke="none" opacity="0.8"/>
+                            <polygon points="55,30 65,37 65,47 55,54 45,47 45,37" fill="url(#grad2-dark)" stroke="none" opacity="0.8"/>
+                            <polygon points="35,50 45,57 45,67 35,74 25,67 25,57" fill="url(#grad1-dark)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="20" y1="35" x2="25" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="50" y1="35" x2="45" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="35" y1="45" x2="35" y2="50" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="35" cy="27" r="4" fill="#330000" opacity="0.9"/>
+                            <circle cx="15" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="55" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="35" cy="62" r="3" fill="#330000" opacity="0.5"/>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(95, 25)">
+                            <text x="0" y="0" font-family="Syne, sans-serif" font-size="32" font-weight="800" fill="#FFFFFF" letter-spacing="-1px">DEETS</text>
+                            <text x="0" y="25" font-family="Epilogue, sans-serif" font-size="16" font-weight="600" fill="#D09683" letter-spacing="2px">NIG.</text>
+                            <text x="0" y="42" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#D09683" letter-spacing="1px">STRATEGIC CONSULTING • PRECISION MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Dark theme applications, premium presentations, sophisticated digital use</div>
+            </div>
+
+            <!-- Circular Badge Version -->
+            <div class="logo-card gradient-bg">
+                <h3>Circular Badge - Gradient</h3>
+                <div class="logo-display">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="animated-logo">
+                        <defs>
+                            <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#73605B;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="innerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Outer circle -->
+                        <circle cx="100" cy="100" r="85" fill="url(#circleGrad)"/>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(60, 50)">
+                            <!-- Main hexagon structure -->
+                            <polygon points="40,15 55,25 55,40 40,50 25,40 25,25" fill="url(#innerGrad)" stroke="none"/>
+                            <polygon points="20,35 30,42 30,52 20,59 10,52 10,42" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="60,35 70,42 70,52 60,59 50,52 50,42" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="40,55 50,62 50,72 40,79 30,72 30,62" fill="#FFFFFF" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="25" y1="40" x2="30" y2="42" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="55" y1="40" x2="50" y2="42" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="40" y1="50" x2="40" y2="55" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="40" cy="32" r="4" fill="#330000" opacity="0.9"/>
+                            <circle cx="20" cy="47" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="60" cy="47" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="40" cy="67" r="3" fill="#330000" opacity="0.5"/>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(100, 130)">
+                            <text x="0" y="0" text-anchor="middle" font-family="Syne, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-1px">DEETS</text>
+                            <text x="0" y="20" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="14" font-weight="600" fill="#FFFFFF" letter-spacing="2px">NIG.</text>
+                            <text x="0" y="35" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="8" font-weight="500" fill="#FFFFFF" letter-spacing="1px">STRATEGIC • PRECISION</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: App icons, social media avatars, premium badges, modern applications</div>
+            </div>
+
+            <!-- Symbol Only - Animated -->
+            <div class="logo-card light-bg">
+                <h3>Symbol Only - Interactive</h3>
+                <div class="logo-display">
+                    <svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="symbolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#73605B;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="symbolGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#330000;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(25, 25)" class="interactive-elements">
+                            <!-- Main hexagon structure -->
+                            <polygon points="50,20 65,30 65,45 50,55 35,45 35,30" fill="url(#symbolGrad)" stroke="none"/>
+                            <polygon points="25,40 35,47 35,57 25,64 15,57 15,47" fill="url(#symbolGrad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="75,40 85,47 85,57 75,64 65,57 65,47" fill="url(#symbolGrad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="50,70 60,77 60,87 50,94 40,87 40,77" fill="url(#symbolGrad)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="35" y1="45" x2="35" y2="47" stroke="#73605B" stroke-width="4" opacity="0.7"/>
+                            <line x1="65" y1="45" x2="65" y2="47" stroke="#73605B" stroke-width="4" opacity="0.7"/>
+                            <line x1="50" y1="55" x2="50" y2="70" stroke="#73605B" stroke-width="4" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="50" cy="37" r="5" fill="#FFFFFF" opacity="0.9"/>
+                            <circle cx="25" cy="52" r="4" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="75" cy="52" r="4" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="50" cy="82" r="4" fill="#FFFFFF" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Favicons, app icons, animated logos, interactive elements</div>
+            </div>
+
+            <!-- Vertical Creative Layout -->
+            <div class="logo-card">
+                <h3>Vertical Creative Layout</h3>
+                <div class="logo-display">
+                    <svg width="160" height="220" viewBox="0 0 160 220" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="vertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#73605B;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="vertGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#330000;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(40, 20)">
+                            <!-- Main hexagon structure -->
+                            <polygon points="40,15 55,25 55,40 40,50 25,40 25,25" fill="url(#vertGrad)" stroke="none"/>
+                            <polygon points="20,35 30,42 30,52 20,59 10,52 10,42" fill="url(#vertGrad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="60,35 70,42 70,52 60,59 50,52 50,42" fill="url(#vertGrad2)" stroke="none" opacity="0.8"/>
+                            <polygon points="40,55 50,62 50,72 40,79 30,72 30,62" fill="url(#vertGrad)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="25" y1="40" x2="30" y2="42" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            <line x1="55" y1="40" x2="50" y2="42" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            <line x1="40" y1="50" x2="40" y2="55" stroke="#73605B" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="40" cy="32" r="4" fill="#FFFFFF" opacity="0.9"/>
+                            <circle cx="20" cy="47" r="3" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="60" cy="47" r="3" fill="#FFFFFF" opacity="0.7"/>
+                            <circle cx="40" cy="67" r="3" fill="#FFFFFF" opacity="0.5"/>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(80, 130)">
+                            <text x="0" y="0" text-anchor="middle" font-family="Syne, sans-serif" font-size="28" font-weight="800" fill="#330000" letter-spacing="-1px">DEETS</text>
+                            <text x="0" y="25" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="600" fill="#73605B" letter-spacing="2px">NIG.</text>
+                            <text x="0" y="45" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B" letter-spacing="1px">STRATEGIC</text>
+                            <text x="0" y="58" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B" letter-spacing="1px">CONSULTING</text>
+                            <text x="0" y="75" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B" letter-spacing="1px">PRECISION</text>
+                            <text x="0" y="88" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B" letter-spacing="1px">MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Vertical banners, narrow layouts, business cards, letterheads</div>
+            </div>
+
+            <!-- Minimalist Monochrome -->
+            <div class="logo-card">
+                <h3>Minimalist Monochrome</h3>
+                <div class="logo-display">
+                    <svg width="260" height="90" viewBox="0 0 260 90" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(15, 20)">
+                            <!-- Main hexagon structure -->
+                            <polygon points="35,10 50,20 50,35 35,45 20,35 20,20" fill="#000000" stroke="none"/>
+                            <polygon points="15,30 25,37 25,47 15,54 5,47 5,37" fill="#666666" stroke="none"/>
+                            <polygon points="55,30 65,37 65,47 55,54 45,47 45,37" fill="#666666" stroke="none"/>
+                            <polygon points="35,50 45,57 45,67 35,74 25,67 25,57" fill="#999999" stroke="none"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="20" y1="35" x2="25" y2="37" stroke="#000000" stroke-width="2"/>
+                            <line x1="50" y1="35" x2="45" y2="37" stroke="#000000" stroke-width="2"/>
+                            <line x1="35" y1="45" x2="35" y2="50" stroke="#000000" stroke-width="2"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="35" cy="27" r="3" fill="#FFFFFF"/>
+                            <circle cx="15" cy="42" r="2" fill="#FFFFFF"/>
+                            <circle cx="55" cy="42" r="2" fill="#FFFFFF"/>
+                            <circle cx="35" cy="62" r="2" fill="#FFFFFF"/>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(90, 25)">
+                            <text x="0" y="0" font-family="Syne, sans-serif" font-size="28" font-weight="800" fill="#000000" letter-spacing="-1px">DEETS</text>
+                            <text x="0" y="22" font-family="Epilogue, sans-serif" font-size="14" font-weight="600" fill="#666666" letter-spacing="2px">NIG.</text>
+                            <text x="0" y="37" font-family="Epilogue, sans-serif" font-size="8" font-weight="500" fill="#666666" letter-spacing="1px">STRATEGIC CONSULTING • PRECISION MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Print applications, newspapers, cost-effective materials, fax documents</div>
+            </div>
+
+            <!-- Abstract Symbol Only -->
+            <div class="logo-card dark">
+                <h3>Abstract Symbol - Dark</h3>
+                <div class="logo-display">
+                    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="abstractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Creative Hexagonal Network Symbol -->
+                        <g transform="translate(20, 20)" class="interactive-elements">
+                            <!-- Main hexagon structure -->
+                            <polygon points="40,10 55,20 55,35 40,45 25,35 25,20" fill="url(#abstractGrad)" stroke="none"/>
+                            <polygon points="20,30 30,37 30,47 20,54 10,47 10,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="60,30 70,37 70,47 60,54 50,47 50,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
+                            <polygon points="40,50 50,57 50,67 40,74 30,67 30,57" fill="url(#abstractGrad)" stroke="none" opacity="0.6"/>
+                            
+                            <!-- Connecting elements -->
+                            <line x1="25" y1="35" x2="30" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="55" y1="35" x2="50" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            <line x1="40" y1="45" x2="40" y2="50" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
+                            
+                            <!-- Central elements -->
+                            <circle cx="40" cy="27" r="4" fill="#330000" opacity="0.9"/>
+                            <circle cx="20" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="60" cy="42" r="3" fill="#330000" opacity="0.7"/>
+                            <circle cx="40" cy="62" r="3" fill="#330000" opacity="0.5"/>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Perfect for: Modern favicons, abstract applications, creative digital use</div>
+            </div>
+        </div>
+
+        <div class="concept-explanation">
+            <h2>Usage Guidelines & Brand Colors</h2>
+            <div class="concept-grid">
+                <div class="concept-item">
+                    <h4>🎨 Creative Applications</h4>
+                    <p>Use the creative logo for modern, innovative brand touchpoints. Perfect for tech-forward communications and progressive business materials.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>📱 Digital First</h4>
+                    <p>Optimized for digital platforms, social media, and interactive applications. Scales beautifully across all screen sizes.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>🔄 Modular System</h4>
+                    <p>The hexagonal elements can be used separately as graphic elements, patterns, or in animated sequences for dynamic brand expression.</p>
+                </div>
+                <div class="concept-item">
+                    <h4>✨ Premium Feel</h4>
+                    <p>Gradient applications and sophisticated geometry create a premium, high-end brand perception suitable for executive-level communications.</p>
+                </div>
+            </div>
+
+            <h2>Brand Colors</h2>
+            <div class="color-palette">
+                <div class="color-swatch primary-dark">
+                    Primary Dark<br>#330000
+                </div>
+                <div class="color-swatch primary-taupe">
+                    Primary Taupe<br>#73605B
+                </div>
+                <div class="color-swatch primary-peach">
+                    Primary Peach<br>#D09683
+                </div>
+                <div class="color-swatch white">
+                    White<br>#FFFFFF
+                </div>
+                <div class="color-swatch gradient">
+                    Gradient<br>Primary Mix
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

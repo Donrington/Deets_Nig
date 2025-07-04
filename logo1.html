@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEETS NIG. Logo System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #330000;
+            --primary-taupe: #73605B;
+            --primary-peach: #D09683;
+            --white: #FFFFFF;
+            --black: #000000;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --glass-dark: rgba(51, 0, 0, 0.2);
+            --pristine-white: #FEFEFE;
+            --soft-gray: #F8F9FA;
+            --warm-cream: #FBF8F6;
+            --shadow-elegant: rgba(208, 150, 131, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-taupe) 100%);
+            --font-primary: 'Syne', sans-serif;
+            --font-secondary: 'Epilogue', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: #f0f0f0;
+            padding: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .logo-showcase {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .showcase-header h1 {
+            font-family: var(--font-primary);
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-header p {
+            font-size: 1.1rem;
+            color: var(--primary-taupe);
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(208, 150, 131, 0.2);
+        }
+
+        .logo-card.dark {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .logo-card.light-bg {
+            background: var(--warm-cream);
+        }
+
+        .logo-card h3 {
+            font-family: var(--font-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .logo-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 150px;
+            margin-bottom: 1rem;
+        }
+
+        .download-info {
+            font-size: 0.9rem;
+            color: var(--primary-taupe);
+            margin-top: 1rem;
+        }
+
+        .dark .download-info {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .usage-guide {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .usage-guide h2 {
+            font-family: var(--font-primary);
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .usage-guide ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .usage-guide li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(208, 150, 131, 0.2);
+            color: var(--primary-taupe);
+        }
+
+        .usage-guide li:last-child {
+            border-bottom: none;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .color-swatch {
+            text-align: center;
+            padding: 1rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .color-swatch.primary-dark { background: var(--primary-dark); }
+        .color-swatch.primary-taupe { background: var(--primary-taupe); }
+        .color-swatch.primary-peach { background: var(--primary-peach); }
+        .color-swatch.white { background: var(--white); color: var(--primary-dark); border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="logo-showcase">
+        <div class="showcase-header">
+            <h1>DEETS NIG. Logo System</h1>
+            <p>Professional logo variations for consulting and manufacturing excellence</p>
+        </div>
+
+        <div class="logo-grid">
+            <!-- Primary Logo - Light Background -->
+            <div class="logo-card light-bg">
+                <h3>Primary Logo - Light Background</h3>
+                <div class="logo-display">
+                    <svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(10, 10)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#330000" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#330000" stroke-width="2" fill="#330000">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#330000">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="white"/>
+                                <circle cx="8" cy="6" r="1" fill="white"/>
+                                <circle cx="11" cy="7" r="1" fill="white"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="white" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(75, 20)">
+                            <text x="0" y="20" font-family="Syne, sans-serif" font-size="24" font-weight="800" fill="#330000">DEETS</text>
+                            <text x="0" y="40" font-family="Epilogue, sans-serif" font-size="14" font-weight="600" fill="#73605B">NIG.</text>
+                            <text x="0" y="55" font-family="Epilogue, sans-serif" font-size="8" font-weight="500" fill="#73605B">CONSULTING • MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Light backgrounds, business cards, letterheads</div>
+            </div>
+
+            <!-- Primary Logo - Dark Background -->
+            <div class="logo-card dark">
+                <h3>Primary Logo - Dark Background</h3>
+                <div class="logo-display">
+                    <svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(10, 10)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#330000">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="white"/>
+                                <circle cx="8" cy="6" r="1" fill="white"/>
+                                <circle cx="11" cy="7" r="1" fill="white"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="white" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(75, 20)">
+                            <text x="0" y="20" font-family="Syne, sans-serif" font-size="24" font-weight="800" fill="#FFFFFF">DEETS</text>
+                            <text x="0" y="40" font-family="Epilogue, sans-serif" font-size="14" font-weight="600" fill="#D09683">NIG.</text>
+                            <text x="0" y="55" font-family="Epilogue, sans-serif" font-size="8" font-weight="500" fill="#D09683">CONSULTING • MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Dark backgrounds, presentations, digital use</div>
+            </div>
+
+            <!-- Logo with Background Circle - Light -->
+            <div class="logo-card light-bg">
+                <h3>Logo with Background - Light</h3>
+                <div class="logo-display">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circle -->
+                        <circle cx="100" cy="100" r="90" fill="url(#lightGradient)"/>
+                        <defs>
+                            <linearGradient id="lightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#73605B;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Logo Symbol -->
+                        <g transform="translate(70, 60)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#330000"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#FFFFFF">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="#330000"/>
+                                <circle cx="8" cy="6" r="1" fill="#330000"/>
+                                <circle cx="11" cy="7" r="1" fill="#330000"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="#330000" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(100, 130)">
+                            <text x="0" y="0" text-anchor="middle" font-family="Syne, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">DEETS</text>
+                            <text x="0" y="18" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">NIG.</text>
+                            <text x="0" y="32" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="7" font-weight="500" fill="#FFFFFF">CONSULTING • MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: App icons, social media, stamps</div>
+            </div>
+
+            <!-- Logo with Background Circle - Dark -->
+            <div class="logo-card dark">
+                <h3>Logo with Background - Dark</h3>
+                <div class="logo-display">
+                    <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circle -->
+                        <circle cx="100" cy="100" r="90" fill="url(#darkGradient)"/>
+                        <defs>
+                            <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#330000;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#73605B;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Logo Symbol -->
+                        <g transform="translate(70, 60)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#FFFFFF" stroke-width="2" fill="#FFFFFF">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#330000">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="white"/>
+                                <circle cx="8" cy="6" r="1" fill="white"/>
+                                <circle cx="11" cy="7" r="1" fill="white"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="white" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(100, 130)">
+                            <text x="0" y="0" text-anchor="middle" font-family="Syne, sans-serif" font-size="20" font-weight="800" fill="#FFFFFF">DEETS</text>
+                            <text x="0" y="18" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="12" font-weight="600" fill="#D09683">NIG.</text>
+                            <text x="0" y="32" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="7" font-weight="500" fill="#D09683">CONSULTING • MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Dark theme apps, premium materials</div>
+            </div>
+
+            <!-- Symbol Only - Light -->
+            <div class="logo-card light-bg">
+                <h3>Symbol Only - Light</h3>
+                <div class="logo-display">
+                    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(30, 30)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#330000" stroke-width="4"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#330000" stroke-width="3" fill="#330000">
+                                <rect x="28" y="2" width="4" height="8"/>
+                                <rect x="28" y="50" width="4" height="8"/>
+                                <rect x="2" y="28" width="8" height="4"/>
+                                <rect x="50" y="28" width="8" height="4"/>
+                                <rect x="18" y="6" width="4" height="6" transform="rotate(45 20 9)"/>
+                                <rect x="38" y="6" width="4" height="6" transform="rotate(-45 40 9)"/>
+                                <rect x="18" y="48" width="4" height="6" transform="rotate(-45 20 51)"/>
+                                <rect x="38" y="48" width="4" height="6" transform="rotate(45 40 51)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="18" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(21, 18)" fill="#330000">
+                                <path d="M2 12 C2 6, 8 3, 12 6 C16 3, 22 6, 22 12 C22 18, 16 21, 12 18 C8 21, 2 18, 2 12 Z"/>
+                                <circle cx="7" cy="10" r="1.5" fill="white"/>
+                                <circle cx="12" cy="9" r="1.5" fill="white"/>
+                                <circle cx="17" cy="10" r="1.5" fill="white"/>
+                                <path d="M5 15 Q12 18, 19 15" stroke="white" stroke-width="1.5" fill="none"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Favicons, social media profile pics, watermarks</div>
+            </div>
+
+            <!-- Symbol Only - Dark -->
+            <div class="logo-card dark">
+                <h3>Symbol Only - Dark</h3>
+                <div class="logo-display">
+                    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(30, 30)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#FFFFFF" stroke-width="3" fill="#FFFFFF">
+                                <rect x="28" y="2" width="4" height="8"/>
+                                <rect x="28" y="50" width="4" height="8"/>
+                                <rect x="2" y="28" width="8" height="4"/>
+                                <rect x="50" y="28" width="8" height="4"/>
+                                <rect x="18" y="6" width="4" height="6" transform="rotate(45 20 9)"/>
+                                <rect x="38" y="6" width="4" height="6" transform="rotate(-45 40 9)"/>
+                                <rect x="18" y="48" width="4" height="6" transform="rotate(-45 20 51)"/>
+                                <rect x="38" y="48" width="4" height="6" transform="rotate(45 40 51)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="18" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(21, 18)" fill="#330000">
+                                <path d="M2 12 C2 6, 8 3, 12 6 C16 3, 22 6, 22 12 C22 18, 16 21, 12 18 C8 21, 2 18, 2 12 Z"/>
+                                <circle cx="7" cy="10" r="1.5" fill="white"/>
+                                <circle cx="12" cy="9" r="1.5" fill="white"/>
+                                <circle cx="17" cy="10" r="1.5" fill="white"/>
+                                <path d="M5 15 Q12 18, 19 15" stroke="white" stroke-width="1.5" fill="none"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Dark theme favicons, minimal applications</div>
+            </div>
+
+            <!-- Vertical Layout - Light -->
+            <div class="logo-card light-bg">
+                <h3>Vertical Layout - Light</h3>
+                <div class="logo-display">
+                    <svg width="150" height="200" viewBox="0 0 150 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(45, 20)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#330000" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#330000" stroke-width="2" fill="#330000">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#D09683"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#330000">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="white"/>
+                                <circle cx="8" cy="6" r="1" fill="white"/>
+                                <circle cx="11" cy="7" r="1" fill="white"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="white" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(75, 110)">
+                            <text x="0" y="0" text-anchor="middle" font-family="Syne, sans-serif" font-size="28" font-weight="800" fill="#330000">DEETS</text>
+                            <text x="0" y="25" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="16" font-weight="600" fill="#73605B">NIG.</text>
+                            <text x="0" y="45" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B">CONSULTING</text>
+                            <text x="0" y="58" text-anchor="middle" font-family="Epilogue, sans-serif" font-size="9" font-weight="500" fill="#73605B">MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Vertical layouts, business cards, signage</div>
+            </div>
+
+            <!-- Monochrome Version -->
+            <div class="logo-card">
+                <h3>Monochrome Version</h3>
+                <div class="logo-display">
+                    <svg width="240" height="80" viewBox="0 0 240 80" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Logo Symbol -->
+                        <g transform="translate(10, 10)">
+                            <!-- Outer gear representing manufacturing -->
+                            <circle cx="30" cy="30" r="25" fill="none" stroke="#000000" stroke-width="3"/>
+                            <!-- Gear teeth -->
+                            <g stroke="#000000" stroke-width="2" fill="#000000">
+                                <rect x="28" y="2" width="4" height="6"/>
+                                <rect x="28" y="52" width="4" height="6"/>
+                                <rect x="2" y="28" width="6" height="4"/>
+                                <rect x="52" y="28" width="6" height="4"/>
+                                <rect x="20" y="8" width="4" height="4" transform="rotate(45 22 10)"/>
+                                <rect x="36" y="8" width="4" height="4" transform="rotate(-45 38 10)"/>
+                                <rect x="20" y="48" width="4" height="4" transform="rotate(-45 22 50)"/>
+                                <rect x="36" y="48" width="4" height="4" transform="rotate(45 38 50)"/>
+                            </g>
+                            <!-- Inner circle with consulting symbol -->
+                            <circle cx="30" cy="30" r="15" fill="#666666"/>
+                            <!-- Brain/Ideas symbol for consulting -->
+                            <g transform="translate(23, 20)" fill="#000000">
+                                <path d="M2 8 C2 4, 6 2, 8 4 C10 2, 14 4, 14 8 C14 12, 10 14, 8 12 C6 14, 2 12, 2 8 Z"/>
+                                <circle cx="5" cy="7" r="1" fill="white"/>
+                                <circle cx="8" cy="6" r="1" fill="white"/>
+                                <circle cx="11" cy="7" r="1" fill="white"/>
+                                <path d="M4 10 Q8 12, 12 10" stroke="white" stroke-width="1" fill="none"/>
+                            </g>
+                        </g>
+                        
+                        <!-- Company Text -->
+                        <g transform="translate(75, 20)">
+                            <text x="0" y="20" font-family="Syne, sans-serif" font-size="24" font-weight="800" fill="#000000">DEETS</text>
+                            <text x="0" y="40" font-family="Epilogue, sans-serif" font-size="14" font-weight="600" fill="#666666">NIG.</text>
+                            <text x="0" y="55" font-family="Epilogue, sans-serif" font-size="8" font-weight="500" fill="#666666">CONSULTING • MANUFACTURING</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="download-info">Best for: Black & white printing, newspapers, fax</div>
+            </div>
+        </div>
+
+        <div class="usage-guide">
+            <h2>Logo Usage Guidelines</h2>
+            <ul>
+                <li><strong>Primary Logo:</strong> Use the horizontal version for most applications including business cards, letterheads, and website headers</li>
+                <li><strong>Background Versions:</strong> Use circle background versions for app icons, social media profiles, and when you need a contained logo</li>
+                <li><strong>Symbol Only:</strong> Use for favicons, watermarks, and when space is extremely limited</li>
+                <li><strong>Vertical Layout:</strong> Use for vertical layouts, tall banners, and narrow spaces</li>
+                <li><strong>Dark Background:</strong> Always use white/light versions on dark backgrounds</li>
+                <li><strong>Monochrome:</strong> Use for single-color printing, newspapers, and cost-effective applications</li>
+                <li><strong>Minimum Size:</strong> Logo should never be smaller than 40px in height for digital use, 0.5 inches for print</li>
+                <li><strong>Clear Space:</strong> Maintain clear space around the logo equal to half the logo's height</li>
+            </ul>
+
+            <h2>Brand Colors</h2>
+            <div class="color-palette">
+                <div class="color-swatch primary-dark">
+                    Primary Dark<br>#330000
+                </div>
+                <div class="color-swatch primary-taupe">
+                    Primary Taupe<br>#73605B
+                </div>
+                <div class="color-swatch primary-peach">
+                    Primary Peach<br>#D09683
+                </div>
+                <div class="color-swatch white">
+                    White<br>#FFFFFF
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
