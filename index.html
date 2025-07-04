@@ -10,14 +10,76 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
+<!-- PWA Meta Tags -->
+<meta name="theme-color" content="#330000">
+<meta name="background-color" content="#FEFEFE">
+<meta name="display" content="standalone">
+<meta name="orientation" content="portrait">
+
+<!-- Apple-specific PWA tags -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DEETS NIG.">
+
+<!-- Microsoft-specific PWA tags -->
+<meta name="msapplication-TileColor" content="#330000">
+<meta name="msapplication-config" content="/browserconfig.xml">
+
+<!-- Manifest link -->
+<link rel="manifest" href="/manifest.json">
      <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Epilogue:ital,wght@0,100..900;1,100&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Rosario:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- AOS Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+    <style>
+        
+        /* Custom Install Button Styles */
+.install-btn {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px var(--shadow-elegant);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.install-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px var(--shadow-elegant);
+}
+
+.install-btn:active {
+    transform: translateY(-1px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .install-btn {
+        bottom: 10px;
+        right: 10px;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+    </style>
 </head>
+
+
 <body>
          <!-- Cursor Effects -->
     <!-- Cursor Effects -->
@@ -1427,7 +1489,10 @@
         </div>
     </div>
 
-
+<!-- Custom Install Button -->
+<button id="install-btn" class="install-btn" onclick="installApp()" style="display: none;">
+    📱 Install DEETS NIG. App
+</button>
 
     <!-- GSAP Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -1435,11 +1500,94 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
+    <script src="sw.js"></script>
     <script src="static/js/main.js"></script>
 
-    <script>
-        
-    </script>
+
+
+
+<script>
+// Register Service Worker for PWA functionality
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('ServiceWorker registration successful');
+      })
+      .catch(function(error) {
+        console.log('ServiceWorker registration failed: ', error);
+      });
+  });
+}
+
+// Handle install prompt
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  
+  // Show custom install button
+  const installBtn = document.querySelector('#install-btn');
+  if (installBtn) {
+    installBtn.style.display = 'block';
+  }
+});
+
+// Custom install function
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === 'accepted') {
+        console.log('User accepted the A2HS prompt');
+        // Hide install button after installation
+        const installBtn = document.querySelector('#install-btn');
+        if (installBtn) {
+          installBtn.style.display = 'none';
+        }
+      }
+      deferredPrompt = null;
+    });
+  }
+}
+
+// Check if app is already installed
+if (window.matchMedia('(display-mode: standalone)').matches) {
+  console.log('DEETS NIG. is running as installed PWA! 🚀');
+  // Hide install button if already installed
+  const installBtn = document.querySelector('#install-btn');
+  if (installBtn) {
+    installBtn.style.display = 'none';
+  }
+}
+
+if (location.protocol === 'file:') {
+    const manifestData = {
+        "name": "DEETS NIG. - Consulting & Manufacturing",
+        "short_name": "DEETS NIG.",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#FEFEFE",
+        "theme_color": "#330000",
+        "icons": [
+            {
+                "src": "/favicon-192x192.png",
+                "sizes": "192x192",
+                "type": "image/png"
+            }
+        ]
+    };
+    
+    const manifestBlob = new Blob([JSON.stringify(manifestData)], {
+        type: 'application/json'
+    });
+    const manifestURL = URL.createObjectURL(manifestBlob);
+    
+    const link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = manifestURL;
+    document.head.appendChild(link);
+}
+</script>
 </body>
 </html>
