@@ -2987,14 +2987,15 @@
         });
 
 
-        
-         // GSAP Animations
+          // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
         
         // Set initial states
         gsap.set('.ms-header', { opacity: 0, y: 30 });
-        gsap.set('.ms-service', { opacity: 0, y: 50 });
+        gsap.set('.ms-service', { opacity: 0, y: 30 });
         gsap.set('.ms-feature', { opacity: 0, x: -20 });
+        gsap.set('.ms-customers-header', { opacity: 0, y: 30 });
+        gsap.set('.ms-industry', { opacity: 0, y: 20 });
         gsap.set('.ms-cta-title', { opacity: 0, y: 30 });
         gsap.set('.ms-cta-desc', { opacity: 0, y: 30 });
         gsap.set('.ms-cta-buttons', { opacity: 0, y: 30 });
@@ -3043,6 +3044,35 @@
             });
         });
         
+        // Customers section animation
+        gsap.to('.ms-customers-header', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.ms-customers-header',
+                start: 'top 80%',
+                once: true
+            }
+        });
+        
+        // Industries animation
+        gsap.utils.toArray('.ms-industry').forEach((industry, index) => {
+            gsap.to(industry, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                delay: index * 0.05,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: industry,
+                    start: 'top 90%',
+                    once: true
+                }
+            });
+        });
+        
         // CTA section animations
         const ctaTimeline = gsap.timeline({
             scrollTrigger: {
@@ -3072,70 +3102,38 @@
                 ease: 'power3.out'
             }, '-=0.7');
         
-        // Floating elements animation
+        // Subtle floating elements animation
         gsap.to('.ms-element-1', {
-            x: 120,
-            y: -80,
-            rotation: 45,
-            duration: 25,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        gsap.to('.ms-element-2', {
-            x: -100,
-            y: 60,
-            rotation: -360,
-            duration: 30,
-            repeat: -1,
-            ease: 'none'
-        });
-        
-        gsap.to('.ms-element-3', {
-            x: -80,
-            y: -60,
-            scale: 1.3,
+            x: 50,
+            y: -30,
             duration: 20,
             repeat: -1,
             yoyo: true,
             ease: 'sine.inOut'
         });
         
-        // Create particles for CTA section
-        function createParticles() {
-            const container = document.querySelector('.ms-particles');
-            const particleCount = isMobile ? 20 : 40;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'ms-particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                container.appendChild(particle);
-            }
-            
-            // Animate particles
-            gsap.to('.ms-particle', {
-                y: '-=200',
-                x: 'random(-100, 100)',
-                duration: 'random(15, 30)',
-                repeat: -1,
-                ease: 'none',
-                stagger: {
-                    each: 0.5,
-                    from: 'random'
-                }
-            });
-        }
+        gsap.to('.ms-element-2', {
+            x: -40,
+            y: 20,
+            duration: 25,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
         
-        createParticles();
+        gsap.to('.ms-element-3', {
+            x: -30,
+            y: -20,
+            duration: 18,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+        });
         
         // Stats counter animation
         const stats = document.querySelectorAll('.ms-stat-value');
         stats.forEach(stat => {
             const endValue = stat.textContent;
-            const isDollar = endValue.includes('$');
             const isPlus = endValue.includes('+');
             const isTime = endValue.includes('hr');
             const isText = endValue === 'ISO';
@@ -3177,148 +3175,6 @@
             }
         });
         
-        // 3D product showcase parallax
-        const services = document.querySelectorAll('.ms-service');
-        
-        services.forEach(service => {
-            const showcase = service.querySelector('.ms-product-showcase');
-            const products = service.querySelectorAll('.ms-product');
-            
-            if (hasHover && !isMobile) {
-                service.addEventListener('mousemove', (e) => {
-                    const rect = service.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-                    
-                    products.forEach((product, index) => {
-                        const depth = (index + 1) * 2;
-                        gsap.to(product, {
-                            rotateX: rotateX * depth,
-                            rotateY: rotateY * depth,
-                            duration: 0.3,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-                
-                service.addEventListener('mouseleave', () => {
-                    products.forEach(product => {
-                        gsap.to(product, {
-                            rotateX: 0,
-                            rotateY: 0,
-                            duration: 0.5,
-                            ease: 'power2.out'
-                        });
-                    });
-                });
-            }
-        });
-         // Products section animations
-        gsap.to('.ws-products-header', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.ws-products-header',
-                start: 'top 80%',
-                once: true
-            }
-        });
-        
-        gsap.to('.ws-categories', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-                trigger: '.ws-categories',
-                start: 'top 85%',
-                once: true
-            }
-        });
-        
-        gsap.utils.toArray('.ws-product').forEach((product, index) => {
-            gsap.to(product, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.8,
-                delay: index * 0.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: product,
-                    start: 'top 90%',
-                    once: true
-                }
-            });
-        });
-        
-        // Floating elements animation
-        gsap.to('.ws-float-1', {
-            x: 80,
-            y: -60,
-            rotation: 45,
-            duration: 20,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-        
-        gsap.to('.ws-float-2', {
-            x: -60,
-            y: 40,
-            rotation: -90,
-            duration: 25,
-            repeat: -1,
-            yoyo: true,
-            ease: 'sine.inOut'
-        });
-
-        
-        // Category filter functionality
-        const categories = document.querySelectorAll('.ws-category');
-        const products = document.querySelectorAll('.ws-product');
-        
-        categories.forEach(category => {
-            category.addEventListener('click', () => {
-                // Update active state
-                categories.forEach(cat => cat.classList.remove('active'));
-                category.classList.add('active');
-                
-                // Filter products
-                const filter = category.textContent.toLowerCase().replace(' ', '-');
-                
-                products.forEach(product => {
-                    if (filter === 'all-products' || product.dataset.category === filter) {
-                        gsap.to(product, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.5,
-                            ease: 'power2.out'
-                        });
-                        product.style.display = 'block';
-                    } else {
-                        gsap.to(product, {
-                            opacity: 0,
-                            scale: 0.9,
-                            duration: 0.5,
-                            ease: 'power2.out',
-                            onComplete: () => {
-                                product.style.display = 'none';
-                            }
-                        });
-                    }
-                });
-            });
-        });
-        
         // Smooth scroll for CTA buttons
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -3335,33 +3191,11 @@
                         duration: 1.5,
                         ease: 'power3.inOut'
                     });
-                } else if (targetId === '#contact-form') {
-                    // If contact section doesn't exist on current page
+                } else {
                     console.log('Navigate to contact form');
-                    alert('Please scroll down to the contact section or navigate to the contact page.');
                 }
             });
         });
-        
-        // Text scramble effect on hover
-        if (!isMobile && hasHover) {
-            const serviceTitles = document.querySelectorAll('.ms-service-name');
-            
-            serviceTitles.forEach(title => {
-                const originalText = title.textContent;
-                
-                title.addEventListener('mouseenter', () => {
-                    gsap.to(title, {
-                        scrambleText: {
-                            text: originalText,
-                            chars: "MANUFACTURE",
-                            speed: 0.3
-                        },
-                        duration: 0.8
-                    });
-                });
-            });
-        }
         
 
     </script>
