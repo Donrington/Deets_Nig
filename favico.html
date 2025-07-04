@@ -1,31 +1,403 @@
-<div class="logo-display">
-                    <svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEETS NIG. Favicon Generator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            margin: 0;
+            color: #330000;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #330000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            color: #73605B;
+            font-size: 1.1rem;
+        }
+        
+        .favicon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .favicon-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid #D09683;
+        }
+        
+        .favicon-card h3 {
+            margin-bottom: 1rem;
+            color: #330000;
+        }
+        
+        .favicon-preview {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+        }
+        
+        .code-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .code-section h2 {
+            color: #330000;
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin-bottom: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .download-section {
+            background: linear-gradient(135deg, #D09683 0%, #73605B 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .download-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .download-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            background: white;
+            color: #330000;
+        }
+        
+        .copy-btn {
+            background: #D09683;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .copy-btn:hover {
+            background: #330000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>DEETS NIG. Favicon Generator</h1>
+            <p>Multiple favicon sizes optimized for all devices and platforms</p>
+        </div>
+        
+        <div class="favicon-grid">
+            <!-- 16x16 Favicon -->
+            <div class="favicon-card">
+                <h3>16x16 (Classic Favicon)</h3>
+                <div class="favicon-preview">
+                    <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="abstractGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <linearGradient id="grad16" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
-                                <stop offset="100%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
                             </linearGradient>
                         </defs>
-                        
-                        <!-- Creative Hexagonal Network Symbol -->
-                        <g transform="translate(20, 20)" class="interactive-elements">
-                            <!-- Main hexagon structure -->
-                            <polygon points="40,10 55,20 55,35 40,45 25,35 25,20" fill="url(#abstractGrad)" stroke="none"/>
-                            <polygon points="20,30 30,37 30,47 20,54 10,47 10,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
-                            <polygon points="60,30 70,37 70,47 60,54 50,47 50,37" fill="#FFFFFF" stroke="none" opacity="0.8"/>
-                            <polygon points="40,50 50,57 50,67 40,74 30,67 30,57" fill="url(#abstractGrad)" stroke="none" opacity="0.6"/>
-                            
-                            <!-- Connecting elements -->
-                            <line x1="25" y1="35" x2="30" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
-                            <line x1="55" y1="35" x2="50" y2="37" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
-                            <line x1="40" y1="45" x2="40" y2="50" stroke="#FFFFFF" stroke-width="3" opacity="0.7"/>
-                            
-                            <!-- Central elements -->
-                            <circle cx="40" cy="27" r="4" fill="#330000" opacity="0.9"/>
-                            <circle cx="20" cy="42" r="3" fill="#330000" opacity="0.7"/>
-                            <circle cx="60" cy="42" r="3" fill="#330000" opacity="0.7"/>
-                            <circle cx="40" cy="62" r="3" fill="#330000" opacity="0.5"/>
-                        </g>
+                        <polygon points="8,2 12,4 12,8 8,10 4,8 4,4" fill="url(#grad16)"/>
+                        <polygon points="2,6 4,7 4,9 2,10 0,9 0,7" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="14,6 16,7 16,9 14,10 12,9 12,7" fill="#FFFFFF" opacity="0.8"/>
+                        <circle cx="8" cy="6" r="1.5" fill="#330000"/>
+                        <circle cx="2" cy="8" r="1" fill="#330000"/>
+                        <circle cx="14" cy="8" r="1" fill="#330000"/>
                     </svg>
                 </div>
+                <p>Standard browser tab favicon</p>
+            </div>
+            
+            <!-- 32x32 Favicon -->
+            <div class="favicon-card">
+                <h3>32x32 (Retina Favicon)</h3>
+                <div class="favicon-preview">
+                    <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad32" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="16,4 24,8 24,16 16,20 8,16 8,8" fill="url(#grad32)"/>
+                        <polygon points="4,12 8,14 8,18 4,20 0,18 0,14" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="28,12 32,14 32,18 28,20 24,18 24,14" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="16,24 20,26 20,30 16,32 12,30 12,26" fill="url(#grad32)" opacity="0.6"/>
+                        <line x1="8" y1="16" x2="8" y2="14" stroke="#FFFFFF" stroke-width="1"/>
+                        <line x1="24" y1="16" x2="24" y2="14" stroke="#FFFFFF" stroke-width="1"/>
+                        <circle cx="16" cy="12" r="2" fill="#330000"/>
+                        <circle cx="4" cy="16" r="1.5" fill="#330000"/>
+                        <circle cx="28" cy="16" r="1.5" fill="#330000"/>
+                    </svg>
+                </div>
+                <p>High-resolution displays</p>
+            </div>
+            
+            <!-- 48x48 Favicon -->
+            <div class="favicon-card">
+                <h3>48x48 (Windows)</h3>
+                <div class="favicon-preview">
+                    <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad48" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="24,6 36,12 36,24 24,30 12,24 12,12" fill="url(#grad48)"/>
+                        <polygon points="6,18 12,21 12,27 6,30 0,27 0,21" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="42,18 48,21 48,27 42,30 36,27 36,21" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="24,36 30,39 30,45 24,48 18,45 18,39" fill="url(#grad48)" opacity="0.6"/>
+                        <line x1="12" y1="24" x2="12" y2="21" stroke="#FFFFFF" stroke-width="2"/>
+                        <line x1="36" y1="24" x2="36" y2="21" stroke="#FFFFFF" stroke-width="2"/>
+                        <line x1="24" y1="30" x2="24" y2="36" stroke="#FFFFFF" stroke-width="2"/>
+                        <circle cx="24" cy="18" r="3" fill="#330000"/>
+                        <circle cx="6" cy="24" r="2" fill="#330000"/>
+                        <circle cx="42" cy="24" r="2" fill="#330000"/>
+                        <circle cx="24" cy="42" r="2" fill="#330000"/>
+                    </svg>
+                </div>
+                <p>Windows taskbar & shortcuts</p>
+            </div>
+            
+            <!-- 64x64 Favicon -->
+            <div class="favicon-card">
+                <h3>64x64 (Large Icon)</h3>
+                <div class="favicon-preview">
+                    <svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad64" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#D09683;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+                                <stop offset="100%" style="stop-color:#330000;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <polygon points="32,8 48,16 48,32 32,40 16,32 16,16" fill="url(#grad64)"/>
+                        <polygon points="8,24 16,28 16,36 8,40 0,36 0,28" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="56,24 64,28 64,36 56,40 48,36 48,28" fill="#FFFFFF" opacity="0.8"/>
+                        <polygon points="32,48 40,52 40,60 32,64 24,60 24,52" fill="url(#grad64)" opacity="0.6"/>
+                        <line x1="16" y1="32" x2="16" y2="28" stroke="#FFFFFF" stroke-width="2"/>
+                        <line x1="48" y1="32" x2="48" y2="28" stroke="#FFFFFF" stroke-width="2"/>
+                        <line x1="32" y1="40" x2="32" y2="48" stroke="#FFFFFF" stroke-width="2"/>
+                        <circle cx="32" cy="24" r="4" fill="#330000"/>
+                        <circle cx="8" cy="32" r="3" fill="#330000"/>
+                        <circle cx="56" cy="32" r="3" fill="#330000"/>
+                        <circle cx="32" cy="56" r="3" fill="#330000"/>
+                    </svg>
+                </div>
+                <p>Large displays & desktop icons</p>
+            </div>
+        </div>
+        
+        <div class="code-section">
+            <h2>1. Save Your Favicon Files</h2>
+            <p>First, create these SVG files and save them in your website's root directory:</p>
+            
+            <div style="margin-bottom: 1rem;">
+                <strong>favicon.svg (Modern browsers)</strong>
+                <button class="copy-btn" onclick="copyToClipboard('favicon-svg')">Copy SVG</button>
+            </div>
+            <div class="code-block" id="favicon-svg">&lt;svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;defs&gt;
+        &lt;linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"&gt;
+            &lt;stop offset="0%" style="stop-color:#D09683;stop-opacity:1" /&gt;
+            &lt;stop offset="50%" style="stop-color:#FFFFFF;stop-opacity:0.9" /&gt;
+            &lt;stop offset="100%" style="stop-color:#330000;stop-opacity:1" /&gt;
+        &lt;/linearGradient&gt;
+    &lt;/defs&gt;
+    &lt;polygon points="16,4 24,8 24,16 16,20 8,16 8,8" fill="url(#grad)"/&gt;
+    &lt;polygon points="4,12 8,14 8,18 4,20 0,18 0,14" fill="#FFFFFF" opacity="0.8"/&gt;
+    &lt;polygon points="28,12 32,14 32,18 28,20 24,18 24,14" fill="#FFFFFF" opacity="0.8"/&gt;
+    &lt;polygon points="16,24 20,26 20,30 16,32 12,30 12,26" fill="url(#grad)" opacity="0.6"/&gt;
+    &lt;line x1="8" y1="16" x2="8" y2="14" stroke="#FFFFFF" stroke-width="1"/&gt;
+    &lt;line x1="24" y1="16" x2="24" y2="14" stroke="#FFFFFF" stroke-width="1"/&gt;
+    &lt;circle cx="16" cy="12" r="2" fill="#330000"/&gt;
+    &lt;circle cx="4" cy="16" r="1.5" fill="#330000"/&gt;
+    &lt;circle cx="28" cy="16" r="1.5" fill="#330000"/&gt;
+&lt;/svg&gt;</div>
+        </div>
+        
+        <div class="code-section">
+            <h2>2. Add HTML Links to Your Website</h2>
+            <p>Add these lines to the &lt;head&gt; section of your HTML:</p>
+            
+            <button class="copy-btn" onclick="copyToClipboard('html-links')">Copy HTML</button>
+            <div class="code-block" id="html-links">&lt;!-- Favicon Links --&gt;
+&lt;link rel="icon" type="image/svg+xml" href="/favicon.svg"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;</div>
+        </div>
+        
+        <div class="code-section">
+            <h2>3. Create a Web App Manifest (site.webmanifest)</h2>
+            <p>For PWA support and mobile app icons:</p>
+            
+            <button class="copy-btn" onclick="copyToClipboard('manifest')">Copy Manifest</button>
+            <div class="code-block" id="manifest">{
+    "name": "DEETS NIG.",
+    "short_name": "DEETS NIG.",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#330000",
+    "background_color": "#FEFEFE",
+    "display": "standalone"
+}</div>
+        </div>
+        
+        <div class="code-section">
+            <h2>4. Convert SVG to PNG/ICO (Optional)</h2>
+            <p>For older browser support, you can convert your SVG to PNG or ICO format using these tools:</p>
+            
+            <div style="margin-top: 1rem;">
+                <strong>Online Conversion Tools:</strong>
+                <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+                    <li><a href="https://favicon.io/favicon-converter/" target="_blank">favicon.io</a> - Upload your SVG and get all sizes</li>
+                    <li><a href="https://realfavicongenerator.net/" target="_blank">Real Favicon Generator</a> - Complete favicon package</li>
+                    <li><a href="https://www.favicon-generator.org/" target="_blank">Favicon Generator</a> - Simple conversion tool</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2>Quick Setup Instructions</h2>
+            <p>To implement your favicon:</p>
+            <ol style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                <li>Copy the SVG code above and save it as <code>favicon.svg</code></li>
+                <li>Place the file in your website's root directory</li>
+                <li>Add the HTML links to your website's &lt;head&gt; section</li>
+                <li>Test by refreshing your browser tab</li>
+                <li>Optionally create PNG versions for older browsers</li>
+            </ol>
+            
+            <div class="download-links">
+                <a href="#" class="download-btn" onclick="downloadSVG()">Download SVG</a>
+                <a href="#" class="download-btn" onclick="downloadHTML()">Download HTML</a>
+                <a href="#" class="download-btn" onclick="downloadManifest()">Download Manifest</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const text = element.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Copied to clipboard!');
+            });
+        }
+        
+        function downloadSVG() {
+            const svgContent = document.getElementById('favicon-svg').textContent;
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'favicon.svg';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function downloadHTML() {
+            const htmlContent = document.getElementById('html-links').textContent;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'favicon-links.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+        
+        function downloadManifest() {
+            const manifestContent = document.getElementById('manifest').textContent;
+            const blob = new Blob([manifestContent], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'site.webmanifest';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
