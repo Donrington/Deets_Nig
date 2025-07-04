@@ -982,108 +982,10 @@
 
 
 
-             
         /* Text Selection */
         ::selection {
             background: var(--primary-peach);
             color: var(--white);
-        }
-        
-        ::-moz-selection {
-            background: var(--primary-peach);
-            color: var(--white);
-        }
-        
-        /* Custom Cursor */
-        @media (hover: hover) and (pointer: fine) {
-            .cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid var(--primary-peach);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                transition: all 0.1s ease, opacity 0.3s ease;
-                transform: translate(-50%, -50%);
-                mix-blend-mode: difference;
-                will-change: transform;
-                opacity: 1;
-            }
-            
-            .cursor-follower {
-                width: 40px;
-                height: 40px;
-                background: var(--primary-peach);
-                opacity: 0.3;
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9998;
-                transition: all 0.3s ease, opacity 0.3s ease;
-                transform: translate(-50%, -50%);
-                will-change: transform;
-            }
-            
-            .cursor.active {
-                transform: translate(-50%, -50%) scale(0.8);
-                background: var(--primary-peach);
-            }
-            
-            .cursor-follower.active {
-                transform: translate(-50%, -50%) scale(1.5);
-            }
-            
-            body:has(.ms-btn:hover) .cursor,
-            body:has(.ms-service:hover) .cursor {
-                width: 80px;
-                height: 80px;
-                border-color: transparent;
-                background: rgba(208, 150, 131, 0.2);
-                backdrop-filter: blur(5px);
-            }
-            
-            body:has(.ms-card:hover) .cursor {
-                width: 60px;
-                height: 60px;
-                border: 2px solid var(--primary-peach);
-                background: rgba(208, 150, 131, 0.1);
-                backdrop-filter: blur(3px);
-            }
-            
-            body:has(.ms-service-icon:hover) .cursor {
-                transform: translate(-50%, -50%) rotate(45deg);
-                border-radius: 20%;
-            }
-            
-            /* Text cursor */
-            body:has(p:hover) .cursor,
-            body:has(span:hover) .cursor,
-            body:has(h3:hover) .cursor {
-                width: 3px;
-                height: 30px;
-                border-radius: 2px;
-                background: var(--primary-peach);
-                border: none;
-            }
-        }
-        
-        @media (hover: none) and (pointer: coarse) {
-            body {
-                cursor: auto;
-            }
-            
-            .cursor,
-            .cursor-follower {
-                display: none !important;
-            }
-            
-            /* Ensure touch interactions work properly */
-            .ms-btn,
-            .ms-service,
-            a, button {
-                cursor: pointer !important;
-            }
         }
         
         a {
@@ -1124,7 +1026,7 @@
         
         .ms-element {
             position: absolute;
-            opacity: 0.15;
+            opacity: 0.1;
             will-change: transform;
         }
         
@@ -1132,20 +1034,20 @@
             width: 400px;
             height: 400px;
             background: var(--gradient-primary);
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            border-radius: 50%;
             top: -10%;
             right: -5%;
-            filter: blur(80px);
+            filter: blur(120px);
         }
         
         .ms-element-2 {
             width: 300px;
             height: 300px;
             background: var(--primary-dark);
-            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            border-radius: 50%;
             bottom: 10%;
             left: -10%;
-            filter: blur(60px);
+            filter: blur(100px);
         }
         
         .ms-element-3 {
@@ -1155,7 +1057,7 @@
             border-radius: 50%;
             top: 40%;
             left: 20%;
-            filter: blur(70px);
+            filter: blur(80px);
         }
         
         /* Container */
@@ -1208,7 +1110,7 @@
         }
         
         .ms-title {
-            font-family: var(--font-secondary);
+            font-family: var(--font-primary);
             font-size: clamp(36px, 5vw, 64px);
             font-weight: 800;
             line-height: 1.1;
@@ -1246,49 +1148,21 @@
         /* Service Card */
         .ms-service {
             position: relative;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(208, 150, 131, 0.2);
             border-radius: 24px;
             padding: 60px;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: none;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            transition: all 0.4s ease;
             opacity: 0;
-            transform: translateY(50px);
-        }
-        
-        @media (hover: none) and (pointer: coarse) {
-            .ms-service {
-                cursor: pointer;
-            }
-        }
-        
-        .ms-service::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, transparent 40%, rgba(208, 150, 131, 0.05) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            z-index: 1;
+            transform: translateY(30px);
         }
         
         .ms-service:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.1),
-                0 10px 20px rgba(208, 150, 131, 0.2),
-                inset 0 0 30px rgba(208, 150, 131, 0.05);
-        }
-        
-        .ms-service:hover::before {
-            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.95);
         }
         
         /* Service Content */
@@ -1310,25 +1184,18 @@
             width: 80px;
             height: 80px;
             background: var(--gradient-primary);
-            border-radius: 24px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(208, 150, 131, 0.3);
-            transform: translateZ(20px);
             transition: all 0.3s ease;
-            cursor: none;
-        }
-        
-        .ms-service-icon:hover {
-            transform: translateZ(30px) scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(208, 150, 131, 0.5);
         }
         
         .ms-service:hover .ms-service-icon {
-            transform: translateZ(40px) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(208, 150, 131, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(208, 150, 131, 0.4);
         }
         
         .ms-service-icon i {
@@ -1337,7 +1204,7 @@
         }
         
         .ms-service-name {
-            font-family: var(--font-secondary);
+            font-family: var(--font-primary);
             font-size: clamp(28px, 2.5vw, 36px);
             font-weight: 700;
             color: var(--primary-dark);
@@ -1366,13 +1233,7 @@
             opacity: 0;
             transform: translateX(-20px);
             transition: all 0.3s ease;
-            padding: 5px;
-            border-radius: 10px;
-        }
-        
-        .ms-feature:hover {
-            background: rgba(208, 150, 131, 0.05);
-            transform: translateX(5px);
+            padding: 8px 0;
         }
         
         .ms-feature-icon {
@@ -1412,53 +1273,49 @@
             justify-content: center;
         }
         
-        /* Product Showcase */
-        .ms-product-showcase {
-            position: relative;
-            width: 100%;
+        /* Product Cards Grid */
+        .ms-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
             height: 100%;
-            transform-style: preserve-3d;
-            transform: rotateY(-15deg) rotateX(5deg);
-            transition: transform 0.6s ease;
-        }
-        
-        .ms-service:hover .ms-product-showcase {
-            transform: rotateY(-25deg) rotateX(10deg);
+            align-items: center;
         }
         
         .ms-product {
-            position: absolute;
-            width: 200px;
-            height: 250px;
             background: linear-gradient(135deg, var(--white) 0%, var(--soft-gray) 100%);
             border: 1px solid rgba(208, 150, 131, 0.2);
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                inset 0 0 20px rgba(208, 150, 131, 0.05);
-            transition: all 0.4s ease;
-            backface-visibility: hidden;
-            overflow: hidden;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .ms-product:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-peach);
         }
         
         .ms-product-img {
-            width: 100%;
-            height: 70%;
-            background: linear-gradient(45deg, var(--primary-peach) 0%, var(--primary-taupe) 100%);
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
+            margin: 0 auto 15px;
+            font-size: 28px;
             color: var(--white);
         }
         
-        .ms-product-info {
-            padding: 20px;
-            text-align: center;
-        }
-        
         .ms-product-name {
-            font-family: var(--font-secondary);
+            font-family: var(--font-primary);
             font-size: 16px;
             font-weight: 700;
             color: var(--primary-dark);
@@ -1469,33 +1326,8 @@
             font-family: var(--font-secondary);
             font-size: 12px;
             color: var(--primary-taupe);
-        }
-        
-        .ms-product-1 {
-            transform: translateZ(0px) translateX(-30px) rotateY(15deg);
-            z-index: 1;
-        }
-        
-        .ms-product-2 {
-            transform: translateZ(60px) translateX(0px);
-            z-index: 2;
-        }
-        
-        .ms-product-3 {
-            transform: translateZ(120px) translateX(30px) rotateY(-15deg);
-            z-index: 3;
-        }
-        
-        .ms-service:hover .ms-product-1 {
-            transform: translateZ(-20px) translateX(-50px) rotateY(20deg);
-        }
-        
-        .ms-service:hover .ms-product-2 {
-            transform: translateZ(80px) translateX(0px) scale(1.1);
-        }
-        
-        .ms-service:hover .ms-product-3 {
-            transform: translateZ(140px) translateX(50px) rotateY(-20deg);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         /* Service Stats */
@@ -1542,8 +1374,7 @@
             padding: 16px 40px;
             border: none;
             border-radius: 50px;
-            cursor: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -1555,12 +1386,6 @@
             z-index: 1;
             min-width: 200px;
             justify-content: center;
-        }
-        
-        @media (hover: none) and (pointer: coarse) {
-            .ms-btn {
-                cursor: pointer;
-            }
         }
         
         .ms-btn::before {
@@ -1590,7 +1415,6 @@
             transform: translateY(-2px);
             box-shadow: 0 15px 40px var(--shadow-elegant);
             color: var(--white);
-            text-decoration: none;
         }
         
         .ms-btn-primary:hover::before {
@@ -1625,12 +1449,112 @@
             order: 1;
         }
         
-        .ms-service:nth-child(even) .ms-product-showcase {
-            transform: rotateY(15deg) rotateX(5deg);
+        /* Customers Section */
+        .ms-customers {
+            position: relative;
+            padding: var(--section-padding) 0;
+            background-color: var(--warm-cream);
+            overflow: hidden;
         }
         
-        .ms-service:nth-child(even):hover .ms-product-showcase {
-            transform: rotateY(25deg) rotateX(10deg);
+        .ms-customers-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 20% 50%, var(--primary-peach) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, var(--primary-taupe) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .ms-customers-header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .ms-customers-title {
+            font-family: var(--font-primary);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+        
+        .ms-customers-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(18px, 1.4vw, 22px);
+            color: var(--primary-taupe);
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Industries Grid */
+        .ms-industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .ms-industry {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(208, 150, 131, 0.2);
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .ms-industry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary-peach);
+            background: var(--white);
+        }
+        
+        .ms-industry-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .ms-industry:hover .ms-industry-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(208, 150, 131, 0.4);
+        }
+        
+        .ms-industry-name {
+            font-family: var(--font-primary);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+        
+        .ms-industry-desc {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--primary-taupe);
+            line-height: 1.4;
         }
         
         /* CTA Section */
@@ -1650,8 +1574,7 @@
             opacity: 0.1;
             background-image: 
                 radial-gradient(circle at 20% 50%, var(--white) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, var(--white) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, var(--white) 0%, transparent 50%);
+                radial-gradient(circle at 80% 80%, var(--white) 0%, transparent 50%);
             z-index: 0;
         }
         
@@ -1665,7 +1588,7 @@
         }
         
         .ms-cta-title {
-            font-family: var(--font-secondary);
+            font-family: var(--font-primary);
             font-size: clamp(36px, 5vw, 64px);
             font-weight: 800;
             line-height: 1.1;
@@ -1703,8 +1626,7 @@
             padding: 20px 50px;
             border: none;
             border-radius: 60px;
-            cursor: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -1723,7 +1645,7 @@
         }
         
         .ms-cta-btn-primary:hover {
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
         
@@ -1737,27 +1659,6 @@
             background: var(--white);
             color: var(--primary-dark);
             transform: translateY(-3px);
-        }
-        
-        /* Floating particles in CTA */
-        .ms-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        .ms-particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--white);
-            border-radius: 50%;
-            opacity: 0.3;
-            will-change: transform;
         }
         
         /* Mobile Responsive */
@@ -1780,9 +1681,9 @@
                 order: unset;
             }
             
-            .ms-product {
-                width: 160px;
-                height: 200px;
+            .ms-products-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
             }
         }
         
@@ -1835,10 +1736,15 @@
                 max-width: 300px;
                 justify-content: center;
             }
+            
+            .ms-industries-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 480px) {
-            .ms-services {
+            .ms-services,
+            .ms-customers {
                 padding: 60px 0;
             }
             
@@ -1852,40 +1758,17 @@
             }
             
             .ms-service-visual {
-                height: 250px;
+                height: auto;
+                padding: 20px 0;
             }
             
-            .ms-product-showcase {
-                transform: rotateY(0) rotateX(0);
-            }
-            
-            .ms-service:hover .ms-product-showcase,
-            .ms-service:nth-child(even):hover .ms-product-showcase {
-                transform: rotateY(0) rotateX(0);
+            .ms-products-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
             }
             
             .ms-product {
-                width: 140px;
-                height: 180px;
-                padding: 16px;
-            }
-            
-            .ms-product-1 {
-                transform: translateZ(0px) translateX(-20px);
-            }
-            
-            .ms-product-2 {
-                transform: translateZ(30px) translateX(0px);
-            }
-            
-            .ms-product-3 {
-                transform: translateZ(60px) translateX(20px);
-            }
-            
-            .ms-service:hover .ms-product-1,
-            .ms-service:hover .ms-product-2,
-            .ms-service:hover .ms-product-3 {
-                transform: translateZ(0px) translateX(0px);
+                padding: 20px;
             }
             
             .ms-feature {
@@ -1896,10 +1779,6 @@
                 font-size: 14px;
             }
             
-            .ms-element {
-                filter: blur(120px);
-            }
-            
             .ms-cta-section {
                 padding: 60px 0;
             }
@@ -1908,471 +1787,15 @@
                 padding: 16px 32px;
                 font-size: 16px;
             }
-        }
-
-
-             
-
-
-
-
-
-        
-        /* Text Selection */
-        ::selection {
-            background: var(--primary-peach);
-            color: var(--white);
-        }
-        
-        ::-moz-selection {
-            background: var(--primary-peach);
-            color: var(--white);
-        }
-        
-        /* Custom Cursor */
-        @media (hover: hover) and (pointer: fine) {
-            .cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid var(--primary-peach);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                transition: all 0.1s ease, opacity 0.3s ease;
-                transform: translate(-50%, -50%);
-                mix-blend-mode: difference;
-                will-change: transform;
-                opacity: 1;
-            }
             
-            .cursor-follower {
-                width: 40px;
-                height: 40px;
-                background: var(--primary-peach);
-                opacity: 0.3;
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9998;
-                transition: all 0.3s ease, opacity 0.3s ease;
-                transform: translate(-50%, -50%);
-                will-change: transform;
-            }
-            
-            .cursor.active {
-                transform: translate(-50%, -50%) scale(0.8);
-                background: var(--primary-peach);
-            }
-            
-            .cursor-follower.active {
-                transform: translate(-50%, -50%) scale(1.5);
-            }
-            
-            body:has(.ms-btn:hover) .cursor,
-            body:has(.ms-service:hover) .cursor {
-                width: 30px;
-                height: 30px;
-                border-color: transparent;
-                background: rgba(208, 150, 131, 0.2);
-                backdrop-filter: blur(5px);
-            }
-            
-            body:has(.ms-card:hover) .cursor {
-                width: 60px;
-                height: 60px;
-                border: 2px solid var(--primary-peach);
-                background: rgba(208, 150, 131, 0.1);
-                backdrop-filter: blur(3px);
-            }
-            
-            body:has(.ms-service-icon:hover) .cursor {
-                transform: translate(-50%, -50%) rotate(45deg);
-                border-radius: 20%;
-            }
-            
-            /* Text cursor */
-            body:has(p:hover) .cursor,
-            body:has(span:hover) .cursor,
-            body:has(h3:hover) .cursor {
-                width: 3px;
-                height: 30px;
-                border-radius: 2px;
-                background: var(--primary-peach);
-                border: none;
-            }
-        }
-        
-        @media (hover: none) and (pointer: coarse) {
-            body {
-                cursor: auto;
-            }
-            
-            .cursor,
-            .cursor-follower {
-                display: none !important;
-            }
-            
-            /* Ensure touch interactions work properly */
-            .ms-btn,
-            .ms-service,
-            a, button {
-                cursor: pointer !important;
-            }
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-
-        /* Products Section */
-        .ws-products {
-            position: relative;
-            padding: var(--section-padding) 0;
-            background-color: var(--warm-cream);
-            overflow: hidden;
-            margin: 0 auto;
-            max-width: 1400px;
-        }
-
-       
-        .ws-bg-pattern {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(208, 150, 131, 0.03) 35px, rgba(208, 150, 131, 0.03) 70px),
-                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(115, 96, 91, 0.03) 35px, rgba(115, 96, 91, 0.03) 70px);
-            z-index: 0;
-        }
-        
-        .ws-products-header {
-            text-align: center;
-            margin-bottom: 80px;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        /* Product Categories */
-        .ws-categories {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .ws-category {
-            font-family: var(--font-secondary);
-            font-size: 16px;
-            font-weight: 600;
-            padding: 12px 30px;
-            background: transparent;
-            border: 2px solid rgba(208, 150, 131, 0.3);
-            border-radius: 50px;
-            color: var(--primary-taupe);
-            cursor: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .ws-category.active,
-        .ws-category:hover {
-            background: var(--gradient-primary);
-            color: var(--white);
-            border-color: transparent;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px var(--shadow-elegant);
-        }
-        
-        /* Products Grid */
-        .ws-products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .ws-product {
-            position: relative;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(208, 150, 131, 0.2);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            opacity: 0;
-            transform: translateY(30px) scale(0.95);
-            cursor: none;
-        }
-        
-        .ws-product:hover {
-            transform: translateY(-10px) scale(1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .ws-product-image {
-            position: relative;
-            height: 250px;
-            background: var(--gradient-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-        
-        .ws-product-image i {
-            font-size: 80px;
-            color: var(--white);
-            opacity: 0.8;
-            transition: all 0.3s ease;
-        }
-        
-        .ws-product:hover .ws-product-image i {
-            transform: scale(1.2) rotate(10deg);
-        }
-        
-        .ws-product-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--white);
-            color: var(--primary-dark);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-family: var(--font-secondary);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .ws-product-info {
-            padding: 30px;
-        }
-        
-        .ws-product-title {
-            font-family: var(--font-primary);
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-        
-        .ws-product-desc {
-            font-family: var(--font-body);
-            font-size: 16px;
-            color: var(--primary-taupe);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        
-        .ws-product-specs {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .ws-spec {
-            font-family: var(--font-secondary);
-            font-size: 14px;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .ws-spec i {
-            color: var(--primary-peach);
-            font-size: 16px;
-        }
-
-       
-        /* Floating Elements */
-        .ws-float {
-            position: absolute;
-            opacity: 0.1;
-            pointer-events: none;
-            will-change: transform;
-        }
-        
-        .ws-float-1 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary-peach);
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            top: 20%;
-            right: 10%;
-            filter: blur(80px);
-        }
-        
-        .ws-float-2 {
-            width: 250px;
-            height: 250px;
-            background: var(--primary-taupe);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            bottom: 10%;
-            left: 5%;
-            filter: blur(60px);
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .ws-hero-content {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .ws-hero-visual {
-                order: -1;
-            }
-            
-            .ws-sack-showcase {
-                height: 500px;
-            }
-            
-            .ws-capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .ws-hero {
-                min-height: auto;
-                padding: 80px 20px;
-            }
-            
-            .ws-hero-stats {
-                gap: 30px;
-            }
-            
-            .ws-hero-cta {
-                flex-direction: column;
-            }
-            
-            .ws-btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .ws-sack {
-                width: 200px;
-                height: 280px;
-            }
-            
-            .ws-capabilities-header,
-            .ws-products-header {
-                margin-bottom: 60px;
-            }
-            
-            .ws-capability {
-                padding: 40px 30px;
-            }
-            
-            .ws-products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .ws-hero {
-                padding: 60px 15px;
-            }
-            
-            .ws-hero-title {
-                font-size: clamp(32px, 8vw, 40px);
-            }
-            
-            .ws-hero-desc {
-                font-size: 16px;
-            }
-            
-            .ws-btn {
-                padding: 16px 30px;
-                font-size: 14px;
-            }
-            
-            .ws-sack-showcase {
-                height: 400px;
-                transform: perspective(1000px) rotateY(0);
-            }
-            
-            .ws-sack {
-                width: 180px;
-                height: 250px;
-            }
-            
-            .ws-sack-1 {
-                transform: translateZ(0px) translateX(-30px);
-            }
-            
-            .ws-sack-2 {
-                transform: translateZ(50px) translateX(0px);
-            }
-            
-            .ws-sack-3 {
-                transform: translateZ(100px) translateX(30px);
-            }
-            
-            .ws-capabilities,
-            .ws-products {
-                padding: 60px 0;
-            }
-            
-            .ws-container {
-                padding: 0 15px;
-            }
-            
-            .ws-section-title {
-                font-size: clamp(28px, 6vw, 36px);
-            }
-            
-            .ws-section-subtitle {
-                font-size: 16px;
-            }
-            
-            .ws-capability {
+            .ms-industry {
                 padding: 30px 20px;
             }
             
-            .ws-capability-icon {
+            .ms-industry-icon {
                 width: 60px;
                 height: 60px;
-                margin-bottom: 20px;
-            }
-            
-            .ws-capability-icon i {
                 font-size: 28px;
-            }
-            
-            .ws-capability-title {
-                font-size: 24px;
-            }
-            
-            .ws-categories {
-                gap: 10px;
-            }
-            
-            .ws-category {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-            
-            .ws-product-info {
-                padding: 20px;
-            }
-            
-            .ws-product-title {
-                font-size: 20px;
-            }
-            
-            .ws-product-desc {
-                font-size: 14px;
             }
         }
     </style>
@@ -2534,11 +1957,7 @@
     </div>
 </section>
 
-
-
-
-<!-- Manufacturing Services Section -->
-    <section class="ms-services">
+<section class="ms-services">
         <!-- Background Elements -->
         <div class="ms-bg-pattern"></div>
         <div class="ms-floating-elements">
@@ -2571,7 +1990,7 @@
                             <div class="ms-service-icon">
                                 <i class="fas fa-industry"></i>
                             </div>
-                            <h3 class="ms-service-name" id="ppwoven">PP Woven Sacks Manufacturing</h3>
+                            <h3 class="ms-service-name">PP Woven Sacks Manufacturing</h3>
                             <p class="ms-service-desc">
                                 Premium quality polypropylene woven sacks engineered for maximum durability and performance. 
                                 Our state-of-the-art manufacturing facility produces bags that meet international quality 
@@ -2617,7 +2036,7 @@
                             </ul>
                             
                             <div class="ms-cta-group">
-                                <a href="contact.html#contact-form" class="ms-btn ms-btn-primary">
+                                <a href="#contact" class="ms-btn ms-btn-primary">
                                     Request Quote
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -2625,33 +2044,27 @@
                         </div>
                         
                         <div class="ms-service-visual">
-                            <div class="ms-product-showcase">
-                                <div class="ms-product ms-product-1">
+                            <div class="ms-products-grid">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-layer-group"></i>
                                     </div>
-                                    <div class="ms-product-info" id="standardppsack">
-                                        <div class="ms-product-name">Standard PP Sack</div>
-                                        <div class="ms-product-spec">50kg Capacity</div>
-                                    </div>
+                                    <div class="ms-product-name">Standard PP</div>
+                                    <div class="ms-product-spec">50kg Capacity</div>
                                 </div>
-                                <div class="ms-product ms-product-2">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-shield-alt"></i>
                                     </div>
-                                    <div class="ms-product-info">
-                                        <div class="ms-product-name">Laminated Sack</div>
-                                        <div class="ms-product-spec">Weather Resistant</div>
-                                    </div>
+                                    <div class="ms-product-name">Laminated</div>
+                                    <div class="ms-product-spec">Weather Proof</div>
                                 </div>
-                                <div class="ms-product ms-product-3">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-certificate"></i>
                                     </div>
-                                    <div class="ms-product-info">
-                                        <div class="ms-product-name">Food Grade</div>
-                                        <div class="ms-product-spec">FDA Approved</div>
-                                    </div>
+                                    <div class="ms-product-name">Food Grade</div>
+                                    <div class="ms-product-spec">FDA Approved</div>
                                 </div>
                             </div>
                         </div>
@@ -2712,7 +2125,7 @@
                             </ul>
                             
                             <div class="ms-cta-group">
-                                <a href="contact.html#contact-form" class="ms-btn ms-btn-primary">
+                                <a href="#contact" class="ms-btn ms-btn-primary">
                                     Design Your Package
                                     <i class="fas fa-arrow-right"></i>
                                 </a>
@@ -2720,33 +2133,27 @@
                         </div>
                         
                         <div class="ms-service-visual">
-                            <div class="ms-product-showcase">
-                                <div class="ms-product ms-product-1">
+                            <div class="ms-products-grid">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-seedling"></i>
                                     </div>
-                                    <div class="ms-product-info">
-                                        <div class="ms-product-name">Agricultural</div>
-                                        <div class="ms-product-spec">Fertilizer Bags</div>
-                                    </div>
+                                    <div class="ms-product-name">Agricultural</div>
+                                    <div class="ms-product-spec">Fertilizer</div>
                                 </div>
-                                <div class="ms-product ms-product-2">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-hard-hat"></i>
                                     </div>
-                                    <div class="ms-product-info">
-                                        <div class="ms-product-name">Construction</div>
-                                        <div class="ms-product-spec">Cement Sacks</div>
-                                    </div>
+                                    <div class="ms-product-name">Construction</div>
+                                    <div class="ms-product-spec">Cement</div>
                                 </div>
-                                <div class="ms-product ms-product-3">
+                                <div class="ms-product">
                                     <div class="ms-product-img">
                                         <i class="fas fa-flask"></i>
                                     </div>
-                                    <div class="ms-product-info">
-                                        <div class="ms-product-name">Chemical</div>
-                                        <div class="ms-product-spec">Safety Bags</div>
-                                    </div>
+                                    <div class="ms-product-name">Chemical</div>
+                                    <div class="ms-product-spec">Safety</div>
                                 </div>
                             </div>
                         </div>
@@ -2755,176 +2162,145 @@
             </div>
         </div>
     </section>
-
-
-
-
-
-     <!-- Products Section -->
-    <section class="ws-products" id="products">
-        <div class="ws-container">
-            <div class="ws-products-header">
-                <h2 class="ws-section-title">Our Product Range</h2>
-                <p class="ws-section-subtitle">
-                    Comprehensive packaging solutions for diverse industries with superior 
-                    durability and competitive pricing
+    
+    <!-- Our Customers Section -->
+    <section class="ms-customers">
+        <div class="ms-customers-bg"></div>
+        
+        <div class="ms-container">
+            <div class="ms-customers-header">
+                <h2 class="ms-customers-title">Industries We Serve</h2>
+                <p class="ms-customers-subtitle">
+                    Trusted by leading companies across diverse industries, we deliver specialized 
+                    packaging solutions that meet the unique requirements of each sector
                 </p>
             </div>
             
-            <div class="ws-categories">
-                <button class="ws-category active">All Products</button>
-                <button class="ws-category">Agricultural</button>
-                <button class="ws-category">Industrial</button>
-                <button class="ws-category">Food Grade</button>
-            </div>
-            
-            <div class="ws-products-grid">
-                <!-- Fertilizer Bags -->
-                <div class="ws-product" data-category="agricultural">
-                    <div class="ws-product-image">
-                        <i class="fas fa-seedling"></i>
-                        <span class="ws-product-badge">Popular</span>
+            <div class="ms-industries-grid">
+                <!-- Agricultural Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-tractor"></i>
                     </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Fertilizer Bags</h3>
-                        <p class="ws-product-desc">
-                            Heavy-duty woven sacks designed for agricultural fertilizers with 
-                            moisture barrier protection and UV stabilization.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-weight"></i>
-                                25-50kg capacity
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-shield-alt"></i>
-                                Laminated
-                            </span>
-                        </div>
-                    </div>
+                    <h3 class="ms-industry-name">Agricultural Industries</h3>
+                    <p class="ms-industry-desc">Premium packaging for seeds, grains, and agricultural produce</p>
                 </div>
                 
-                <!-- Cement Sacks -->
-                <div class="ws-product" data-category="industrial">
-                    <div class="ws-product-image">
-                        <i class="fas fa-hard-hat"></i>
-                        <span class="ws-product-badge">Heavy Duty</span>
+                <!-- Pesticide Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-spray-can"></i>
                     </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Cement Sacks</h3>
-                        <p class="ws-product-desc">
-                            Extra-strong construction grade bags with reinforced stitching for 
-                            cement and building materials packaging.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-weight"></i>
-                                50kg standard
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-layer-group"></i>
-                                Multi-layer
-                            </span>
-                        </div>
-                    </div>
+                    <h3 class="ms-industry-name">Pesticide Industries</h3>
+                    <p class="ms-industry-desc">Safety-compliant packaging for chemical pesticides</p>
                 </div>
                 
-                <!-- Chemical Bags -->
-                <div class="ws-product" data-category="industrial">
-                    <div class="ws-product-image">
-                        <i class="fas fa-flask"></i>
-                        <span class="ws-product-badge">Safety Grade</span>
+                <!-- Drug Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-pills"></i>
                     </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Chemical Bags</h3>
-                        <p class="ws-product-desc">
-                            Specialized bags with chemical-resistant linings for safe storage 
-                            and transportation of industrial chemicals.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                Safety certified
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-tint-slash"></i>
-                                Leak-proof
-                            </span>
-                        </div>
-                    </div>
+                    <h3 class="ms-industry-name">Drug Industries</h3>
+                    <p class="ms-industry-desc">Pharmaceutical-grade packaging solutions</p>
                 </div>
                 
-                <!-- Food Grade Bags -->
-                <div class="ws-product" data-category="food-grade">
-                    <div class="ws-product-image">
-                        <i class="fas fa-wheat-awn"></i>
-                        <span class="ws-product-badge">FDA Approved</span>
-                    </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Food Grade Bags</h3>
-                        <p class="ws-product-desc">
-                            Safe packaging solutions for grains, rice, flour, and other food 
-                            products with FDA-approved materials.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-certificate"></i>
-                                Food safe
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-recycle"></i>
-                                Eco-friendly
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Animal Feed Bags -->
-                <div class="ws-product" data-category="agricultural">
-                    <div class="ws-product-image">
+                <!-- Cattle Feed Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
                         <i class="fas fa-cow"></i>
                     </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Animal Feed Bags</h3>
-                        <p class="ws-product-desc">
-                            Durable packaging for poultry feed, cattle feed, and other animal 
-                            nutrition products with breathable design.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-wind"></i>
-                                Breathable
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-print"></i>
-                                Custom print
-                            </span>
-                        </div>
-                    </div>
+                    <h3 class="ms-industry-name">Cattle Feed Industries</h3>
+                    <p class="ms-industry-desc">Durable packaging for animal feed products</p>
                 </div>
                 
-                <!-- Sugar/Salt Bags -->
-                <div class="ws-product" data-category="food-grade">
-                    <div class="ws-product-image">
+                <!-- Cement Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Cement Industries</h3>
+                    <p class="ms-industry-desc">Heavy-duty sacks for construction materials</p>
+                </div>
+                
+                <!-- Chemical Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Chemical Industries</h3>
+                    <p class="ms-industry-desc">Specialized bags for chemical products</p>
+                </div>
+                
+                <!-- Food Products Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-wheat-awn"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Food Products Industries</h3>
+                    <p class="ms-industry-desc">Food-grade packaging for safe storage</p>
+                </div>
+                
+                <!-- Metal Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Metal Industries</h3>
+                    <p class="ms-industry-desc">Robust packaging for metal products</p>
+                </div>
+                
+                <!-- Mineral Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Mineral Industries</h3>
+                    <p class="ms-industry-desc">Protective packaging for mineral products</p>
+                </div>
+                
+                <!-- Paper Mill Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Paper Mill Industries</h3>
+                    <p class="ms-industry-desc">Moisture-resistant packaging solutions</p>
+                </div>
+                
+                <!-- Textile Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-shirt"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Textile Industries</h3>
+                    <p class="ms-industry-desc">Protective packaging for textile products</p>
+                </div>
+                
+                <!-- Fertilizer Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="ms-industry-name">Fertilizer Industries</h3>
+                    <p class="ms-industry-desc">Specialized bags for fertilizer storage</p>
+                </div>
+                
+                <!-- Salt Industries -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
                         <i class="fas fa-cube"></i>
                     </div>
-                    <div class="ws-product-info">
-                        <h3 class="ws-product-title">Sugar & Salt Bags</h3>
-                        <p class="ws-product-desc">
-                            Moisture-resistant bags specifically designed for sugar, salt, and 
-                            other hygroscopic materials.
-                        </p>
-                        <div class="ws-product-specs">
-                            <span class="ws-spec">
-                                <i class="fas fa-tint-slash"></i>
-                                Moisture barrier
-                            </span>
-                            <span class="ws-spec">
-                                <i class="fas fa-box"></i>
-                                10-50kg sizes
-                            </span>
-                        </div>
+                    <h3 class="ms-industry-name">Salt Industries</h3>
+                    <p class="ms-industry-desc">Moisture-barrier packaging for salt products</p>
+                </div>
+                
+                <!-- Many More -->
+                <div class="ms-industry">
+                    <div class="ms-industry-icon">
+                        <i class="fas fa-ellipsis-h"></i>
                     </div>
+                    <h3 class="ms-industry-name">Many More</h3>
+                    <p class="ms-industry-desc">Custom solutions for diverse industries</p>
                 </div>
             </div>
         </div>
@@ -2933,7 +2309,6 @@
     <!-- CTA Section -->
     <section class="ms-cta-section">
         <div class="ms-cta-bg"></div>
-        <div class="ms-particles"></div>
         
         <div class="ms-cta-content">
             <h2 class="ms-cta-title">Ready to Transform Your Packaging?</h2>
@@ -2942,18 +2317,20 @@
                 Get competitive pricing, superior quality, and timely delivery for your business.
             </p>
             <div class="ms-cta-buttons">
-                <a href="contact.html#contact-form" class="ms-cta-btn ms-cta-btn-primary">
+                <a href="#contact" class="ms-cta-btn ms-cta-btn-primary">
                     Get Started Today
                     <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="contact.html#contact-form" class="ms-cta-btn ms-cta-btn-secondary">
+                <a href="#contact" class="ms-cta-btn ms-cta-btn-secondary">
                     Request Samples
                     <i class="fas fa-box-open"></i>
                 </a>
             </div>
         </div>
     </section>
-    
+
+
+
 
 <!-- Footer Universe -->
     <footer class="footer-universe" id="footer">
@@ -3608,6 +2985,9 @@
                 once: true
             }
         });
+
+
+        
          // GSAP Animations
         gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
         
