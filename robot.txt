@@ -1,0 +1,353 @@
+# robots.txt for DEETS NIG. - Professional Consulting & Manufacturing
+# Website: https://www.deetsnig.com
+# Generated on: 2025-07-04
+# Contact: info@deetsnig.com
+
+# =============================================================================
+# SEARCH ENGINE BOTS - ALLOW FULL ACCESS
+# =============================================================================
+
+# Google Search Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing Search Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yahoo Search Bot
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Yandex Search Bot
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 2
+
+# DuckDuckGo Search Bot
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# =============================================================================
+# SPECIALIZED BOTS - CONTROLLED ACCESS
+# =============================================================================
+
+# Facebook Bot (for social media previews)
+User-agent: facebookexternalhit
+Allow: /
+Allow: /images/
+Allow: /assets/
+Crawl-delay: 1
+
+# Twitter Bot (for card previews)
+User-agent: Twitterbot
+Allow: /
+Allow: /images/
+Allow: /assets/
+Crawl-delay: 1
+
+# LinkedIn Bot (for professional previews)
+User-agent: LinkedInBot
+Allow: /
+Allow: /images/
+Allow: /assets/
+Crawl-delay: 1
+
+# WhatsApp Bot (for link previews)
+User-agent: WhatsApp
+Allow: /
+Allow: /images/
+Allow: /assets/
+
+# =============================================================================
+# DISALLOWED DIRECTORIES - SENSITIVE/PRIVATE AREAS
+# =============================================================================
+
+# All bots - Restrict access to sensitive areas
+User-agent: *
+
+# Administrative areas
+Disallow: /admin/
+Disallow: /administrator/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+Disallow: /cgi-bin/
+Disallow: /config/
+Disallow: /includes/
+Disallow: /install/
+Disallow: /setup/
+
+# Private business directories
+Disallow: /private/
+Disallow: /internal/
+Disallow: /confidential/
+Disallow: /restricted/
+Disallow: /client-portal/
+Disallow: /employee-portal/
+Disallow: /dashboard/
+Disallow: /backend/
+
+# Database and backup files
+Disallow: /database/
+Disallow: /db/
+Disallow: /backups/
+Disallow: /backup/
+Disallow: /*.sql$
+Disallow: /*.db$
+Disallow: /*.bak$
+
+# System and temporary files
+Disallow: /temp/
+Disallow: /tmp/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /log/
+Disallow: /errors/
+Disallow: /error/
+Disallow: /*.log$
+Disallow: /*.tmp$
+Disallow: /*.temp$
+
+# Development and testing areas
+Disallow: /dev/
+Disallow: /development/
+Disallow: /test/
+Disallow: /testing/
+Disallow: /staging/
+Disallow: /beta/
+Disallow: /debug/
+
+# Version control
+Disallow: /.git/
+Disallow: /.svn/
+Disallow: /.hg/
+Disallow: /.bzr/
+
+# Configuration files
+Disallow: /*.ini$
+Disallow: /*.conf$
+Disallow: /*.config$
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /web.config
+Disallow: /.env
+Disallow: /.env.local
+Disallow: /.env.production
+
+# Source code and documentation
+Disallow: /src/
+Disallow: /source/
+Disallow: /docs/internal/
+Disallow: /documentation/internal/
+Disallow: /*.md$
+Disallow: /README*
+Disallow: /LICENSE*
+Disallow: /CHANGELOG*
+
+# Search and filter results (to prevent duplicate content)
+Disallow: /search
+Disallow: /search/
+Disallow: /*?search=
+Disallow: /*?filter=
+Disallow: /*?sort=
+Disallow: /*?page=
+Disallow: /*?utm_
+Disallow: /*?ref=
+Disallow: /*?source=
+
+# Form processing and actions
+Disallow: /form-handler/
+Disallow: /submit/
+Disallow: /process/
+Disallow: /action/
+Disallow: /*?action=
+Disallow: /*?do=
+
+# User-specific content
+Disallow: /user/
+Disallow: /users/
+Disallow: /account/
+Disallow: /accounts/
+Disallow: /profile/
+Disallow: /profiles/
+Disallow: /member/
+Disallow: /members/
+
+# E-commerce specific (if applicable)
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /order/
+Disallow: /orders/
+Disallow: /payment/
+Disallow: /payments/
+Disallow: /invoice/
+Disallow: /invoices/
+
+# =============================================================================
+# ALLOWED DIRECTORIES - IMPORTANT CONTENT
+# =============================================================================
+
+# Public business content
+Allow: /about/
+Allow: /services/
+Allow: /consulting/
+Allow: /manufacturing/
+Allow: /portfolio/
+Allow: /case-studies/
+Allow: /testimonials/
+Allow: /contact/
+Allow: /careers/
+Allow: /news/
+Allow: /blog/
+Allow: /resources/
+Allow: /downloads/public/
+
+# Media and assets
+Allow: /images/
+Allow: /img/
+Allow: /media/
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /fonts/
+Allow: /icons/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.woff$
+Allow: /*.woff2$
+Allow: /*.ttf$
+Allow: /*.eot$
+Allow: /*.svg$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.webp$
+Allow: /*.ico$
+
+# Document downloads (public)
+Allow: /brochures/
+Allow: /catalogs/
+Allow: /pdfs/
+Allow: /*.pdf$
+
+# =============================================================================
+# CRAWL DELAY SETTINGS
+# =============================================================================
+
+# Default crawl delay for all other bots
+Crawl-delay: 3
+
+# =============================================================================
+# SITEMAP LOCATIONS
+# =============================================================================
+
+# Main sitemap (XML format)
+Sitemap: https://www.deetsnig.com/sitemap.xml
+
+# Sitemap index (if using multiple sitemaps)
+Sitemap: https://www.deetsnig.com/sitemap-index.xml
+
+# Specific sitemaps for different content types
+Sitemap: https://www.deetsnig.com/sitemap-pages.xml
+Sitemap: https://www.deetsnig.com/sitemap-services.xml
+Sitemap: https://www.deetsnig.com/sitemap-blog.xml
+Sitemap: https://www.deetsnig.com/sitemap-images.xml
+
+# =============================================================================
+# BLOCKING MALICIOUS BOTS
+# =============================================================================
+
+# Common spam and malicious bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: JamesBot
+Disallow: /
+
+User-agent: SiteExplorer
+Disallow: /
+
+User-agent: Cliqzbot
+Disallow: /
+
+User-agent: MixrankBot
+Disallow: /
+
+User-agent: SurdotlyBot
+Disallow: /
+
+User-agent: JobDigger
+Disallow: /
+
+User-agent: DeuSu
+Disallow: /
+
+# Generic bad bots
+User-agent: *bot*
+Disallow: /
+
+User-agent: *crawl*
+Disallow: /
+
+User-agent: *spider*
+Disallow: /
+
+# =============================================================================
+# HOSTING AND PERFORMANCE OPTIMIZATION
+# =============================================================================
+
+# Prevent crawling of resource-heavy files during peak hours
+# (This is more of a server-side implementation note)
+# Consider implementing time-based crawling restrictions
+
+# =============================================================================
+# COMPLIANCE AND LEGAL
+# =============================================================================
+
+# This robots.txt file complies with:
+# - The Robots Exclusion Standard (REP)
+# - Google Search Console guidelines
+# - Bing Webmaster Tools recommendations
+# - International SEO best practices
+# - Data privacy regulations (GDPR, CCPA compliance)
+
+# =============================================================================
+# MAINTENANCE NOTES
+# =============================================================================
+
+# Last updated: 2025-07-04
+# Review frequency: Monthly
+# Responsible: Web Development Team
+# Contact: webmaster@deetsnig.com
+
+# To validate this robots.txt file:
+# 1. Use Google Search Console robots.txt Tester
+# 2. Use Bing Webmaster Tools robots.txt Tester
+# 3. Use online robots.txt validators
+# 4. Test with: curl -A "Googlebot" https://www.deetsnig.com/robots.txt
+
+# =============================================================================
+# END OF FILE
+# =============================================================================
