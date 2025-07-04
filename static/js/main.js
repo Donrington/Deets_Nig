@@ -1113,113 +1113,140 @@ if (visualCards.length > 0 && !isMobile && !prefersReducedMotion) {
                 }
             }
         );
+// 3D Media Carousel
+let currentIndex = 0;
+const mediaStacks = document.querySelectorAll('.media-stack');
+const totalStacks = mediaStacks.length;
 
-        // 3D Media Carousel
-        let currentIndex = 0;
-        const mediaStacks = document.querySelectorAll('.media-stack');
-        const totalStacks = mediaStacks.length;
-
-        function updateCarousel() {
-            mediaStacks.forEach((stack, index) => {
-                stack.classList.remove('active');
-                
-                let position = index - currentIndex;
-                if (position < 0) position += totalStacks;
-                
-                gsap.to(stack, {
-                    duration: 0.8,
-                    ease: "power3.out",
-                    zIndex: totalStacks - position,
-                    rotationY: position * -5,
-                    x: position * 30,
-                    z: position * -50,
-                    opacity: Math.max(0.2, 1 - position * 0.2),
-                    scale: Math.max(0.8, 1 - position * 0.05)
+function updateCarousel() {
+    const isMobile = window.innerWidth <= 768;
+    
+    mediaStacks.forEach((stack, index) => {
+        stack.classList.remove('active');
+        
+        if (isMobile) {
+            // Mobile: Simple show/hide approach
+            if (index === currentIndex) {
+                stack.classList.add('active');
+                gsap.set(stack, {
+                    display: 'block',
+                    opacity: 1,
+                    transform: 'none',
+                    zIndex: 1
                 });
-                
-                if (position === 0) {
-                    stack.classList.add('active');
-                }
-            });
-        }
-
-        // Navigation Events
-        document.getElementById('navNext').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % totalStacks;
-            updateCarousel();
-        });
-
-        document.getElementById('navPrev').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + totalStacks) % totalStacks;
-            updateCarousel();
-        });
-
-        // Auto-rotation
-        let autoRotate = setInterval(() => {
-            currentIndex = (currentIndex + 1) % totalStacks;
-            updateCarousel();
-        }, 10000);
-
-        // Pause auto-rotation on hover
-        const carouselViewport = document.getElementById('carouselViewport');
-        carouselViewport.addEventListener('mouseenter', () => {
-            clearInterval(autoRotate);
-        });
-
-        carouselViewport.addEventListener('mouseleave', () => {
-            autoRotate = setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalStacks;
-                updateCarousel();
-            }, 10000);
-        });
-
-        // Initialize carousel
-        updateCarousel();
-
-        // 3D Carousel Interaction
-        mediaStacks.forEach(stack => {
-            stack.addEventListener('mousemove', (e) => {
-                if (!stack.classList.contains('active')) return;
-                
-                const rect = stack.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width;
-                const y = (e.clientY - rect.top) / rect.height;
-                
-                gsap.to(stack, {
-                    rotationX: (y - 0.5) * 10,
-                    rotationY: (x - 0.5) * 10,
-                    duration: 0.3,
-                    ease: "power2.out"
+            } else {
+                gsap.set(stack, {
+                    display: 'none',
+                    opacity: 0,
+                    zIndex: 0
                 });
+            }
+        } else {
+            // Desktop: 3D carousel approach
+            let position = index - currentIndex;
+            if (position < 0) position += totalStacks;
+            
+            gsap.to(stack, {
+                duration: 0.8,
+                ease: "power3.out",
+                zIndex: totalStacks - position,
+                rotationY: position * -5,
+                x: position * 30,
+                z: position * -50,
+                opacity: Math.max(0.2, 1 - position * 0.2),
+                scale: Math.max(0.8, 1 - position * 0.05)
             });
             
-            stack.addEventListener('mouseleave', () => {
-                gsap.to(stack, {
-                    rotationX: 0,
-                    rotationY: 0,
-                    duration: 0.6,
-                    ease: "elastic.out(1, 0.3)"
-                });
-            });
-        });
+            if (position === 0) {
+                stack.classList.add('active');
+            }
+        }
+    });
+}
 
-        // Video Play/Pause
-        document.querySelectorAll('.play-button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const video = button.closest('.media-frame').querySelector('video');
-                if (video) {
-                    if (video.paused) {
-                        video.play();
-                        button.innerHTML = '<i class="fas fa-pause"></i>';
-                    } else {
-                        video.pause();
-                        button.innerHTML = '<i class="fas fa-play"></i>';
-                    }
-                }
-            });
-        });
+// Navigation Events
+document.getElementById('navNext').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalStacks;
+    updateCarousel();
+});
 
+document.getElementById('navPrev').addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalStacks) % totalStacks;
+    updateCarousel();
+});
+
+// Auto-rotation
+let autoRotate = setInterval(() => {
+    currentIndex = (currentIndex + 1) % totalStacks;
+    updateCarousel();
+}, 10000);
+
+// Pause auto-rotation on hover
+const carouselViewport = document.getElementById('carouselViewport');
+carouselViewport.addEventListener('mouseenter', () => {
+    clearInterval(autoRotate);
+});
+
+carouselViewport.addEventListener('mouseleave', () => {
+    autoRotate = setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalStacks;
+        updateCarousel();
+    }, 10000);
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    updateCarousel();
+});
+
+// Initialize carousel
+updateCarousel();
+
+// 3D Carousel Interaction (Desktop only)
+mediaStacks.forEach(stack => {
+    stack.addEventListener('mousemove', (e) => {
+        if (!stack.classList.contains('active') || window.innerWidth <= 768) return;
+        
+        const rect = stack.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        
+        gsap.to(stack, {
+            rotationX: (y - 0.5) * 10,
+            rotationY: (x - 0.5) * 10,
+            duration: 0.3,
+            ease: "power2.out"
+        });
+    });
+    
+    stack.addEventListener('mouseleave', () => {
+        if (window.innerWidth <= 768) return;
+        
+        gsap.to(stack, {
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.3)"
+        });
+    });
+});
+
+// Video Play/Pause
+document.querySelectorAll('.play-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const video = button.closest('.media-frame').querySelector('video');
+        if (video) {
+            if (video.paused) {
+                video.play();
+                button.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                video.pause();
+                button.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+    });
+});
         // Background Effects Animations
         gsap.to('.refined-gradient-mesh', {
             scale: 1.1,
